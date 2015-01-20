@@ -1,0 +1,4 @@
+public Class PrintArgumentLengths {
+    public static void main(String[] args) {
+    }
+}
