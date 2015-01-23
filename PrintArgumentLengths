@@ -3,5 +3,9 @@ public class PrintArgumentLengths {
     	if (args.length == 0) {
     		System.out.println("Usage: java PrintArgumentLengths ,any number of arguments>");
     	}
+
+    	for (String arg: args){
+    		
+    	}
     }
 }
