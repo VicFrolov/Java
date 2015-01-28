@@ -34,7 +34,12 @@ class ChangeMaker {
 	}
 
 	public static void main(String[] args){
-	
+		int cashMoney = Integer.parseInt(args[0]);
+		int[] result = getChange(cashMoney);
+		System.out.println("Quarters:" + result[0]);
+		System.out.println("Dimes:" + result[1]);
+		System.out.println("Nickels:" + result[2]);
+		System.out.println("Pennies:" + result[3]);					
 	}
 	
 }
