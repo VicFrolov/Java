@@ -1,5 +1,4 @@
-class ChangeMaker {
-	
+class ChangeMaker {	
 	public static int getQuarters(int cents) {
 		return cents / 25;
 	}
@@ -15,24 +14,20 @@ class ChangeMaker {
 	public static int getPennies(int cents) {
 		return cents / 1;
 	}
+	public static int[] getChange(int cents) {	
+		int[] coins = new int[4];		
+		int[] dividers = new int[4];
+		dividers[0] = 25;
+		dividers[1] = 10;
+		dividers[2] = 5;
+		dividers[3] = 1;
 
-	public static int[] getChange(int cents) {
-		int[] coins = new int[4];
-		coins[0] = getQuarters(cents);
-		cents = cents - 25 * coins[0];
-
-		coins[1] = getDimes(cents);
-		cents = cents - 10 *coins[1];
-
-		coins[2] = getNickels(cents);
-		cents = cents - 5 * coins[2];
-		
-		coins[3] = getPennies(cents);
-
+		for(int i = 0; i<4; i++){
+			coins[i] = (int) cents / dividers[i];
+			cents = cents - dividers[i] * coins[i];
+		}
 		return coins;
-
 	}
-
 	public static void main(String[] args){
 		int cashMoney = Integer.parseInt(args[0]);
 		int[] result = getChange(cashMoney);
