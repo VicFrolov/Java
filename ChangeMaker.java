@@ -31,15 +31,32 @@ class ChangeMaker {
 		return coins;
 
 	}
-	
+
 	public static void main(String[] args){
+		int cashMoney;
+	
+		try 
+		{
+			cashMoney = Integer.parseInt(args[0]);
+			if (args.length == 0) {
+				System.out.println("Usage: java ChangeMaker <amount in cents>");
+				return;
+			} else if (cashMoney < 0) {
+				System.out.println("Cannot make change for negative cents.");
+				return;
+			} 
+			
+		} catch(NumberFormatException nfe) {
+			System.out.println("Supplied value is not an integer.");
+			return;
+		}
 		
-		int cashMoney = Integer.parseInt(args[0]);
 		int[] result = getChange(cashMoney);
 		System.out.println("Quarters:" + result[0]);
 		System.out.println("Dimes:" + result[1]);
 		System.out.println("Nickels:" + result[2]);
 		System.out.println("Pennies:" + result[3]);					
+		
 	}
 	
 }
