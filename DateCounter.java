@@ -1,5 +1,3 @@
-import java.util.Calendar;
-
 public class DateCounter {
 
     public static boolean isLeapYear(int year){
@@ -41,49 +39,60 @@ public class DateCounter {
     }
 
     public static int daysBetween(int year0, int month0, int day0, int year1, int month1, int day1) {
-        Calendar cal1 = Calendar.getInstance();
-        Calendar cal2 = Calendar.getInstance();
+        int totalDays = 0;
+        int earlierYear = 0;
+        int earlierMonth = 0;
+        int earlierDay = 0;
+        int newerYear = 0;
+        int newerMonth = 0;
+        int newerDay = 0;
 
-        cal1.set(year0, month0, day0);
-        cal2.set(year1, month1, day1);
-
-        long milis1 = cal1.getTimeInMillis();
-        long milis2 = cal2.getTimeInMillis();
-
-        long diff = milis2 - milis1;
-
-        int diffDays = (int) (diff / (24 * 60 * 60 * 1000));
-
-
-        /*int totalDays = 0;
-        int earlierDate;
-        int newerDate;
         if (year0 > year1) {
-            earlierDate = day1;
-            newerDate = day0;
+            earlierYear = year1;
+            newerYear = year0;
         } else if (year1 > year0) {
-            earlierDate = day0;
-            newerDate = day1;
+            earlierYear = year0;
+            newerYear = year1;
         } else {
             if (month0 > month1) {
-                earlierDate = day0;
-                newerDate = day1;
-            } else if (month1 > month 0) {
-                earlierDate = year
+                earlierMonth = month1;
+                earlierYear = year1;
+                newerMonth = month0;
+                newerYear = year0;
+            } else if (month1 > month0) {
+                earlierMonth = month0;
+                earlierYear = year0;
+                newerMonth = month1;
+                newerMonth = year1;
+            } else {
+                if (day1 > day0) {
+                    earlierDay = day0;
+                    earlierMonth = month0;
+                    earlierYear = year0;
+                    newerDay = day1;
+                    newerMonth = month1;
+                    newerYear = year1;
+                } else if (day0 > day1) {
+                    earlierDay = day1;
+                    earlierMonth = month1;
+                    earlierYear = year1;
+                    newerDay = day0;
+                    newerMonth = month0;
+                    newerYear = year0;
+
+                } else {
+                    return 0;
+                }
             }
         }
 
-        while(smallerYear < biggerYear) {
-            if (isLeapYear(smallerYear)) {
-                totalDays += 366;
-            } else {
-                totalDays += 365;
-            }
-            smallerYear += 1;
+
+
+        if (earlierYear == newerYear && earlierMonth == newerMonth) {
+            totalDays += newerDay - earlierDay;
         }
+        
         return totalDays;
-        */
-        return diffDays;
     }
 
     public static boolean hasLeapSecond(int year) {
