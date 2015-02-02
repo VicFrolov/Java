@@ -86,12 +86,21 @@ public class DateCounter {
             }
         }
 
-
+        if(earlierYear == newerYear && earlierMonth != newerMonth) {
+            while(earlierMonth != newerMonth) {
+                int daystoAdd = daysInMonth(earlierYear, earlierMonth);
+                totalDays += daystoAdd;
+                earlierMonth += 1;
+            }
+            totalDays += newerDay - earlierDay;
+        }
 
         if (earlierYear == newerYear && earlierMonth == newerMonth) {
             totalDays += newerDay - earlierDay;
         }
-        
+
+
+
         return totalDays;
     }
 
