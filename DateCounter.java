@@ -115,14 +115,35 @@ public class DateCounter {
         return totalDays;
     }
 
-
-
     public static boolean hasLeapSecond(int year) {
-        return true;
+        int[] leapYears = {1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1981, 1982, 1983, 1985, 1987, 1989, 1990, 1992, 1993, 1994, 1995, 1997, 1998, 2005, 2008, 2012, 2015};
+        for(int i = 0; i < leapYears.length; i++ ) {
+            if(year == leapYears[i]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean hasLeapSecond(int year, int month, int day) {
-        return true;
+        int[] hasLeapFirstHalf = {1972, 1981, 1982, 1983, 1985, 1992, 1993, 1994, 1997, 2012, 2015};
+        int[] hasLeapSecondHalf = {1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1987, 1989, 1990, 1995, 1998, 2005, 2008};
+
+        if (month == 6 && day == 30) {
+            for(int i = 0; i < hasLeapFirstHalf.length; i++ ) {
+                if(year == hasLeapFirstHalf[i]) {
+                    return true;
+                }
+            }
+        }
+        if (month == 12 && day == 31) {
+            for(int i = 0; i < hasLeapSecondHalf.length; i++ ) {
+                if(year == hasLeapSecondHalf[i]) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
