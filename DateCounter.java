@@ -117,6 +117,7 @@ public class DateCounter {
 
     public static boolean hasLeapSecond(int year) {
         int[] leapYears = {1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1981, 1982, 1983, 1985, 1987, 1989, 1990, 1992, 1993, 1994, 1995, 1997, 1998, 2005, 2008, 2012, 2015};
+
         for(int i = 0; i < leapYears.length; i++ ) {
             if(year == leapYears[i]) {
                 return true;
@@ -148,11 +149,31 @@ public class DateCounter {
 
     public static void main(String[] args) {
 
-        if(args.length == 0) {
+        if(args.length != 6) {
             System.out.println("Usage: java DateCounter <year0> <month0> <day0> <year1> <month1> <day1>");
             return;
         }
 
+        try {
+            for (int i = 0; i<6; i++) {
+                Integer.parseInt(args[i]);
+
+            }
+
+        } catch(NumberFormatException nfe) {
+                System.out.println("One or more of the supplied dates is not valid.");
+                return;
+        }
+
+        boolean validEnterDate = (isValidDate(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2])));
+        boolean validExitDate = (isValidDate(Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5])));
+
+        if(!validEnterDate || !validExitDate) {
+            System.out.println("One or more of the supplied dates is not valid.");
+            return;
+        }
+
+        
         return ;
     }
 }
