@@ -147,6 +147,12 @@ public class DateCounter {
     }
 
     public static void main(String[] args) {
+
+        if(args.length == 0) {
+            System.out.println("Usage: java DateCounter <year0> <month0> <day0> <year1> <month1> <day1>");
+            return;
+        }
+
         return ;
     }
 }
