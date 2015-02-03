@@ -49,21 +49,33 @@ public class DateCounter {
 
         if (year0 > year1) {
             earlierYear = year1;
+            earlierMonth = month1;
+            earlierDay = day1;
             newerYear = year0;
+            newerMonth = month0;
+            newerDay = day0;
         } else if (year1 > year0) {
             earlierYear = year0;
+            earlierMonth = month0;
+            earlierDay = day0;
             newerYear = year1;
+            newerMonth = month1;
+            newerDay = day1;
         } else {
             if (month0 > month1) {
                 earlierMonth = month1;
                 earlierYear = year1;
+                earlierDay = day1;
                 newerMonth = month0;
                 newerYear = year0;
+                newerDay = day0;
             } else if (month1 > month0) {
                 earlierMonth = month0;
                 earlierYear = year0;
+                earlierDay = day0;
                 newerMonth = month1;
-                newerMonth = year1;
+                newerYear = year1;
+                newerDay = day1;
             } else {
                 if (day1 > day0) {
                     earlierDay = day0;
@@ -80,29 +92,29 @@ public class DateCounter {
                     newerMonth = month0;
                     newerYear = year0;
 
-                } else {
-                    return 0;
                 }
             }
         }
 
-        if(earlierYear == newerYear && earlierMonth != newerMonth) {
-            while(earlierMonth != newerMonth) {
-                int daystoAdd = daysInMonth(earlierYear, earlierMonth);
-                totalDays += daystoAdd;
+        while((earlierYear != newerYear) && (earlierMonth != newerMonth) && (earlierDay != newerDay)) {
+            if(isValidDate(earlierYear, earlierMonth, earlierDay + 1)) {
+                earlierDay += 1;
+            } else if(earlierMonth <= 11) {
                 earlierMonth += 1;
+                earlierDay = 1;
+            } else {
+                earlierYear += 1;
+                earlierMonth = 1;
+                earlierDay = 1;
             }
-            totalDays += newerDay - earlierDay;
+
+            totalDays += 1;
         }
-
-        if (earlierYear == newerYear && earlierMonth == newerMonth) {
-            totalDays += newerDay - earlierDay;
-        }
-
-
 
         return totalDays;
     }
+
+
 
     public static boolean hasLeapSecond(int year) {
         return true;
