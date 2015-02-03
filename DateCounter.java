@@ -96,8 +96,9 @@ public class DateCounter {
             }
         }
 
-        while((earlierYear != newerYear) && (earlierMonth != newerMonth) && (earlierDay != newerDay)) {
-            if(isValidDate(earlierYear, earlierMonth, earlierDay + 1)) {
+        while((earlierYear != newerYear) || (earlierMonth != newerMonth) || (earlierDay != newerDay)) {
+
+            if(isValidDate(earlierYear, earlierMonth, (earlierDay + 1))) {
                 earlierDay += 1;
             } else if(earlierMonth <= 11) {
                 earlierMonth += 1;
