@@ -149,29 +149,40 @@ public class DateCounter {
 
     public static void main(String[] args) {
 
+        int year0;
+        int year1;
+        int month0;
+        int month1;
+        int day0;
+        int day1;
+
         if(args.length != 6) {
             System.out.println("Usage: java DateCounter <year0> <month0> <day0> <year1> <month1> <day1>");
             return;
         }
 
         try {
-            for (int i = 0; i<6; i++) {
-                Integer.parseInt(args[i]);
-            }
+            year0 = Integer.parseInt(args[0]);
+            year1 = Integer.parseInt(args[3]);
+            month0 = Integer.parseInt(args[1]);
+            month1 = Integer.parseInt(args[4]);
+            day0 = Integer.parseInt(args[2]);
+            day1 = Integer.parseInt(args[5]);
+
         } catch(NumberFormatException nfe) {
                 System.out.println("One or more of the supplied dates is not valid.");
                 return;
         }
 
-        boolean validEnterDate = (isValidDate(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2])));
-        boolean validExitDate = (isValidDate(Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5])));
+        boolean validEnterDate = isValidDate(year0, month0, day0);
+        boolean validExitDate = isValidDate(year1, month1, day1);
 
         if(!validEnterDate || !validExitDate) {
             System.out.println("One or more of the supplied dates is not valid.");
             return;
         }
 
-        int result = daysBetween(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]) );
+        int result = daysBetween(year0, month0, day0, year1, month1, day1);
 
         System.out.println(result);
     }
