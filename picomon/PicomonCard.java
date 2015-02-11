@@ -6,7 +6,7 @@ public class PicomonCard {
     private String name;
     private PicomonElement element;
     private int power;
-    
+
     public PicomonCard() {
         this(getRandomElement(), getRandomPower());
     }
@@ -14,7 +14,7 @@ public class PicomonCard {
     public PicomonCard(PicomonElement element, int power) {
         this(getRandomName(element), element, power);
     }
-    
+
     public PicomonCard(String name, PicomonElement element, int power) {
         if (power < 1) {
             throw new IllegalArgumentException();
@@ -24,7 +24,7 @@ public class PicomonCard {
         this.element = element;
         this.power = power;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -32,14 +32,48 @@ public class PicomonCard {
     public PicomonElement getElement() {
         return element;
     }
-    
+
     public int getPower() {
         return power;
     }
 
     public boolean beats(PicomonCard opponent) {
-        // Implement me!
-        return false;
+
+        if(element == PicomonElement.FIRE) {
+            if(opponent.getElement() == PicomonElement.AIR) {
+                 if (power * 3 > opponent.getPower()) {
+                     return true;
+                 }
+             }
+         }
+
+         if(element == PicomonElement.AIR) {
+             if(opponent.getElement() == PicomonElement.WATER || opponent.getElement() == PicomonElement.EARTH) {
+                  if (power * 2 > opponent.getPower()) {
+                      return true;
+                  }
+              }
+          }
+
+          if(element == PicomonElement.WATER) {
+              if(opponent.getElement() == PicomonElement.FIRE || opponent.getElement() == PicomonElement.EARTH) {
+                   if (power * 2 > opponent.getPower()) {
+                       return true;
+                   }
+               }
+           }
+
+           if(element == PicomonElement.EARTH) {
+               if(opponent.getElement() == PicomonElement.FIRE) {
+                    if (power * 4 > opponent.getPower()) {
+                        return true;
+                    }
+                }
+            }
+
+
+            return false;
+
     }
 
     @Override
@@ -95,17 +129,17 @@ public class PicomonCard {
             "Justin", "Anthony", "Christopher", "Jake", "Francis",
             "Andres", "Perry", "Caitlin", "Joseph"
         });
-        
+
         NAMES.put(PicomonElement.EARTH, new String[] {
             "Claire", "Jacqueline", "Matthew", "Jared", "Ryan",
             "Noah", "Brent", "Ian", "Huayang"
         });
-        
+
         NAMES.put(PicomonElement.WATER, new String[] {
             "Mary", "Sasha", "Zach", "Victor", "Anna",
             "Evan", "Isabella", "Ruben", "Filip"
         });
-        
+
         NAMES.put(PicomonElement.AIR,  new String[] {
             "Savannah", "Carleen", "Sean", "Mathew", "Josh",
             "Mackenzie", "Jake", "Jordan"
@@ -116,7 +150,7 @@ public class PicomonCard {
         String[] elementNames = NAMES.get(element);
         return elementNames[(int)Math.floor(Math.random() * elementNames.length)];
     }
-    
+
     private static PicomonElement getRandomElement() {
         return PicomonElement.values()[(int)Math.floor(Math.random() * 4)];
     }
