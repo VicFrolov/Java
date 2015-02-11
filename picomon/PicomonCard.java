@@ -72,7 +72,45 @@ public class PicomonCard {
             }
 
 
+            if(opponent.getElement() == element) {
+                 if(power > opponent.getPower()) {
+                     return true;
+                 }
+            }
+            if(opponent.getElement() == PicomonElement.FIRE) {
+                if(element == PicomonElement.AIR) {
+                     if (power > opponent.getPower() * 3) {
+                         return true;
+                     }
+                 }
+             }
+
+             if(opponent.getElement() == PicomonElement.AIR) {
+                 if(element == PicomonElement.WATER || element == PicomonElement.EARTH) {
+                      if (power > opponent.getPower() * 2) {
+                          return true;
+                      }
+                  }
+              }
+
+              if(opponent.getElement() == PicomonElement.WATER) {
+                  if(element == PicomonElement.FIRE || element == PicomonElement.EARTH) {
+                       if (power > opponent.getPower() * 2) {
+                           return true;
+                       }
+                   }
+               }
+
+               if(opponent.getElement() == PicomonElement.EARTH) {
+                   if(element == PicomonElement.FIRE) {
+                        if (power > opponent.getPower() * 4) {
+                            return true;
+                        }
+                    }
+                }
+
             return false;
+
 
     }
 
