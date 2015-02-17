@@ -2,7 +2,7 @@ public class PicomonGame {
 
     public enum Player {
         GYM_LEADER("Gym leader"), TRAINER("Trainer");
-        
+
         private String representation;
         private Player(String representation) {
             this.representation = representation;
@@ -18,7 +18,7 @@ public class PicomonGame {
         public Player winner; // null if tied.
         public PicomonCard gymLeaderCard;
         public PicomonCard trainerCard;
-        
+
         public Round(PicomonCard gymLeaderCard, PicomonCard trainerCard) {
             this.gymLeaderCard = gymLeaderCard;
             this.trainerCard = trainerCard;
@@ -42,11 +42,11 @@ public class PicomonGame {
     private PicomonDeck trainerDeck;
     private int gymLeaderPosition;
     private int trainerPosition;
-    
+
     public PicomonGame() {
         this(new PicomonDeck(), new PicomonDeck());
     }
-    
+
     public PicomonGame(PicomonDeck gymLeaderDeck, PicomonDeck trainerDeck) {
         if (gymLeaderDeck.getSize() != trainerDeck.getSize()) {
             throw new IllegalArgumentException();
@@ -57,11 +57,11 @@ public class PicomonGame {
         this.gymLeaderDeck = gymLeaderDeck;
         this.trainerDeck = trainerDeck;
     }
-    
+
     public PicomonDeck getGymLeaderDeck() {
         return gymLeaderDeck;
     }
-    
+
     public PicomonDeck getTrainerDeck() {
         return trainerDeck;
     }
@@ -70,12 +70,12 @@ public class PicomonGame {
         // Implement me!
         return true;
     }
-    
+
     public Player getLeader() {
         // Implement me!
         return Player.TRAINER;
     }
-    
+
     public Round playRound() {
         // Implement me!
         return null;
@@ -87,6 +87,7 @@ public class PicomonGame {
     }
 
     public static void main(String[] args) {
+        System.out.println("test");
         // Implement me!
     }
 

@@ -5,7 +5,7 @@ import java.util.Map;
 public class PicomonDeck {
 
     private PicomonCard[] cards;
-    
+
     public PicomonDeck() {
         // Note how the default deck thus has 10 cards.
         this(new PicomonCard[] {
@@ -23,7 +23,7 @@ public class PicomonDeck {
     }
 
     public PicomonDeck(PicomonCard... cards) {
-        this.cards = cards;     
+        this.cards = cards;
     }
 
     public PicomonCard cardAt(int index) {
@@ -39,9 +39,41 @@ public class PicomonDeck {
     }
 
     public void shuffle() {
-        // Implement me!
-    }
+        PicomonCard[] result = cards;
+        int midsies = cards.length / 2;
 
+
+        if(cards.length % 2 == 0){
+            result[0] = cards[midsies];
+            result[1] = cards[0];
+            int indexValue = 0;
+
+            for (int i = 2; i < cards.length; i++) {
+                if(i % 2 == 0){
+                    indexValue += midsies + 1;
+                    result[i] = cards[indexValue];
+                } else {
+                    indexValue -= midsies;
+                    result[i] = cards[indexValue];
+                }
+            }
+        }
+
+        if(cards.length % 2 != 0) {
+
+            
+        }
+
+        cards = result;
+
+    }
+/*
+    public void switchCards(oldCardPosition, newCardPosition) {
+        PicomonCard tempCard = PicomonDeck[oldCardPosition];
+        PicomonDeck[oldCardPosition] = PicomonDeck[newCardPosition];
+        PicomonDeck[newCardPosition] = tempCard;
+    }
+*/
     public boolean orderedEquals(PicomonDeck other) {
         // Implement me!
         return true;
@@ -90,7 +122,7 @@ public class PicomonDeck {
                 result.put(card, value + 1);
             }
         }
-        
+
         return result;
     }
 }
