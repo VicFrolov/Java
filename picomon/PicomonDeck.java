@@ -39,7 +39,7 @@ public class PicomonDeck {
     }
 
     public void shuffle() {
-        PicomonCard[] result = cards;
+        PicomonCard[] result = new PicomonCard[cards.length];
         int midsies = cards.length / 2;
 
 
@@ -60,8 +60,20 @@ public class PicomonDeck {
         }
 
         if(cards.length % 2 != 0) {
+            result[0] = cards[(cards.length -1) / 2];
+            result[1] = cards[0];
+            int indexValueOdd = 0;
 
-            
+            for (int i = 2; i < cards.length; i++) {
+                if(i % 2 == 0) {
+                    indexValueOdd += (cards.length + 1) / 2;
+                    result[i] = cards[indexValueOdd];
+                } else {
+                    indexValueOdd -= (cards.length -1) /2;
+                    result[i] = cards[indexValueOdd];
+                }
+            }
+
         }
 
         cards = result;
