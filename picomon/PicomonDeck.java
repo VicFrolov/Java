@@ -79,7 +79,11 @@ public class PicomonDeck {
     }
 
     public boolean orderedEquals(PicomonDeck other) {
-        // Implement me!
+        for(int i = 0; i < cards.length; i++) {
+            if (!this.cards[i].equals(other.cards[i])) {
+                return false;
+            }
+        }
         return true;
     }
 
