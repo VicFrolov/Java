@@ -75,17 +75,9 @@ public class PicomonDeck {
             }
 
         }
-
         cards = result;
+    }
 
-    }
-/*
-    public void switchCards(oldCardPosition, newCardPosition) {
-        PicomonCard tempCard = PicomonDeck[oldCardPosition];
-        PicomonDeck[oldCardPosition] = PicomonDeck[newCardPosition];
-        PicomonDeck[newCardPosition] = tempCard;
-    }
-*/
     public boolean orderedEquals(PicomonDeck other) {
         // Implement me!
         return true;
