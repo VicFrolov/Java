@@ -79,6 +79,9 @@ public class PicomonDeck {
     }
 
     public boolean orderedEquals(PicomonDeck other) {
+        if(cards.length != other.cards.length) {
+            return false;
+        }
         for(int i = 0; i < cards.length; i++) {
             if (!this.cards[i].equals(other.cards[i])) {
                 return false;
