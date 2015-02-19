@@ -85,7 +85,26 @@ public class PicomonGame {
     }
 
     public Round playRound() {
-        return null;
+        PicomonCard trainerCard = trainerDeck.cardAt(trainerPosition);
+        PicomonCard gymLeaderCard = gymLeaderDeck.cardAt(gymLeaderPosition);
+
+
+        if (!trainerCard.beats(gymLeaderCard) && !gymLeaderCard.beats(trainerCard)) {
+            gymLeaderPosition += 1;
+            trainerPosition += 1;
+        } else if(!trainerCard.beats(gymLeaderCard)) {
+            trainerPosition += 1;
+        } else {
+            gymLeaderPosition += 1;
+        }
+
+
+
+        // fight
+
+        // whoever loses trainerPosition++
+
+        return new Round(gymLeaderCard, trainerCard);
     }
 
     public Round[] playMatch() {
