@@ -67,7 +67,7 @@ public class PicomonGame {
     }
 
     public boolean isMatchOver() {
-        if(gymLeaderPosition < gymLeaderDeck.getSize() || trainerPosition < trainerDeck.getSize()) {
+        if(gymLeaderPosition < gymLeaderDeck.getSize() && trainerPosition < trainerDeck.getSize()) {
             return false;
         } else{
             return true;
@@ -88,23 +88,20 @@ public class PicomonGame {
         PicomonCard trainerCard = trainerDeck.cardAt(trainerPosition);
         PicomonCard gymLeaderCard = gymLeaderDeck.cardAt(gymLeaderPosition);
 
+        Round round = new Round(gymLeaderCard, trainerCard);
 
         if (!trainerCard.beats(gymLeaderCard) && !gymLeaderCard.beats(trainerCard)) {
             gymLeaderPosition += 1;
             trainerPosition += 1;
+            round.winner = null;
         } else if(!trainerCard.beats(gymLeaderCard)) {
             trainerPosition += 1;
+            round.winner = Player.GYM_LEADER;
         } else {
             gymLeaderPosition += 1;
+            round.winner = Player.TRAINER;
         }
-
-
-
-        // fight
-
-        // whoever loses trainerPosition++
-
-        return new Round(gymLeaderCard, trainerCard);
+        return round;
     }
 
     public Round[] playMatch() {
