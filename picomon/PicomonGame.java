@@ -105,13 +105,19 @@ public class PicomonGame {
     }
 
     public Round[] playMatch() {
-        // Implement me!
-        return new Round[0];
+        Round[] newMatch = new Round[trainerDeck.getSize() * gymLeaderDeck.getSize()];
+
+        for(int i = 0; isMatchOver() == false; i++) {
+            newMatch[i] = playRound();
+            // remember to erase this print
+            System.out.println(newMatch[i]);
+        }
+        return newMatch;
     }
 
     public static void main(String[] args) {
 
-        System.out.println("asdf");
+        System.out.println("aa");
         // Implement me!
     }
 
