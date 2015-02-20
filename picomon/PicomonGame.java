@@ -105,7 +105,7 @@ public class PicomonGame {
     }
 
     public Round[] playMatch() {
-        Round[] newMatch = new Round[trainerDeck.getSize() * gymLeaderDeck.getSize()];
+        Round[] newMatch = new Round[trainerDeck.getSize() + gymLeaderDeck.getSize()];
 
         for(int i = 0; isMatchOver() == false; i++) {
             newMatch[i] = playRound();
@@ -119,15 +119,16 @@ public class PicomonGame {
 
         PicomonDeck presetDeck = new PicomonDeck();
         PicomonDeck presetDeckTwo = new PicomonDeck();
+        PicomonGame game = new PicomonGame(presetDeck, presetDeckTwo);
 
         if(args.length == 0) {
             PicomonGame newgame = new PicomonGame(presetDeck, presetDeckTwo);
         }
 
-        System.out.println(presetDeck);
-        System.out.println(otherDeck);
-        System.out.println("Gym leader's deck: " + otherDeck);
-        game.playMatch();
+        System.out.println("Gym Leader's deck" + presetDeck);
+        System.out.println("Trainer's Deck" + presetDeckTwo);
+        System.out.println(game.playMatch());
+
     }
 
 }
