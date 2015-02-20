@@ -117,8 +117,17 @@ public class PicomonGame {
 
     public static void main(String[] args) {
 
-        System.out.println("aa");
-        // Implement me!
+        PicomonDeck presetDeck = new PicomonDeck();
+        PicomonDeck presetDeckTwo = new PicomonDeck();
+
+        if(args.length == 0) {
+            PicomonGame newgame = new PicomonGame(presetDeck, presetDeckTwo);
+        }
+
+        System.out.println(presetDeck);
+        System.out.println(otherDeck);
+        System.out.println("Gym leader's deck: " + otherDeck);
+        game.playMatch();
     }
 
 }
