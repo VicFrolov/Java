@@ -120,6 +120,18 @@ public class PicomonGame {
         PicomonDeck presetDeckTwo = new PicomonDeck();
         PicomonGame game = new PicomonGame(presetDeck, presetDeckTwo);
 
+        if(args.length % 2 != 0) {
+            System.out.println("Cannot create a deck based on the supplied arguments.");
+            return;
+        }
+
+        for(int i = 1; i < args.length; i += 2) {
+            if( args[i] != "water" && args[i] != "fire" && args[i] != "air" && args[i] != "earth") {
+                System.out.println("Cannot create a deck based on the supplied arguments.");
+                return;
+            }
+        }
+
         if(args.length == 0) {
             PicomonGame newgame = new PicomonGame(presetDeck, presetDeckTwo);
             System.out.println("Gym Leader's deck: " + presetDeck);
@@ -128,11 +140,8 @@ public class PicomonGame {
             System.out.println("And the winner is: " + game.getLeader());
         }
 
-        if(args.length % 2 != 0) {
-            System.out.println("Cannot create a deck based on the supplied arguments.");
-        }
 
-    
+
     }
 
 }
