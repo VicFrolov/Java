@@ -105,11 +105,10 @@ public class PicomonGame {
     }
 
     public Round[] playMatch() {
-        Round[] newMatch = new Round[trainerDeck.getSize() + gymLeaderDeck.getSize()];
+        Round[] newMatch = new Round[trainerDeck.getSize() * gymLeaderDeck.getSize()];
 
         for(int i = 0; isMatchOver() == false; i++) {
             newMatch[i] = playRound();
-            // remember to erase this print
             System.out.println(newMatch[i]);
         }
         return newMatch;
@@ -123,12 +122,17 @@ public class PicomonGame {
 
         if(args.length == 0) {
             PicomonGame newgame = new PicomonGame(presetDeck, presetDeckTwo);
+            System.out.println("Gym Leader's deck: " + presetDeck);
+            System.out.println("Trainer's Deck: " + presetDeckTwo);
+            System.out.println(game.playMatch());
+            System.out.println("And the winner is: " + game.getLeader());
         }
 
-        System.out.println("Gym Leader's deck" + presetDeck);
-        System.out.println("Trainer's Deck" + presetDeckTwo);
-        System.out.println(game.playMatch());
+        if(args.length % 2 != 0) {
+            System.out.println("Cannot create a deck based on the supplied arguments.");
+        }
 
+    
     }
 
 }
