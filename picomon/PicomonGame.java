@@ -125,8 +125,15 @@ public class PicomonGame {
             return;
         }
 
+        for(int i = 0; i < args.length; i += 2) {
+            if(args.length > 1 && !args[i].equals("water") && !args[i].equals("earth") && !args[i].equals("air") && !args[i].equals("fire")) {
+                System.out.println("Cannot create a deck based on the supplied arguments.");
+                return;
+            }
+        }
+
         for(int i = 1; i < args.length; i += 2) {
-            if(Integer.parseInt(args[i]) <1) {
+            if(Integer.parseInt(args[i]) < 1) {
                 System.out.println("Cannot create a deck based on the supplied arguments.");
                 return;
             }
