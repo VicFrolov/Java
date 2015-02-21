@@ -125,6 +125,13 @@ public class PicomonGame {
             return;
         }
 
+        for(int i = 1; i < args.length; i += 2) {
+            if(Integer.parseInt(args[i]) <1) {
+                System.out.println("Cannot create a deck based on the supplied arguments.");
+                return;
+            }
+        }
+
         if(args.length == 0) {
             deck = new PicomonDeck();
             otherDeck = new PicomonDeck();
