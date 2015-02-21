@@ -115,17 +115,9 @@ public class PicomonGame {
     }
 
     public static void main(String[] args) {
-
         PicomonDeck deck;
         PicomonDeck otherDeck;
-
         PicomonCard[] cards = new PicomonCard[args.length/2];
-
-
-
-    /*    PicomonDeck deck = new PicomonDeck(cards);
-        PicomonDeck otherDeck = new PicomonDeck(cards);
-*/
 
         if(args.length % 2 != 0) {
             System.out.println("Cannot create a deck based on the supplied arguments.");
@@ -155,9 +147,12 @@ public class PicomonGame {
 
             deck = new PicomonDeck(cards);
             otherDeck = new PicomonDeck(cards);
-            otherDeck.shuffle();
-            otherDeck.shuffle();
-            deck.shuffle();
+
+            if(deck.getSize() > 1) {
+                otherDeck.shuffle();
+                otherDeck.shuffle();
+                deck.shuffle();
+            }
 
             PicomonGame game = new PicomonGame(deck, otherDeck);
             System.out.println("Gym leader's deck: " + deck + "\n\n" + "Trainer's deck: " + otherDeck + "\n");
