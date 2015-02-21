@@ -123,9 +123,15 @@ public class PicomonGame {
             System.out.println("Cannot create a deck based on the supplied arguments.");
             return;
         }
+        /*
+        if(args.length > 1 && args[1] == "water") {
+            System.out.println("blablabla");
+            return;
+        }
+        */
 /*
         for(int i = 0; i < args.length; i += 2) {
-            if( args[i] != "water" && args[i] != "fire" && args[i] != "air" && args[i] != "earth") {
+            if(args.length > 1 && args[i] != "water" && args[i] != "fire" && args[i] != "air" && args[i] != "earth") {
                 System.out.println("Cannot create a deck based on the supplied arguments.");
                 return;
             }
@@ -149,9 +155,19 @@ public class PicomonGame {
             otherDeck = new PicomonDeck(cards);
 
             if(deck.getSize() > 1) {
-                otherDeck.shuffle();
-                otherDeck.shuffle();
-                deck.shuffle();
+                int randomNumber = (int) Math.floor(Math.random() * 100);
+                int randomNumberTwo = (int) Math.floor(Math.random() * 100);
+                int x = 0;
+                int y = 0;
+                while(x < randomNumber) {
+                    otherDeck.shuffle();
+                    x++;
+                }
+                while(y < randomNumberTwo) {
+                    deck.shuffle();
+                    y++;
+                }
+
             }
 
             PicomonGame game = new PicomonGame(deck, otherDeck);
