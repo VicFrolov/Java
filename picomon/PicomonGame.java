@@ -152,16 +152,17 @@ public class PicomonGame {
             for(int i = 0; i < args.length / 2; i++) {
                 cards[i] = new PicomonCard(PicomonElement.valueOf(args[i * 2].toUpperCase()), Integer.parseInt(args[i * 2 + 1]));
             }
+
             deck = new PicomonDeck(cards);
             otherDeck = new PicomonDeck(cards);
             otherDeck.shuffle();
             otherDeck.shuffle();
             deck.shuffle();
+
             PicomonGame game = new PicomonGame(deck, otherDeck);
-            System.out.println("Gym leader's deck: " + deck);
-            System.out.println("Trainer's deck: " + otherDeck);
+            System.out.println("Gym leader's deck: " + deck + "\n\n" + "Trainer's deck: " + otherDeck + "\n");
             game.playMatch();
-            System.out.println("And the winner is: " + game.getLeader() + "!");
+            System.out.println("\n" + "And the winner is: " + game.getLeader() + "!");
 
         }
 
