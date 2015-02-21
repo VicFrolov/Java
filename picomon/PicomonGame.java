@@ -116,31 +116,54 @@ public class PicomonGame {
 
     public static void main(String[] args) {
 
-        PicomonDeck presetDeck = new PicomonDeck();
-        PicomonDeck presetDeckTwo = new PicomonDeck();
-        PicomonGame game = new PicomonGame(presetDeck, presetDeckTwo);
+        PicomonDeck deck;
+        PicomonDeck otherDeck;
+
+        PicomonCard[] cards = new PicomonCard[args.length/2];
+
+
+
+    /*    PicomonDeck deck = new PicomonDeck(cards);
+        PicomonDeck otherDeck = new PicomonDeck(cards);
+*/
 
         if(args.length % 2 != 0) {
             System.out.println("Cannot create a deck based on the supplied arguments.");
             return;
         }
-
-        for(int i = 1; i < args.length; i += 2) {
+/*
+        for(int i = 0; i < args.length; i += 2) {
             if( args[i] != "water" && args[i] != "fire" && args[i] != "air" && args[i] != "earth") {
                 System.out.println("Cannot create a deck based on the supplied arguments.");
                 return;
             }
         }
-
+*/
         if(args.length == 0) {
-            PicomonGame newgame = new PicomonGame(presetDeck, presetDeckTwo);
-            System.out.println("Gym Leader's deck: " + presetDeck);
-            System.out.println("Trainer's Deck: " + presetDeckTwo);
-            System.out.println(game.playMatch());
-            System.out.println("And the winner is: " + game.getLeader());
+            deck = new PicomonDeck();
+            otherDeck = new PicomonDeck();
+            PicomonGame newgame = new PicomonGame(deck, otherDeck);
+            System.out.println("Gym Leader's deck: " + deck + "\n\n" + "Trainer's Deck: " + otherDeck + "\n");
+            newgame.playMatch();
+            System.out.println("\n" + "And the winner is: " + newgame.getLeader() + "!");
         }
 
+        if(args.length > 0) {
+            for(int i = 0; i < args.length / 2; i++) {
+                cards[i] = new PicomonCard(PicomonElement.valueOf(args[i * 2].toUpperCase()), Integer.parseInt(args[i * 2 + 1]));
+            }
+            deck = new PicomonDeck(cards);
+            otherDeck = new PicomonDeck(cards);
+            otherDeck.shuffle();
+            otherDeck.shuffle();
+            deck.shuffle();
+            PicomonGame game = new PicomonGame(deck, otherDeck);
+            System.out.println("Gym leader's deck: " + deck);
+            System.out.println("Trainer's deck: " + otherDeck);
+            game.playMatch();
+            System.out.println("And the winner is: " + game.getLeader() + "!");
 
+        }
 
     }
 
