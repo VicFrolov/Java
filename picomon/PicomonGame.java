@@ -115,6 +115,7 @@ public class PicomonGame {
     }
 
     public static void main(String[] args) {
+
         PicomonDeck deck;
         PicomonDeck otherDeck;
         PicomonCard[] cards = new PicomonCard[args.length/2];
@@ -123,20 +124,7 @@ public class PicomonGame {
             System.out.println("Cannot create a deck based on the supplied arguments.");
             return;
         }
-        /*
-        if(args.length > 1 && args[1] == "water") {
-            System.out.println("blablabla");
-            return;
-        }
-        */
-/*
-        for(int i = 0; i < args.length; i += 2) {
-            if(args.length > 1 && args[i] != "water" && args[i] != "fire" && args[i] != "air" && args[i] != "earth") {
-                System.out.println("Cannot create a deck based on the supplied arguments.");
-                return;
-            }
-        }
-*/
+
         if(args.length == 0) {
             deck = new PicomonDeck();
             otherDeck = new PicomonDeck();
