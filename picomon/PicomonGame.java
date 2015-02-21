@@ -119,6 +119,7 @@ public class PicomonGame {
         PicomonDeck deck;
         PicomonDeck otherDeck;
         PicomonCard[] cards = new PicomonCard[args.length/2];
+        int integerCheck;
 
         if(args.length % 2 != 0) {
             System.out.println("Cannot create a deck based on the supplied arguments.");
@@ -133,6 +134,13 @@ public class PicomonGame {
         }
 
         for(int i = 1; i < args.length; i += 2) {
+            try {
+                integerCheck = Integer.parseInt(args[i]);
+
+            } catch(NumberFormatException nfe) {
+                System.out.println("Cannot create a deck based on the supplied arguments.");
+                return;
+            }
             if(Integer.parseInt(args[i]) < 1) {
                 System.out.println("Cannot create a deck based on the supplied arguments.");
                 return;
