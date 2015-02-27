@@ -9,6 +9,7 @@ public class AngryBallsTestHarness {
 
         test_Vector();
         test_add();
+        test_scale();
 
 
         System.out.println(successes + "/" + attempts + " tests passed.");
@@ -58,6 +59,24 @@ public class AngryBallsTestHarness {
             displaySuccessIfTrue(false);
         }    
     }
+
+    private static void test_scale() {
+        System.out.println("Testing scale method...");
+
+        Vector g = new Vector(12,45);
+        Vector newG = g.scale(2);
+
+        try {
+            displaySuccessIfTrue(24 == newG.x());
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(90 == newG.y());
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }    
+    }    
 
 
 }
