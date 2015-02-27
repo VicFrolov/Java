@@ -8,6 +8,7 @@ public class AngryBallsTestHarness {
         successes = 0;
 
         test_Vector();
+        test_add();
 
 
         System.out.println(successes + "/" + attempts + " tests passed.");
@@ -23,27 +24,43 @@ public class AngryBallsTestHarness {
     
 
     private static void test_Vector() {
-        System.out.println("Testing Vector equality...");
+        System.out.println("Testing Vector creation...");
 
         Vector v = new Vector(1988,450);
+        Vector w = new Vector(1,2);
 
-      try {
+        try {
             displaySuccessIfTrue(1988 == v.x());
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }
-     try {
+        try {
             displaySuccessIfTrue(450 == v.y());
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }    
-
+       
     }
+
+    private static void test_add() {
+        System.out.println("Testing add method...");
+
+        Vector v = new Vector(1988,450), w = new Vector(1,2), sum = v.add(w);
+
+        try {
+            displaySuccessIfTrue(1989 == sum.x());
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(452 == sum.y());
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }    
+    }
+
+
 }
 
     
     
-    
-    
-    
-
