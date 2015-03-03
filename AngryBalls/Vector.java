@@ -1,25 +1,30 @@
 public class Vector {
 
-    // Declare my instance variables!
-    
-    public Vector(double x, double y) {
+    private double x;
+    private double y;
 
+
+    public Vector(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
     
     public double x() {
-        return 0;
+        return x;
     }
     
     public double y() {
-        return 0;
+        return y;
     }
 
     public Vector add(Vector v) {
-        return null;
+        Vector sum = new Vector(x+v.x(),y + v.y());
+        return sum;
     }
 
     public Vector scale(double magnitude) {
-        return null;
+        Vector scaledG = new Vector(x * magnitude, y * magnitude);
+        return scaledG;
     }
 
 }

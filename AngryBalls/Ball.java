@@ -7,11 +7,11 @@ public class Ball {
     }
 
     public Vector getLocation() {
-        // Implement me!
+        return null;
     }
 
     public double getRadius() {
-        // Implement me!
+        return 0;
     }
     
     public void accelerate(Vector acceleration, double grain) {
