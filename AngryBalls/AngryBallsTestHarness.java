@@ -76,6 +76,26 @@ public class AngryBallsTestHarness {
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }    
+    }
+
+    private static void test_Ball() {
+        System.out.println("Testing Ball method...");
+        Vector testLocation = new Vector(100,200);
+        Vector testInitialVelocity = new Vector(200,200);
+        Ball testBall = new Ball(10,testLocation, testInitialVelocity);
+
+        try {
+            displaySuccessIfTrue(10 == testBall.getRadius());
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(testLocation == testBall.getLocation());
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }    
+
+  
     }    
 
 
