@@ -1,21 +1,25 @@
 public class Ball {
 
-    // Declare my instance variables!
+    private double radius;
+    private Vector location;
+    private Vector initialVelocity;
     
     public Ball(double radius, Vector location, Vector initialVelocity) {
-        // Implement me!
+        this.radius = radius;
+        this.location = location;
+        this.initialVelocity = initialVelocity;
     }
 
     public Vector getLocation() {
-        return null;
+        return location;
     }
 
     public double getRadius() {
-        return 0;
+        return radius;
     }
-    
+
     public void accelerate(Vector acceleration, double grain) {
-        // Implement me!
+        // implement me
     }
 
     public void move(double grain) {
