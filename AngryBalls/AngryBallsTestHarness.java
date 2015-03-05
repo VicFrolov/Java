@@ -10,7 +10,8 @@ public class AngryBallsTestHarness {
         test_Vector();
         test_add();
         test_scale();
-
+        test_Ball();
+        test_getRadius();
 
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
@@ -35,6 +36,7 @@ public class AngryBallsTestHarness {
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }
+ 
         try {
             displaySuccessIfTrue(450 == v.y());
         } catch(Exception exc) {
@@ -93,10 +95,30 @@ public class AngryBallsTestHarness {
             displaySuccessIfTrue(testLocation == testBall.getLocation());
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
-        }    
-
+        }
+        /* make sure this velocity test makes sense
+        try {
+            displaySuccessIfTrue(testInitialVelocity == testBall.testInitialVelocity);
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }        
+        */
   
-    }    
+    }
+
+    private static void test_getRadius() {
+        System.out.println("Testing Ball method...");
+        Vector testLocation = new Vector(05,10);
+        Vector testInitialVelocity = new Vector(200,200);
+        Ball testBall = new Ball(300,testLocation, testInitialVelocity);
+
+        try {
+            displaySuccessIfTrue(300 == testBall.getRadius());
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+  
+    }        
 
 
 }
