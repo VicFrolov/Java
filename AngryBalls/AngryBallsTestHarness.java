@@ -105,9 +105,22 @@ public class AngryBallsTestHarness {
         */
   
     }
+/*
+    private static void test_accelerate() {
+        System.out.println("Testing accelerate method...");
+        Ball testBall = new Ball(10, new Vector(50,50), new Vector(20,30));
+        testBall.accelerate(new Vector(0, -9.8), 1);
+        try {
+            displaySuccessIfTrue(initialVelocity);
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
 
+  
+    }
+*/
     private static void test_getRadius() {
-        System.out.println("Testing Ball method...");
+        System.out.println("Testing getRadius method...");
         Vector testLocation = new Vector(05,10);
         Vector testInitialVelocity = new Vector(200,200);
         Ball testBall = new Ball(300,testLocation, testInitialVelocity);
@@ -119,7 +132,6 @@ public class AngryBallsTestHarness {
         }
   
     }        
-
 
 }
 
