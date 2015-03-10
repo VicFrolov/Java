@@ -12,6 +12,7 @@ public class AngryBallsTestHarness {
         test_scale();
         test_Ball();
         test_getRadius();
+        test_accelerate();
 
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
@@ -96,29 +97,10 @@ public class AngryBallsTestHarness {
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }
-        /* make sure this velocity test makes sense
-        try {
-            displaySuccessIfTrue(testInitialVelocity == testBall.testInitialVelocity);
-        } catch(Exception exc) {
-            displaySuccessIfTrue(false);
-        }        
-        */
-  
     }
-/*
-    private static void test_accelerate() {
-        System.out.println("Testing accelerate method...");
-        Ball testBall = new Ball(10, new Vector(50,50), new Vector(20,30));
-        testBall.accelerate(new Vector(0, -9.8), 1);
-        try {
-            displaySuccessIfTrue(initialVelocity);
-        } catch(Exception exc) {
-            displaySuccessIfTrue(false);
-        }
 
-  
-    }
-*/
+
+
     private static void test_getRadius() {
         System.out.println("Testing getRadius method...");
         Vector testLocation = new Vector(05,10);
@@ -131,7 +113,58 @@ public class AngryBallsTestHarness {
             displaySuccessIfTrue(false);
         }
   
-    }        
+    }    
+    
+    private static void test_accelerate() {
+        System.out.println("Testing accelerate method...");
+        Vector testLocation = new Vector(100,200);
+        Vector testInitialVelocity = new Vector(200,200);
+        
+        Ball testBall = new Ball(10,testLocation, testInitialVelocity);
+        testBall.accelerate(new Vector(0, -9.8), 1);
+        
+        Ball testBallTwo = new Ball(20, new Vector(0,0), new Vector(30,30));
+        testBallTwo.accelerate(new Vector(0, -10), 2);
+        
+        Ball testBallThree = new Ball(20, new Vector(10,15), new Vector(10,20));
+        testBallThree.accelerate(new Vector(5, -10), 0.5);
+
+        try {
+            displaySuccessIfTrue(190.2 == testBall.getinitialVelocity().y()) ;
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(200.0 == testBall.getinitialVelocity().x()) ;
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(30.0 == testBallTwo.getinitialVelocity().x()) ;
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(10.0 == testBallTwo.getinitialVelocity().y()) ;
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(12.5 == testBallThree.getinitialVelocity().x()) ;
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(15.0 == testBallThree.getinitialVelocity().y()) ;
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+
+  
+    }
+
 
 }
 
