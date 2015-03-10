@@ -5,7 +5,6 @@ public class Ball {
     private Vector velocity;
     private Vector acceleration;
     private double grain;
-    private double gravity = -9.8;
     
     public Ball(double radius, Vector location, Vector initialVelocity) {
         this.radius = radius;
@@ -14,15 +13,15 @@ public class Ball {
     }
 
     public Vector getLocation() {
-        return location;
+        return this.location;
     }
 
     public double getRadius() {
-        return radius;
+        return this.radius;
     }
 
     public Vector getVelocity() {
-        return velocity;
+        return this.velocity;
     }
 
     public static boolean equals(Vector a, Vector b) {
@@ -34,13 +33,10 @@ public class Ball {
     }
 
     public void accelerate(Vector acceleration, double grain) {
-
-        velocity = velocity.add(acceleration.scale(grain));
-
+        this.velocity = this.velocity.add(acceleration.scale(grain));
     }
 
     public void move(double grain) {
-        // Implement me!
+        this.location = this.location.add(this.velocity.scale(grain));
     }
-
 }
