@@ -1,16 +1,19 @@
 public class AngryBallsSimulation {
 
-/*
-    public static void String EWrrorCode() {
-        System.out.println("The arguments supplied do not match what AngryBallsSimulation expects.");
-        System.out.println("Usage: java AngryBallsSimulation <red radius> <red x> <red y> <red velocity x> <red velocity y> <blue radius> <blue x> <blue y> <blue velocity x> <blue velocity y> [ <grain> ]");
-    }
-*/
-    public static void main(String[] args) {
+    private static boolean errorMessageTest;
 
-        if(args.length == 0) {
-            System.out.println("Usage: java AngryBallsSimulation <red radius> <red x> <red y> <red velocity x> <red velocity y> <blue radius> <blue x> <blue y> <blue velocity x> <blue velocity y> [ <grain> ]");
-            System.out.println("All sizes are in meters and the grain is in seconds. The grain is optional and defaults to 1 second if not supplied.");
+    public static String errorMessage() {
+        return "Usage:java AngryBallsSimulation <red radius>" + 
+        " <red x> <red y> <red velocity x> <red velocity y> <blue radius>" +
+        "<blue x> <blue y> <blue velocity x> <blue velocity y> [ <grain> ]\n" +
+        "All sizes are in meters and the grain is in seconds. The grain is optional and defaults to 1 second if not supplied.";
+    }
+
+    public static void main(String[] args) {
+        
+
+        if(args.length == 0 || errorMessageTest) {
+            System.out.println(errorMessage());
             return;
         }
 
