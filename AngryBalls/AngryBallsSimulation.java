@@ -10,11 +10,22 @@ public class AngryBallsSimulation {
     }
 
     public static void main(String[] args) {
-        
+        double valueCheck;
 
-        if(args.length == 0 || errorMessageTest) {
+        if(args.length == 0) {
             System.out.println(errorMessage());
             return;
+        }
+
+        for(int i = 0; i < args.length; i ++) {
+            try {
+                valueCheck = Double.parseDouble(args[i]);
+
+            } catch(NumberFormatException nfe) {
+                System.out.println("The arguments supplied do not match what AngryBalls Simulation expects. ");
+                System.out.println(errorMessage());
+                return;
+            }
         }
 
         Vector redLocation = new Vector(Double.parseDouble(args[1]), Double.parseDouble(args[2]));
@@ -24,5 +35,13 @@ public class AngryBallsSimulation {
 
         Ball red = new Ball(Double.parseDouble(args[0]), redLocation, redVelocity);
         Ball blue = new Ball(Double.parseDouble(args[5]), blueLocation, blueVelocity);
-      }
+        
+
+        
+
+
+
+
+        
+    }
 }
