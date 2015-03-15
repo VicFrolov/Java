@@ -5,6 +5,8 @@ public class Ball {
     private Vector velocity;
     private Vector acceleration;
     private double grain;
+    private Ball ball;
+    private Ball ballTwo;
     
     public Ball(double radius, Vector location, Vector initialVelocity) {
         this.radius = radius;
@@ -19,17 +21,12 @@ public class Ball {
     public double getRadius() {
         return this.radius;
     }
-
     public Vector getVelocity() {
         return this.velocity;
     }
 
     public static boolean equals(Vector a, Vector b) {
-        if (a.x() == b.x() && a.y() == b.y()) {
-            return true;
-        } else {
-            return false;
-        }
+        return (a.x() == b.x() && a.y() == b.y());
     }
 
     public void accelerate(Vector acceleration, double grain) {
@@ -38,5 +35,11 @@ public class Ball {
 
     public void move(double grain) {
         this.location = this.location.add(this.velocity.scale(grain));
+    }
+
+    public boolean collide(Ball otherBall) {
+        double horizontalDistance = this.location.x() - otherBall.getLocation().x();
+        double verticalDistance = this.location.y() - otherBall.getLocation().y();
+        return Math.sqrt(Math.pow(horizontalDistance,2) + Math.pow(verticalDistance,2)) <= (this.radius + otherBall.getRadius()) ;
     }
 }
