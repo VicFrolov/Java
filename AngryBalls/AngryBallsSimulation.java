@@ -14,6 +14,7 @@ public class AngryBallsSimulation {
     public static void main(String[] args) {
         double valueCheck;
         double grainCheck;
+        boolean collideCheck;
 
         if(args.length == 0) {
             System.out.println(errorMessage());
@@ -63,10 +64,16 @@ public class AngryBallsSimulation {
                 blueBall.accelerate(new Vector(0, -9.8), grainCheck);
             }
 
+            if(redBall.collide(blueBall)) {
+                collideCheck = true;
+            }
+
             System.out.println(redBall.getRadius() + " " + redBall.getLocation().x() + " " + redBall.getLocation().y() +
             " " + blueBall.getRadius() + " " + blueBall.getLocation().x() + " " + blueBall.getLocation().y());
         }
-        
+        System.out.println('end');
+        System.out.println()
+
         
     }
 }
