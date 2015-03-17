@@ -7,10 +7,6 @@ public class AngryBallsSimulation {
         "All sizes are in meters and the grain is in seconds. The grain is optional and defaults to 1 second if not supplied.";
     }
 
-    public static void createBalls() {
-
-    }
-
     public static void main(String[] args) {
         double valueCheck;
         double grainCheck;
@@ -19,6 +15,8 @@ public class AngryBallsSimulation {
         double redBallYValueCollide = 0;
         double blueBallXValueCollide = 0;
         double blueBallYValueCollide = 0;
+        int timeStamp = 0;
+
         //Making sure the user inputs are valid
         if(args.length == 0) {
             System.out.println(errorMessage());
@@ -56,7 +54,7 @@ public class AngryBallsSimulation {
             grainCheck = 1.0;
         }
 
-        //moving the balls, and the third if checks whether they collided
+        //moving the balls
         while(redBall.getLocation().y() > 0 || blueBall.getLocation().y() > 0) {
             if(redBall.getLocation().y() >0) {
                 redBall.move(grainCheck);
@@ -76,6 +74,7 @@ public class AngryBallsSimulation {
                 collideCheck = true;
             }
 
+            timeStamp ++;
             System.out.println(redBall.getRadius() + " " + redBall.getLocation().x() + " " + redBall.getLocation().y() +
             " " + blueBall.getRadius() + " " + blueBall.getLocation().x() + " " + blueBall.getLocation().y());
         }
@@ -83,7 +82,7 @@ public class AngryBallsSimulation {
 
         //output whether balls touched or not
         if(collideCheck){
-            System.out.println("The balls collided at timestamp t with the red ball at (" + redBallXValueCollide +
+            System.out.println("The balls collided at timestamp " + timeStamp + " with the red ball at (" + redBallXValueCollide +
                 ", " + redBallYValueCollide + ") and the blue ball at (" + blueBallXValueCollide + ", " + blueBallYValueCollide + ").");
         } else {
             System.out.println("The balls did not collide.");
