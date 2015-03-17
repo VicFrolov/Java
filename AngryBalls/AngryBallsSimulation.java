@@ -14,8 +14,12 @@ public class AngryBallsSimulation {
     public static void main(String[] args) {
         double valueCheck;
         double grainCheck;
-        boolean collideCheck;
-
+        boolean collideCheck = false;
+        double redBallXValueCollide = 0;
+        double redBallYValueCollide = 0;
+        double blueBallXValueCollide = 0;
+        double blueBallYValueCollide = 0;
+        //Making sure the user inputs are valid
         if(args.length == 0) {
             System.out.println(errorMessage());
             return;
@@ -45,14 +49,14 @@ public class AngryBallsSimulation {
         Ball redBall = new Ball(Double.parseDouble(args[0]), redLocation, redVelocity);
         Ball blueBall = new Ball(Double.parseDouble(args[5]), blueLocation, blueVelocity);
 
-        //Setting the grain
+        //Setting the grain (time slices)
         if(args.length == 11) {
             grainCheck = Double.parseDouble(args[10]);
         } else {
             grainCheck = 1.0;
         }
 
-        //moving the balls
+        //moving the balls, and the third if checks whether they collided
         while(redBall.getLocation().y() > 0 || blueBall.getLocation().y() > 0) {
             if(redBall.getLocation().y() >0) {
                 redBall.move(grainCheck);
@@ -65,15 +69,24 @@ public class AngryBallsSimulation {
             }
 
             if(redBall.collide(blueBall)) {
+                redBallXValueCollide = redBall.getLocation().x();
+                redBallYValueCollide = redBall.getLocation().y();
+                blueBallXValueCollide = blueBall.getLocation().x();
+                blueBallYValueCollide = blueBall.getLocation().y();
                 collideCheck = true;
             }
 
             System.out.println(redBall.getRadius() + " " + redBall.getLocation().x() + " " + redBall.getLocation().y() +
             " " + blueBall.getRadius() + " " + blueBall.getLocation().x() + " " + blueBall.getLocation().y());
         }
-        System.out.println('end');
-        System.out.println()
+        System.out.println("end");
 
-        
+        //output whether balls touched or not
+        if(collideCheck){
+            System.out.println("The balls collided at timestamp t with the red ball at (" + redBallXValueCollide +
+                ", " + redBallYValueCollide + ") and the blue ball at (" + blueBallXValueCollide + ", " + blueBallYValueCollide + ").");
+        } else {
+            System.out.println("The balls did not collide.");
+        }        
     }
 }
