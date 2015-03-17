@@ -21,9 +21,6 @@ public class Ball {
     public double getRadius() {
         return this.radius;
     }
-    public Vector getVelocity() {
-        return this.velocity;
-    }
 
     public static boolean equals(Vector a, Vector b) {
         return (a.x() == b.x() && a.y() == b.y());

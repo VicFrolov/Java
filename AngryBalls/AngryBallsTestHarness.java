@@ -124,49 +124,52 @@ public class AngryBallsTestHarness {
         
         Ball testBall = new Ball(10,testLocation, testInitialVelocity);
         testBall.accelerate(new Vector(0, -9.8), 1);
+        testBall.move(1);
+
         
         Ball testBallTwo = new Ball(20, new Vector(0,0), new Vector(30,30));
         testBallTwo.accelerate(new Vector(0, -10), 2);
+        testBallTwo.move(2);
         
         Ball testBallThree = new Ball(20, new Vector(10,15), new Vector(10,20));
         testBallThree.accelerate(new Vector(5, -10), 0.5);
+        testBallThree.move(0.5);
 
         try {
-            displaySuccessIfTrue(190.2 == testBall.getVelocity().y());
+            displaySuccessIfTrue(390.2 == testBall.getLocation().y());
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(200.0 == testBall.getVelocity().x()) ;
-        } catch(Exception exc) {
-            displaySuccessIfTrue(false);
-        }
-
-        try {
-            displaySuccessIfTrue(30.0 == testBallTwo.getVelocity().x()) ;
-        } catch(Exception exc) {
-            displaySuccessIfTrue(false);
-        }
-        try {
-            displaySuccessIfTrue(10.0 == testBallTwo.getVelocity().y()) ;
+            displaySuccessIfTrue(300.0 == testBall.getLocation().x()) ;
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }
 
         try {
-            displaySuccessIfTrue(12.5 == testBallThree.getVelocity().x()) ;
+            displaySuccessIfTrue(60.0 == testBallTwo.getLocation().x()) ;
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(15.0 == testBallThree.getVelocity().y()) ;
+            displaySuccessIfTrue(20.0 == testBallTwo.getLocation().y()) ;
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(16.25 == testBallThree.getLocation().x()) ;
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(22.5 == testBallThree.getLocation().y()) ;
         } catch(Exception exc) {
             displaySuccessIfTrue(false);
         }
 
   
     }
-
     private static void test_move() {
         System.out.println("Testing move method...");
         Ball testBall = new Ball(5,new Vector(10,0), new Vector(20,10));
@@ -175,8 +178,6 @@ public class AngryBallsTestHarness {
         testBallTwo.move(2);
         Ball testBallThree = new Ball(5,new Vector(10,0), new Vector(20,10));
         testBallThree.move(0.5);
-
-
 
         try {
             displaySuccessIfTrue(30 == testBall.getLocation().x());
