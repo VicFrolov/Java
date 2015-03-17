@@ -14,6 +14,7 @@ public class AngryBallsTestHarness {
         test_getRadius();
         test_accelerate();
         test_move();
+        test_collide();
 
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
@@ -115,8 +116,8 @@ public class AngryBallsTestHarness {
         }
   
     }    
-    
-    private static void test_accelerate() {
+
+       private static void test_accelerate() {
         System.out.println("Testing accelerate method...");
         Vector testLocation = new Vector(100,200);
         Vector testInitialVelocity = new Vector(200,200);
@@ -210,6 +211,46 @@ public class AngryBallsTestHarness {
 
 
     }  
+
+    private static void test_collide() {
+        System.out.println("Testing collide method...");
+        Ball testBall = new Ball(5,new Vector(0,0), new Vector(20,10));
+        Ball testBallTwo = new Ball(5,new Vector(11,11), new Vector(20,10));
+        Ball testBallThree = new Ball(5,new Vector(0,30), new Vector(20,10));
+        Ball testBallFour = new Ball(5,new Vector(10,0), new Vector(20,10));
+        Ball testBallFive = new Ball(5,new Vector(11,0), new Vector(20,10));
+        Ball testBallSix = new Ball(5, new Vector(0,6), new Vector(20,10));
+        Ball testBallSeven = new Ball(5, new Vector(6,6), new Vector(20,10));
+
+        try {
+            displaySuccessIfTrue(!testBall.collide(testBallTwo));
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(!testBall.collide(testBallThree));
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        } 
+        try {
+            displaySuccessIfTrue(testBall.collide(testBallFour));
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }   
+        try {
+            displaySuccessIfTrue(testBall.collide(testBallSix));
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        } 
+        //not sure about this below method... use scans and think about it
+        try {
+            displaySuccessIfTrue(!testBallThree.collide(testBallSeven));
+        } catch(Exception exc) {
+            displaySuccessIfTrue(false);
+        }   
+
+
+    }      
 
 
 
