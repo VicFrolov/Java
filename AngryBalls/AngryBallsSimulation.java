@@ -21,7 +21,7 @@ public class AngryBallsSimulation {
         if(args.length == 0) {
             System.out.println(errorMessage());
             return;
-        } else if(args.length != 10 && args.length != 11) {
+        } else if(args.length != 10 && args.length != 11 || Double.parseDouble(args[0]) <= 0 || Double.parseDouble(args[5]) <= 0) {
             System.out.println("The arguments supplied do not match what AngryBalls Simulation expects. ");
             System.out.println(errorMessage());
             return;
@@ -78,6 +78,7 @@ public class AngryBallsSimulation {
             System.out.println(redBall.getRadius() + " " + redBall.getLocation().x() + " " + redBall.getLocation().y() +
             " " + blueBall.getRadius() + " " + blueBall.getLocation().x() + " " + blueBall.getLocation().y());
         }
+        
         System.out.println("end");
 
         //output whether balls touched or not
