@@ -17,14 +17,12 @@ public class Vector {
         return this.y;
     }
 
-    public Vector add(Vector v) {
-        Vector sum = new Vector(this.x+v.x(),this.y + v.y());
-        return sum;
+    public Vector add(Vector v) { 
+        return new Vector(this.x+v.x(),this.y + v.y());
     }
 
     public Vector scale(double magnitude) {
-        Vector scaledG = new Vector(this.x * magnitude, this.y * magnitude);
-        return scaledG;
+        return new Vector(this.x * magnitude, this.y * magnitude);
     }
 
 }
