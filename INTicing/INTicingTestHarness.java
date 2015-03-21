@@ -35,11 +35,11 @@ public class INTicingTestHarness {
     private static void test_divideByTwo() {
         System.out.println("Testing DivideByTwo...");
         int[] numbers = new int[] {2,1,3};
-        int[] number = INTicing.divideByTwo(numbers);
+        byte[] number = INTicing.divideByTwo(numbers);
         int[] numbersTwo = new int[] {9,5,2};
-        int[] numberTwo = INTicing.divideByTwo(numbersTwo);
+        byte[] numberTwo = INTicing.divideByTwo(numbersTwo);
         int[] numbersThree = new int[] {9};
-        int[] numberThree = INTicing.divideByTwo(numbersThree);
+        byte[] numberThree = INTicing.divideByTwo(numbersThree);
 
         try {
             displaySuccessIfTrue(6 == number[0]);

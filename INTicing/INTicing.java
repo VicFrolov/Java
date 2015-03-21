@@ -1,17 +1,23 @@
 public class INTicing {
 	private byte[] digits;
 	private int[] number;
+	private boolean isPositiveNumber = false;
 
 	public INTicing(){
 		this("0");
 	}
 
 	public INTicing(String s) {
-		s.trim();
+		String[] tempStringArray = s.trim().split("(?!^)");
 		
+		//Make sure that that boolean check is working!***
+		if(tempStringArray[0] != "-") {
+			isPositiveNumber = true;
+		}	
 	}
 
-	public static int[] divideByTwo(int[] number) {
+	public static byte[] divideByTwo(int[] number) {
+		byte[] returnByte = new byte[number.length];
 		for(int i=0; i+1 < number.length; i++) {
 			if(number[i] % 2 != 0){
 				number[i] -= 1;
@@ -23,7 +29,11 @@ public class INTicing {
 			}
 		}
 		number[number.length-1] /= 2;
-		return number;
+
+		for(int i = 0; i < number.length; i++) {
+			returnByte[i] = (byte) number[i];
+		}
+		return returnByte;
 	}
 
 	public String toString() {
