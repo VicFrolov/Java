@@ -1,15 +1,44 @@
 public class INTicing {
-	
-	public INTicing(){
+	private byte[] digits;
+	private byte[] number;
 
+	public INTicing(){
+		this("0");
 	}
 
 	public INTicing(String s) {
+
 		
 	}
 
+	public static byte[] divideByTwo(byte[] number) {
+		for(byte i=0; i < number.length; i++) {
+			if(number[i] % 2 != 0){
+				number[i] -= 1;
+			}
+			if(number[i+1] % 2 !=0) {
+				number[i] /= 2 + 5;
+			} else {
+				number[i] /= 2;
+			}
+		}
+		return number;
+	}
+
 	public String toString() {
-		return null;
+		String values = "";
+
+
+		if(digits[0] == 1) {
+			values += "=";
+		} else if(digits[0] == 2) {
+
+		}
+
+		for(int i = 0; i < digits.length; i++){
+			values += Byte.toString(digits[i]);
+		}
+		return values;
 	}
 
 	public boolean equals(Object n) {

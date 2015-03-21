@@ -8,6 +8,7 @@ public class INTicingTestHarness {
         successes = 0;
 
         // Feel free to add more cases to these.
+        test_divideByTwo();
         test_Constructor();
         test_toString();
         test_Equals();
@@ -30,6 +31,55 @@ public class INTicingTestHarness {
 
         System.out.println(value ? "success" : "failure");
     }
+
+    private static void test_divideByTwo() {
+        System.out.println("Testing DivideByTwo...");
+        int[] numbers = new int[] {2,1,3};
+        int[] number = INTicing.divideByTwo(numbers);
+        int[] numbersTwo = new int[] {9,5,2};
+        int[] numberTwo = INTicing.divideByTwo(numbersTwo);
+        int[] numbersThree = new int[] {9};
+        int[] numberThree = INTicing.divideByTwo(numbersThree);
+
+        try {
+            displaySuccessIfTrue(6 == number[0]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(5 == number[1]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(1 == number[2]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(9 == numberTwo[0]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(2 == numberTwo[1]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(1 == numberTwo[2]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(4 == numberThree[0]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+    }
+
 
     private static void test_Constructor() {
         System.out.println("Testing constructors...");
