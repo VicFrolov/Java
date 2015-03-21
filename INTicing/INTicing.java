@@ -1,27 +1,28 @@
 public class INTicing {
 	private byte[] digits;
-	private byte[] number;
+	private int[] number;
 
 	public INTicing(){
 		this("0");
 	}
 
 	public INTicing(String s) {
-
+		s.trim();
 		
 	}
 
-	public static byte[] divideByTwo(byte[] number) {
-		for(byte i=0; i < number.length; i++) {
+	public static int[] divideByTwo(int[] number) {
+		for(int i=0; i+1 < number.length; i++) {
 			if(number[i] % 2 != 0){
 				number[i] -= 1;
 			}
 			if(number[i+1] % 2 !=0) {
-				number[i] /= 2 + 5;
+				number[i] = number[i] / 2 + 5;
 			} else {
 				number[i] /= 2;
 			}
 		}
+		number[number.length-1] /= 2;
 		return number;
 	}
 
