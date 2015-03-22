@@ -27,7 +27,7 @@ public class INTicing {
 			}
 
 		}
-		//Set
+		//create an array of inversed decimal digits
 	    int[] decimalDigits = new int[tempStringArray.length - (indexToCheck)];
 
 		for(int i = tempStringArray.length -1; i >= indexToCheck; i--) {
@@ -40,7 +40,16 @@ public class INTicing {
 	}
 
 	public static byte[] divideByTwo(int[] number) {
-		byte[] returnByte = new byte[number.length];
+		//Set appropriate length to the bytep[] array
+		int specificLength = 0;
+		if(number[number.length-1] == 1){
+			specificLength = number.length -1;
+		} else {
+			specificLength = number.length;
+		}
+		byte[] returnByte = new byte[specificLength];
+
+		//Calculate half
 		for(int i=0; i+1 < number.length; i++) {
 			if(number[i] % 2 != 0){
 				number[i] -= 1;
@@ -53,7 +62,8 @@ public class INTicing {
 		}
 		number[number.length-1] /= 2;
 
-		for(int i = 0; i < number.length; i++) {
+		//convert to bytes
+		for(int i = 0; i < specificLength; i++) {
 			returnByte[i] = (byte) number[i];
 		}
 		return returnByte;
