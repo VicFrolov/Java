@@ -1,19 +1,42 @@
 public class INTicing {
-	private byte[] digits;
-	private int[] number;
+	private byte[] binaryDigits;
 	private boolean isPositiveNumber = false;
+
+
 
 	public INTicing(){
 		this("0");
 	}
 
 	public INTicing(String s) {
-		String[] tempStringArray = s.trim().split("(?!^)");
-		
-		//Make sure that that boolean check is working!***
-		if(tempStringArray[0] != "-") {
+		int j = 0;
+		boolean testforZerosAndSigns = true;
+		int indexToCheck = 0;
+		String[] tempStringArray = s.trim().split("(?!^)");	
+
+		//check if the number is positive or negative
+		if(!tempStringArray[0].equals("-")) {
 			isPositiveNumber = true;
-		}	
+		}
+		//find the index of the first digit of the number in the String array
+		while(testforZerosAndSigns){
+			if(tempStringArray[indexToCheck].equals("0") || tempStringArray[indexToCheck].equals("+") || tempStringArray[indexToCheck].equals("-")) {
+				indexToCheck++;
+			} else {
+				testforZerosAndSigns = false;
+			}
+
+		}
+		//Set
+	    int[] decimalDigits = new int[tempStringArray.length - (indexToCheck)];
+
+		for(int i = tempStringArray.length -1; i >= indexToCheck; i--) {
+		    decimalDigits[j] = Integer.parseInt(tempStringArray[i]);
+		    j++;
+		}
+
+		this.binaryDigits = divideByTwo(decimalDigits);
+
 	}
 
 	public static byte[] divideByTwo(int[] number) {
@@ -37,7 +60,7 @@ public class INTicing {
 	}
 
 	public String toString() {
-		String values = "";
+/*		String values = "";
 
 
 		if(digits[0] == 1) {
@@ -48,8 +71,9 @@ public class INTicing {
 
 		for(int i = 0; i < digits.length; i++){
 			values += Byte.toString(digits[i]);
-		}
-		return values;
+		}*/
+		return null;
+
 	}
 
 	public boolean equals(Object n) {
