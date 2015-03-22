@@ -34,29 +34,35 @@ public class INTicingTestHarness {
 
     private static void test_divideByTwo() {
         System.out.println("Testing DivideByTwo...");
-        int[] numbers = new int[] {2,1,3};
+        int[] numbers = new int[] {1,5,1};
         byte[] number = INTicing.divideByTwo(numbers);
         int[] numbersTwo = new int[] {9,5,2};
         byte[] numberTwo = INTicing.divideByTwo(numbersTwo);
         int[] numbersThree = new int[] {9};
         byte[] numberThree = INTicing.divideByTwo(numbersThree);
-
+        int[] numbersFour = new int[] {9,1};
+        byte[] numberFour = INTicing.divideByTwo(numbersFour);
+        
         try {
-            displaySuccessIfTrue(6 == number[0]);
+            displaySuccessIfTrue(5 == number[0]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(5 == number[1]);
+            displaySuccessIfTrue(7 == number[1]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(1 == number[2]);
+            displaySuccessIfTrue(0 == number[2]);
         } catch(Exception e) {
-            displaySuccessIfTrue(false);
+            displaySuccessIfTrue(!false);
         }
-
+        try {
+            displaySuccessIfTrue(0== number[3]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(!false);
+        }
         try {
             displaySuccessIfTrue(9 == numberTwo[0]);
         } catch(Exception e) {
@@ -74,6 +80,11 @@ public class INTicingTestHarness {
         }
         try {
             displaySuccessIfTrue(4 == numberThree[0]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(9 == numberFour[0]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
