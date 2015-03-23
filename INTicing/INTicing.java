@@ -1,6 +1,7 @@
 public class INTicing {
 	private byte[] binaryDigits;
 	private boolean isPositiveNumber = false;
+	private String stringDigits;
 
 
 
@@ -13,6 +14,8 @@ public class INTicing {
 		boolean testforZerosAndSigns = true;
 		int indexToCheck = 0;
 		String[] tempStringArray = s.trim().split("(?!^)");	
+		String tempBinaryString = "";
+		boolean isNumberNotZero = true;
 
 		//check if the number is positive or negative
 		if(!tempStringArray[0].equals("-")) {
@@ -34,20 +37,48 @@ public class INTicing {
 		    decimalDigits[j] = Integer.parseInt(tempStringArray[i]);
 		    j++;
 		}
+		//divide by two, and make new binary String array
 
-		this.binaryDigits = divideByTwo(decimalDigits);
+		while(isNumberNotZero) {
+			int sum = 0;
+			for(int i = 0; i < decimalDigits.length; i++) {
+    			sum += decimalDigits[i];
+			}
+			if(sum == 0) {
+				isNumberNotZero = false;
+			} else if(decimalDigits[0] % 2 == 0) {
+				tempBinaryString = "0" + tempBinaryString; 	
+			} else {
+				tempBinaryString = "1" + tempBinaryString;	
+			}
+			divideByTwo(decimalDigits);
+		}
 
+		//Convert into a byte array of binary digits, in reverse order
+		String[] tempBinaryStringArray = tempBinaryString.split("(?!^)");
+
+		binaryDigits = new byte[tempBinaryStringArray.length];
+		for(int i =0 ; i < tempBinaryStringArray.length; i++) {
+			binaryDigits[i] = Byte.parseByte(tempBinaryStringArray[i]);   
+		}
 	}
 
-	public static byte[] divideByTwo(int[] number) {
-		//Set appropriate length to the bytep[] array
+	public static int[] divideByTwo(int[] number) {
+		//Set appropriate length to the byte[] array
 		int specificLength = 0;
-		if(number[number.length-1] == 1){
+
+		//special case: if the int array is of the number 1
+		//otherwise, appropriate length is derived
+		if(number.length == 1 && number[0] == 1) {
+			int[] lonelyNumber = new int[1];
+			lonelyNumber[0] = 0;
+			return lonelyNumber;
+		} else if(number[number.length-1] == 1) {
 			specificLength = number.length -1;
 		} else {
 			specificLength = number.length;
 		}
-		byte[] returnByte = new byte[specificLength];
+		int[] returnByte = new int[specificLength];
 
 		//Calculate half
 		for(int i=0; i+1 < number.length; i++) {
@@ -64,26 +95,22 @@ public class INTicing {
 
 		//convert to bytes
 		for(int i = 0; i < specificLength; i++) {
-			returnByte[i] = (byte) number[i];
+			returnByte[i] = number[i];
 		}
-		return returnByte;
+		return number;
 	}
 
 	public String toString() {
-/*		String values = "";
-
-
-		if(digits[0] == 1) {
-			values += "=";
-		} else if(digits[0] == 2) {
-
+		if(isPositiveNumber){
+			stringDigits = "+";
+		} else{
+			stringDigits = "-";
 		}
 
-		for(int i = 0; i < digits.length; i++){
-			values += Byte.toString(digits[i]);
-		}*/
-		return null;
-
+		for(int i= 0; i < binaryDigits.length; i++) {
+			stringDigits = stringDigits + binaryDigits[i];
+		}
+		return stringDigits;
 	}
 
 	public boolean equals(Object n) {
