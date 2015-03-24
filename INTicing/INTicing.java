@@ -1,6 +1,6 @@
 public class INTicing {
-	private byte[] binaryDigits;
-	private boolean isPositiveNumber = false;
+	private byte[] binaryDigits = {9};
+	private int isPositiveNumber = 0;
 
 	public INTicing(){
 		this("0");
@@ -15,13 +15,10 @@ public class INTicing {
 		boolean isNumberNotZero = true;
 		boolean banana = true;
 
-		//check if the number is positive or negative
-		if(!tempStringArray[0].equals("-")) {
-			isPositiveNumber = true;
-		}
+
 		//find the index of the first digit of the number in the String array
-		while(testforZerosAndSigns){
-			if(indexToCheck == tempStringArray.length -1 && tempStringArray[tempStringArray.length -1] == "0") {
+		while(testforZerosAndSigns) {
+			if(indexToCheck == tempStringArray.length -1 && tempStringArray[tempStringArray.length -1].equals("0")) {
 				binaryDigits = new byte[]{0};
 				banana = false;
 				testforZerosAndSigns = false;
@@ -32,8 +29,13 @@ public class INTicing {
 			}
 
 		}
-
 		if(banana){
+					//check if the number is positive or negative
+			if(tempStringArray[0].equals("-")) {
+			isPositiveNumber = -1;
+			} else {
+			isPositiveNumber = 1;
+		}
 			//create an array of inversed decimal digits
 		    int[] decimalDigits = new int[tempStringArray.length - (indexToCheck)];
 
@@ -118,9 +120,9 @@ public class INTicing {
 			}
 		}
 
-		if(isPositiveNumber){
+		if(isPositiveNumber == 1){
 			stringDigits = "+";
-		} else{
+		} else if(isPositiveNumber == -1){
 			stringDigits = "-";
 		}
 		stringDigits = stringDigits + totalCount + "";
