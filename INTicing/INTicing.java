@@ -1,16 +1,13 @@
 public class INTicing {
 	private byte[] binaryDigits;
 	private boolean isPositiveNumber = false;
-	private String stringDigits;
-
-
 
 	public INTicing(){
 		this("0");
 	}
 
 	public INTicing(String s) {
-		int j = 0;
+    	int j = 0;
 		boolean testforZerosAndSigns = true;
 		int indexToCheck = 0;
 		String[] tempStringArray = s.trim().split("(?!^)");	
@@ -37,6 +34,8 @@ public class INTicing {
 		    decimalDigits[j] = Integer.parseInt(tempStringArray[i]);
 		    j++;
 		}
+
+
 		//divide by two, and make new binary String array
 
 		while(isNumberNotZero) {
@@ -51,7 +50,12 @@ public class INTicing {
 			} else {
 				tempBinaryString = "1" + tempBinaryString;	
 			}
-			divideByTwo(decimalDigits);
+			decimalDigits = divideByTwo(decimalDigits);
+			for(int i= 0; i < decimalDigits.length; i++) {
+				System.out.print(decimalDigits[i]);
+			}
+			System.out.println("");
+
 		}
 
 		//Convert into a byte array of binary digits, in reverse order
@@ -61,6 +65,7 @@ public class INTicing {
 		for(int i =0 ; i < tempBinaryStringArray.length; i++) {
 			binaryDigits[i] = Byte.parseByte(tempBinaryStringArray[i]);   
 		}
+
 	}
 
 	public static int[] divideByTwo(int[] number) {
@@ -70,9 +75,9 @@ public class INTicing {
 		//special case: if the int array is of the number 1
 		//otherwise, appropriate length is derived
 		if(number.length == 1 && number[0] == 1) {
-			int[] lonelyNumber = new int[1];
-			lonelyNumber[0] = 0;
-			return lonelyNumber;
+			number = new int[1];
+			number[0] = 0;
+			return number;
 		} else if(number[number.length-1] == 1) {
 			specificLength = number.length -1;
 		} else {
@@ -101,21 +106,29 @@ public class INTicing {
 	}
 
 	public String toString() {
+		int totalCount = 0;
+		String stringDigits = "";
+
+		for(int i= 0; i < binaryDigits.length; i++) {
+			totalCount *= 2;
+			if(binaryDigits[i] == 1) {
+				totalCount +=1;
+			}
+		}
+
 		if(isPositiveNumber){
 			stringDigits = "+";
 		} else{
 			stringDigits = "-";
 		}
-
-		for(int i= 0; i < binaryDigits.length; i++) {
-			stringDigits = stringDigits + binaryDigits[i];
-		}
+		stringDigits = stringDigits + totalCount + "";
 		return stringDigits;
+
 	}
 
-	public boolean equals(Object n) {
+	/*public boolean equals(Object n) {
 		return false;
-	}
+	}*/
 
 
 	public boolean isGreaterThan(INTicing n) {
