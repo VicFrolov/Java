@@ -1,6 +1,6 @@
 public class INTicing {
 	private byte[] binaryDigits;
-	private int isPositiveNumber = -1;
+	private boolean isPositiveNumber = false;
 
 	public INTicing(){
 		this("0");
@@ -13,62 +13,61 @@ public class INTicing {
 		String[] tempStringArray = s.trim().split("(?!^)");	
 		String tempBinaryString = "";
 		boolean isNumberNotZero = true;
+		boolean banana = true;
 
 		//check if the number is positive or negative
-		if(tempStringArray[0].equals("-")) {
-			isPositiveNumber = -1;
-		/////////MAKE SURE TO ALSO CHECK BELOW THAT THE VALUE IS NOT ZERO IN THE ELSE IF, TO MAKE SURE IT IS A POSITIVE NUMBER BEETCH
-		} else if(tempStringArray[0].equals("+")) {
-			isPositiveNumber = 1;
+		if(!tempStringArray[0].equals("-")) {
+			isPositiveNumber = true;
 		}
 		//find the index of the first digit of the number in the String array
 		while(testforZerosAndSigns){
-			/*if(indexToCheck == tempStringArray.length -1) {
-			binaryDigits = new byte[]{0};
-				break;
-			}*/
-			if(tempStringArray[indexToCheck].equals("0") || tempStringArray[indexToCheck].equals("+") || tempStringArray[indexToCheck].equals("-")) {
+			if(indexToCheck == tempStringArray.length -1 && tempStringArray[tempStringArray.length -1] == "0") {
+				binaryDigits = new byte[]{0};
+				banana = false;
+				testforZerosAndSigns = false;
+			} else if(tempStringArray[indexToCheck].equals("0") || tempStringArray[indexToCheck].equals("+") || tempStringArray[indexToCheck].equals("-")) {
 				indexToCheck++;
 			} else {
 				testforZerosAndSigns = false;
 			}
 
 		}
-		//create an array of inversed decimal digits
-	    int[] decimalDigits = new int[tempStringArray.length - (indexToCheck)];
 
-		for(int i = tempStringArray.length -1; i >= indexToCheck; i--) {
-		    decimalDigits[j] = Integer.parseInt(tempStringArray[i]);
-		    j++;
-		}
+		if(banana){
+			//create an array of inversed decimal digits
+		    int[] decimalDigits = new int[tempStringArray.length - (indexToCheck)];
 
-
-		//divide by two, and make new binary String array
-
-		while(isNumberNotZero) {
-			int sum = 0;
-			for(int i = 0; i < decimalDigits.length; i++) {
-    			sum += decimalDigits[i];
+			for(int i = tempStringArray.length -1; i >= indexToCheck; i--) {
+			    decimalDigits[j] = Integer.parseInt(tempStringArray[i]);
+			    j++;
 			}
-			if(sum == 0) {
-				isNumberNotZero = false;
-			} else if(decimalDigits[0] % 2 == 0) {
-				tempBinaryString = "0" + tempBinaryString; 	
-			} else {
-				tempBinaryString = "1" + tempBinaryString;	
+
+
+			//divide by two, and make new binary String array
+
+			while(isNumberNotZero) {
+				int sum = 0;
+				for(int i = 0; i < decimalDigits.length; i++) {
+	    			sum += decimalDigits[i];
+				}
+				if(sum == 0) {
+					isNumberNotZero = false;
+				} else if(decimalDigits[0] % 2 == 0) {
+					tempBinaryString = "0" + tempBinaryString; 	
+				} else {
+					tempBinaryString = "1" + tempBinaryString;	
+				}
+				decimalDigits = divideByTwo(decimalDigits);
 			}
-			decimalDigits = divideByTwo(decimalDigits);
 
+			//Convert into a byte array of binary digits, in reverse order
+			String[] tempBinaryStringArray = tempBinaryString.split("(?!^)");
+
+			binaryDigits = new byte[tempBinaryStringArray.length];
+			for(int i =0 ; i < tempBinaryStringArray.length; i++) {
+				binaryDigits[i] = Byte.parseByte(tempBinaryStringArray[i]);   
+			}
 		}
-
-		//Convert into a byte array of binary digits, in reverse order
-		String[] tempBinaryStringArray = tempBinaryString.split("(?!^)");
-
-		binaryDigits = new byte[tempBinaryStringArray.length];
-		for(int i =0 ; i < tempBinaryStringArray.length; i++) {
-			binaryDigits[i] = Byte.parseByte(tempBinaryStringArray[i]);   
-		}
-
 	}
 
 	public static int[] divideByTwo(int[] number) {
@@ -119,9 +118,9 @@ public class INTicing {
 			}
 		}
 
-		if(isPositiveNumber == 1){
+		if(isPositiveNumber){
 			stringDigits = "+";
-		} else if(isPositiveNumber == -1){
+		} else{
 			stringDigits = "-";
 		}
 		stringDigits = stringDigits + totalCount + "";
