@@ -22,6 +22,7 @@ public class INTicingTestHarness {
         //   test_IntegerDivision
         //   test_Modulo
 
+
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
 
@@ -34,57 +35,65 @@ public class INTicingTestHarness {
 
     private static void test_divideByTwo() {
         System.out.println("Testing DivideByTwo...");
+
         int[] numbers = new int[] {1,5,1};
-        byte[] number = INTicing.divideByTwo(numbers);
+        numbers = INTicing.divideByTwo(numbers); 
         int[] numbersTwo = new int[] {9,5,2};
-        byte[] numberTwo = INTicing.divideByTwo(numbersTwo);
+        numbersTwo = INTicing.divideByTwo(numbersTwo);
         int[] numbersThree = new int[] {9};
-        byte[] numberThree = INTicing.divideByTwo(numbersThree);
+        numbersThree = INTicing.divideByTwo(numbersThree);
         int[] numbersFour = new int[] {9,1};
-        byte[] numberFour = INTicing.divideByTwo(numbersFour);
+        numbersFour = INTicing.divideByTwo(numbersFour);
+        int[] numbersFive = new int[] {1};
+        numbersFive = INTicing.divideByTwo(numbersFive);
         
         try {
-            displaySuccessIfTrue(5 == number[0]);
+            displaySuccessIfTrue(5 == numbers[0]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(7 == number[1]);
+            displaySuccessIfTrue(7 == numbers[1]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(0 == number[2]);
+            displaySuccessIfTrue(0 == numbers[2]);
         } catch(Exception e) {
             displaySuccessIfTrue(!false);
         }
         try {
-            displaySuccessIfTrue(0== number[3]);
+            displaySuccessIfTrue(0== numbers[3]);
         } catch(Exception e) {
             displaySuccessIfTrue(!false);
         }
         try {
-            displaySuccessIfTrue(9 == numberTwo[0]);
+            displaySuccessIfTrue(9 == numbersTwo[0]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(2 == numberTwo[1]);
+            displaySuccessIfTrue(2 == numbersTwo[1]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(1 == numberTwo[2]);
+            displaySuccessIfTrue(1 == numbersTwo[2]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(4 == numberThree[0]);
+            displaySuccessIfTrue(4 == numbersThree[0]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(9 == numberFour[0]);
+            displaySuccessIfTrue(9 == numbersFour[0]);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(0 == numbersFive[0]);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
@@ -96,7 +105,30 @@ public class INTicingTestHarness {
         System.out.println("Testing constructors...");
 
         try {
-            displaySuccessIfTrue("+1".equals(new INTicing("1 ").toString()));
+            displaySuccessIfTrue("+12220".equals(new INTicing("12220 ").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue("+15123".equals(new INTicing(" 15123").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("-12220".equals(new INTicing("-12220 ").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue("+15123".equals(new INTicing("  +15123").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue("+10".equals(new INTicing("+10 ").toString()));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
@@ -114,6 +146,23 @@ public class INTicingTestHarness {
         }
 
         try {
+            displaySuccessIfTrue("0".equals(new INTicing("00").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("0".equals(new INTicing("  000").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue("0".equals(new INTicing("000  ").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
             displaySuccessIfTrue("0".equals(new INTicing("0").toString()));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
@@ -124,7 +173,6 @@ public class INTicingTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
-
         try {
             displaySuccessIfTrue("+314159265358979323846264338327950288"
                     .equals(new INTicing("314159265358979323846264338327950288").toString()));
