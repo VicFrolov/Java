@@ -13,14 +13,14 @@ public class INTicing {
 		String[] tempStringArray = s.trim().split("(?!^)");	
 		String tempBinaryString = "";
 		boolean isNumberNotZero = true;
-		boolean banana = true;
+		boolean numberisNotZero = true;
 
 
 		//find the index of the first digit of the number in the String array
 		while(testforZerosAndSigns) {
 			if(indexToCheck == tempStringArray.length -1 && tempStringArray[tempStringArray.length -1].equals("0")) {
 				binaryDigits = new byte[]{0};
-				banana = false;
+				numberisNotZero = false;
 				testforZerosAndSigns = false;
 			} else if(tempStringArray[indexToCheck].equals("0") || tempStringArray[indexToCheck].equals("+") || tempStringArray[indexToCheck].equals("-")) {
 				indexToCheck++;
@@ -29,7 +29,7 @@ public class INTicing {
 			}
 
 		}
-		if(banana){
+		if(numberisNotZero){
 					//check if the number is positive or negative
 			if(tempStringArray[0].equals("-")) {
 			isPositiveNumber = -1;
