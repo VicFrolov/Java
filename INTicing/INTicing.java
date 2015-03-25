@@ -132,18 +132,26 @@ public class INTicing {
         }
         
         stringDigits = "1";
+                    System.out.println(stringDigits);
+
 
         for(int i = 1; i < this.binaryDigits.length; i++) {
             stringDigits = doubleDecimalString(stringDigits);
+            System.out.println(stringDigits);
             if(binaryDigits[i] == 1) {
-                addOne(stringDigits);
+                stringDigits = addOne(stringDigits);
+                            System.out.println(stringDigits);
+
             }
         }
+
         if(this.isPositiveNumber == 1){
             stringDigits = "+" + stringDigits;
         } else if(this.isPositiveNumber == -1){
-            stringDigits = "-";
+            stringDigits = "-" + stringDigits;
         }
+            System.out.println(stringDigits);
+
         return stringDigits;
     }
 
@@ -151,23 +159,29 @@ public class INTicing {
 
     public static String doubleDecimalString(String s) {
         String carry = "1";
-        String[] banana = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        for(int i = 0 ; i < banana.length; i++){
-            if(s.equals(banana[i])) {
+        String[] digits = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        for(int i = 0 ; i < digits.length; i++){
+            if(s.equals(digits[i])) {
                 if(i <= 4){
-                    s = banana[i*2];
-                    return s;
+                    return digits[i*2];
                 } else {
-                    s = carry + banana[i * 2 - 10];
-                    return s;
+                    return carry + digits[i * 2 - 10];
                 }
             }
         }
         return null;
     }
 
-    public boolean addOne(String s) {
-        return false;
+    public static String addOne(String s) {
+        String[] digits = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        for(int i = 0; i < digits.length; i++) {
+            if(s == digits[i] && i <9){
+                return digits[i+1];
+            } else if(s == digits[i] && i == 9) {
+                return digits[0];
+            }
+        }
+        return null;
     }
 
 
