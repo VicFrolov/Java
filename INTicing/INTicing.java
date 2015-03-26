@@ -124,53 +124,76 @@ public class INTicing {
     // }
 
 
-    public String toString() {
-        String stringDigits = "0";
+    // public String toString() {
+    //     String stringDigits = "0";
         
-        if(binaryDigits[0] == 0 && binaryDigits.length == 1) {
-            return stringDigits;
-        }
+    //     if(binaryDigits[0] == 0 && binaryDigits.length == 1) {
+    //         return stringDigits;
+    //     }
         
-        stringDigits = "1";
-                    System.out.println(stringDigits);
+    //     stringDigits = "1";
 
+    //     for(int i = 1; i < this.binaryDigits.length; i++) {
+    //         stringDigits = doubleDecimalString(stringDigits);
+    //         if(binaryDigits[i] == 1) {
+    //             stringDigits = addOne(stringDigits);
 
-        for(int i = 1; i < this.binaryDigits.length; i++) {
-            stringDigits = doubleDecimalString(stringDigits);
-            System.out.println(stringDigits);
-            if(binaryDigits[i] == 1) {
-                stringDigits = addOne(stringDigits);
-                            System.out.println(stringDigits);
+    //         }
+    //     }
 
-            }
-        }
+    //     if(this.isPositiveNumber == 1){
+    //         stringDigits = "+" + stringDigits;
+    //     } else if(this.isPositiveNumber == -1){
+    //         stringDigits = "-" + stringDigits;
+    //     }
+    //         System.out.println(stringDigits);
 
-        if(this.isPositiveNumber == 1){
-            stringDigits = "+" + stringDigits;
-        } else if(this.isPositiveNumber == -1){
-            stringDigits = "-" + stringDigits;
-        }
-            System.out.println(stringDigits);
-
-        return stringDigits;
-    }
+    //     return stringDigits;
+    // }
 
 
 
     public static String doubleDecimalString(String s) {
-        String carry = "1";
-        String[] digits = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        for(int i = 0 ; i < digits.length; i++){
-            if(s.equals(digits[i])) {
-                if(i <= 4){
-                    return digits[i*2];
-                } else {
-                    return carry + digits[i * 2 - 10];
-                }
-            }
+        int[] revIntArrayOfString = new int[s.length()];
+        int[] doubledArray = new int[revIntArrayOfString.length + 1];
+        String doubledString = "";
+        boolean carry = false;
+
+        for(int i = 0; i < revIntArrayOfString.length; i++) {
+            revIntArrayOfString[i] = Character.getNumericValue(s.charAt(s.length() -1 -i));
         }
-        return null;
+        for(int i = 0; i < doubledArray.length - 1; i++) {
+            if(revIntArrayOfString[i] <=4){
+                doubledArray[i] = revIntArrayOfString[i] * 2;
+            }
+            else {
+                doubledArray[i] = revIntArrayOfString[i] * 2 - 10;
+                doubledArray[i +1] += 1;
+            }
+            for(int j=0; j < doubledArray.length; j++) {
+                System.out.println("LOL" + doubledArray[j]);
+            }
+            
+        }
+
+        for(int i=0; i < doubledArray.length; i++) {
+            System.out.println(doubledArray[i]);
+        }
+
+        if(doubledArray[doubledArray.length-1] == 0) {
+            for(int i = doubledArray.length -2; i >= 0; i--) {
+                doubledString += (char)(doubledArray[i] + 48);                
+            }
+        } else {
+            for(int i = doubledArray.length -1; i >= 0; i--) {
+                doubledString += (char)(doubledArray[i] + 48);
+            }
+        } 
+        System.out.println("string: " + doubledString);
+        return doubledString;
     }
+
+
 
     public static String addOne(String s) {
         String[] digits = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
