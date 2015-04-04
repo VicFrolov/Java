@@ -98,7 +98,7 @@ public class INTicing {
         for (int i = 0; i < specificLength; i++) {
             returnByte[i] = number[i];
         }
-        
+
         return number;
     }
 
@@ -111,16 +111,7 @@ public class INTicing {
         
         stringDigits = "1";
 
-        // for(int i = 1; i < this.binaryDigits.length; i++) {
-        //     stringDigits = doubleDecimalString(stringDigits);
-        //     if(binaryDigits[i] == 1) {
-        //         stringDigits = addOne(stringDigits);
-        //     }
-        //     System.out.println("string print leap : " + stringDigits);
-        // }
-
-        for(int i = this.binaryDigits.length -1; i >= 1; i--) {
-        System.out.println("string print leap : " + stringDigits);
+        for(int i = 1; i < this.binaryDigits.length; i++) {
             stringDigits = doubleDecimalString(stringDigits);
             if(binaryDigits[i] == 1) {
                 stringDigits = addOne(stringDigits);
