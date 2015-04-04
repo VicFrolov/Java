@@ -10,9 +10,9 @@ public class INTicingTestHarness {
         // Feel free to add more cases to these.
         test_divideByTwo();
         test_doubleDecimalString();
-        //test_addOne();
+        test_addOne();
         test_Constructor();
-        // test_toString();
+        //test_toString();
         // test_Equals();
         // test_Addition();
         
@@ -104,170 +104,192 @@ public class INTicingTestHarness {
 
     private static void test_doubleDecimalString() {
         System.out.println("Testing Double Decimal String...");
-        String s = "5";
+        String s = "19483918239083";
         s = INTicing.doubleDecimalString(s);
-        String t = "9";
+        String t = "888";
         t = INTicing.doubleDecimalString(t);
-        String u = "0";
+        String u = "477";
         u = INTicing.doubleDecimalString(u);
-        String v = "3";
+        String v = "44";
         v = INTicing.doubleDecimalString(v);
-        String w = "1";
+        String w = "154";
         w = INTicing.doubleDecimalString(w);
 
         
         try {
-            displaySuccessIfTrue("10".equals(s));
+            displaySuccessIfTrue("38967836478166".equals(s));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue("18".equals(t));
+            displaySuccessIfTrue("1776".equals(t));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue("0".equals(u));
+            displaySuccessIfTrue("954".equals(u));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue("6".equals(v));
+            displaySuccessIfTrue("88".equals(v));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue("2".equals(w));
+            displaySuccessIfTrue("308".equals(w));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
-        }
+        }        
 
 
     }
 
-    // private static void test_addOne() {
-    //     System.out.println("Testing addOne...");
+    private static void test_addOne() {
+        System.out.println("Testing addOne...");
+        String s = "0";
+        String t = "1";
+        String u = "9";
+        String v = "199";
+        String w = "199291239";
+        String x = "99999";
 
-    //     try {
-    //         displaySuccessIfTrue();
-    //     } catch(Exception e) {
-    //         displaySuccessIfTrue(false);
-    //     }
-    //     try {
-    //         displaySuccessIfTrue();
-    //     } catch(Exception e) {
-    //         displaySuccessIfTrue(false);
-    //     }
-    //     try {
-    //         displaySuccessIfTrue();
-    //     } catch(Exception e) {
-    //         displaySuccessIfTrue(false);
-    //     }
-    //     try {
-    //         displaySuccessIfTrue();
-    //     } catch(Exception e) {
-    //         displaySuccessIfTrue(false);
-    //     }
+        s = INTicing.addOne(s);
+        t = INTicing.addOne(t);
+        u = INTicing.addOne(u);
+        v = INTicing.addOne(v);
+        w = INTicing.addOne(w);
+        x = INTicing.addOne(x);
 
-    // }
-    private static void test_Constructor() {
-        System.out.println("Testing constructors...");
         try {
-            displaySuccessIfTrue("+8".equals(new INTicing("8 ").toString()));
+            displaySuccessIfTrue("1".equals(s));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
-        System.out.println(new INTicing("8 ").toString());
-        // try {
-        //     displaySuccessIfTrue("+15123".equals(new INTicing(" 15123").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
-        // try {
-        //     displaySuccessIfTrue("-12220".equals(new INTicing("-12220 ").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("2".equals(t));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("10".equals(u));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("200".equals(v));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("199291240".equals(w));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("100000".equals(x));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("+15123".equals(new INTicing("  +15123").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+    }
+    private static void test_Constructor() {
+        System.out.println("Testing constructors...");
+        try {
+            displaySuccessIfTrue("+10".equals(new INTicing("10").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("+15123".equals(new INTicing(" 15123").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("-12220".equals(new INTicing("-12220 ").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("+10".equals(new INTicing("+10 ").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("+15123".equals(new INTicing("  +15123").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("+1".equals(new INTicing("  +1").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("+10".equals(new INTicing("+10 ").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("-1".equals(new INTicing("-1  ").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("+1".equals(new INTicing("  +1").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("0".equals(new INTicing("00").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
-        // try {
-        //     displaySuccessIfTrue("0".equals(new INTicing("  000").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("-1".equals(new INTicing("-1  ").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("0".equals(new INTicing("000  ").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("0".equals(new INTicing("00").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("0".equals(new INTicing("  000").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("0".equals(new INTicing("0").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("0".equals(new INTicing("000  ").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("0".equals(new INTicing().toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
-        // try {
-        //     displaySuccessIfTrue("+314159265358979323846264338327950288"
-        //             .equals(new INTicing("314159265358979323846264338327950288").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("0".equals(new INTicing("0").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("+314159265358979323846264338327950288"
-        //             .equals(new INTicing("+314159265358979323846264338327950288").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("0".equals(new INTicing().toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue("+314159265358979323846264338327950288"
+                    .equals(new INTicing("314159265358979323846264338327950288").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue("-314159265358979323846264338327950288"
-        //             .equals(new INTicing("-314159265358979323846264338327950288").toString()));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue("+314159265358979323846264338327950288"
+                    .equals(new INTicing("+314159265358979323846264338327950288").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     new INTicing("a");
-        //     displaySuccessIfTrue(false);
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(true);
-        // }
+        try {
+            displaySuccessIfTrue("-314159265358979323846264338327950288"
+                    .equals(new INTicing("-314159265358979323846264338327950288").toString()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            new INTicing("a");
+            displaySuccessIfTrue(false);
+        } catch(Exception e) {
+            displaySuccessIfTrue(true);
+        }
 
     }
 
