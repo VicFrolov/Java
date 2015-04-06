@@ -48,7 +48,7 @@ public class INTicing {
                 }
                 if (sum == 0) {
                     isNumberNotZero = false;
-                } else if(decimalDigits[0] % 2 == 0) {
+                } else if (decimalDigits[0] % 2 == 0) {
                     tempBinaryString = "0" + tempBinaryString;  
                 } else {
                     tempBinaryString = "1" + tempBinaryString;  
@@ -160,10 +160,10 @@ public class INTicing {
 
         if (doubledArray[doubledArray.length-1] == 0) {
             for (int i = doubledArray.length -2; i >= 0; i--) {
-                doubledString += (char)(doubledArray[i] + 48);                
+                doubledString += (char)(doubledArray[i] + 48);
             }
         } else {
-            for(int i = doubledArray.length -1; i >= 0; i--) {
+            for (int i = doubledArray.length -1; i >= 0; i--) {
                 doubledString += (char)(doubledArray[i] + 48);
             }
         }
@@ -199,7 +199,7 @@ public class INTicing {
 
         if (arrayPlusOne[arrayPlusOne.length-1] == 0) {
             for (int i = arrayPlusOne.length -2; i >= 0; i--) {
-                plusOneString += (char)(arrayPlusOne[i] + 48);                
+                plusOneString += (char)(arrayPlusOne[i] + 48);
             }
         } else {
             for (int i = arrayPlusOne.length -1; i >= 0; i--) {
@@ -226,8 +226,8 @@ public class INTicing {
 
         INTicing other = (INTicing)obj;
 
-        for(int i =0; i < binaryDigits.length; i++) {
-            if(binaryDigits[i] != other.binaryDigits[i])
+        for (int i =0; i < binaryDigits.length; i++) {
+            if (binaryDigits[i] != other.binaryDigits[i])
                 return false;
         }
 
@@ -250,8 +250,39 @@ public class INTicing {
 
 
     public boolean isGreaterThan(INTicing n) {
+        if (this.isPositiveNumber > n.isPositiveNumber) {
+            return true;
+        } else if (this.isPositiveNumber == 1 && n.isPositiveNumber == 1) {
+            if (this.binaryDigits.length > n.binaryDigits.length) {
+                return true;
+            } else if (this.binaryDigits.length < n.binaryDigits.length) {
+                return false;
+            }
+
+            for (int i = this.binaryDigits.length -1 ; i >= 0; i--) {
+                if (this.binaryDigits[i] > n.binaryDigits[i]) {
+                    return true;
+                }
+            }
+
+        } else if (this.isPositiveNumber == -1 && n.isPositiveNumber == -1) {
+
+            if (this.binaryDigits.length < n.binaryDigits.length) {
+                return true;
+            } else if (this.binaryDigits.length > n.binaryDigits.length) {
+                return false;
+            }
+
+            for (int i = this.binaryDigits.length -1 ; i >= 0; i--) {
+                if (this.binaryDigits[i] < n.binaryDigits[i]) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
+
+
     public boolean isLessThan(INTicing n) {
         return false;
     }
