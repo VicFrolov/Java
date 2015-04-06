@@ -321,12 +321,7 @@ public class INTicing {
             }
         }
         return false;    }
-    public INTicing div(INTicing divisor) {
-        return null;
-    }
-    public INTicing mod(INTicing divisor) {
-        return null;
-    }
+
     public INTicing plus(INTicing addend) {
         byte[] firstValue;
         byte[] secondValue;
@@ -349,21 +344,7 @@ public class INTicing {
                 secondValue[i] = addend.binaryDigits[j];
                 j++;
             }
-                                            System.out.print("firstValue: ");
-                    for(int k=0; k < firstValue.length; k++) {
-                    System.out.print(firstValue[k]);
-                    }
-                    System.out.println("end");
-                    System.out.print("secodnValue: ");
-                    for(int k=0; k < secondValue.length; k++) {
-                    System.out.print(secondValue[k]);
-                    }
-                    System.out.println("end");
-                    System.out.print("addedValue: ");
-                    for(int k=0; k < addedValue.length; k++) {
-                    System.out.print(addedValue[k]);
-                    }
-                    System.out.println("end");
+
         } else {
             secondValue = addend.binaryDigits;
             addedValue = new byte[secondValue.length + 1];
@@ -374,57 +355,54 @@ public class INTicing {
                 j++;
             }
 
-                                System.out.print("firstValue: ");
-                    for(int k=0; k < firstValue.length; k++) {
-                    System.out.print(firstValue[k]);
-                    }
-                    System.out.println("end");
-                    System.out.print("secodnValue: ");
-                    for(int k=0; k < secondValue.length; k++) {
-                    System.out.print(secondValue[k]);
-                    }
-                    System.out.println("end");
-                    System.out.print("addedValue: ");
-                    for(int k=0; k < addedValue.length; k++) {
-                    System.out.print(addedValue[k]);
-                    }
-                    System.out.println("end");
+
         }
 
 
 
         
-        // for (int i = firstValue.length -1; i >= 0; i--) {
-        //     if(firstValue[i] == 0 && secondValue[i] == 0) {
-        //         addedValue[i + 1] = 0;
-        //     } else if( (firstValue[i] == 1 && secondValue[i] == 0) || (firstValue[i] == 0 && secondValue[i] == 1) ) {
-        //         addedValue[i + 1] = 1;
-        //     }
-        // }
-
-
-        // if (firstValue.length == secondValue.length) {
-        //     byte[] addedValue = new byte[firstValue.length + 1];
-        //     for (int i = (firstValue.length -1); i >= 0; i--) {
-        //         if (firstValue[i] == 0 && secondValue[i] == 0) {
-        //             addedValue[i + 1] = 0;
-        //         }
-        //     }
-        // }
-
-        /*So first, you check the length of both of the stupid arrays, you make a new one, with the longer one + 1
-        return null;*/
-        // if (this.binaryDigits.length > addend.binaryDigits.length) {
-        //     INTicing summedAmount = new INTicing("0" + this.toString());
-        // } else {
-        //     INTicing summedAmount = new INTicing("0" + addend.toString());
-        // }
-        // System.out.println(summedAmmount.tostring());
-                    //  System.out.print("Startb: ");
-                    // for(int k=0; k < summedAmount.binaryDigits.length; k++) {
-                    // System.out.print(summedAmount.binaryDigits[k]);
+        for (int i = firstValue.length -1; i >= 0; i--) {
+            if(firstValue[i] == 0 && secondValue[i] == 0) {
+                addedValue[i + 1] = 0;
+                if (carry) {
+                    addedValue[i + 1] = 1;
+                    carry = false;
+                }
+            } else if( (firstValue[i] == 1 && secondValue[i] == 0) || (firstValue[i] == 0 && secondValue[i] == 1) ) {
+                addedValue[i + 1] = 1;
+                if (carry) {
+                    addedValue[i + 1] = 0;
+                    carry = true;
+                }
+            } else {
+                if (carry) {
+                    addedValue[i + 1] = 1;
+                } else {
+                    addedValue[i +1] = 0;
+                    carry = true;
+                }// carry = true;
+            }
+        }
+        if (carry) {
+            addedValue[0] = 1;
+        }
+                    //             System.out.print("firstValue:  ");
+                    // for(int k=0; k < firstValue.length; k++) {
+                    // System.out.print(firstValue[k]);
                     // }
-                    // System.out.println("end");        
+                    // System.out.println("end");
+                    // System.out.print("secodnValue: ");
+                    // for(int k=0; k < secondValue.length; k++) {
+                    // System.out.print(secondValue[k]);
+                    // }
+                    // System.out.println("end");
+                    // System.out.println("           __________");
+                    // System.out.print("addedValue: ");
+                    // for(int k=0; k < addedValue.length; k++) {
+                    // System.out.print(addedValue[k]);
+                    // }
+                    // System.out.println("end");
+       
         return null;
     }
 
@@ -434,7 +412,12 @@ public class INTicing {
     public INTicing times(INTicing factor) {
         return null;
     }
-
+    public INTicing div(INTicing divisor) {
+        return null;
+    }
+    public INTicing mod(INTicing divisor) {
+        return null;
+    }
 
     
 
