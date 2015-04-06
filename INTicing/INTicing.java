@@ -333,6 +333,11 @@ public class INTicing {
         boolean carry = false;
         int j = 0;
 
+
+        if(this.isPositiveNumber == 0 && addend.isPositiveNumber == 0) {
+            return new INTicing();
+        }
+        
         //pads arrays accordingly, and creates proper length summed Value thing
         if (this.binaryDigits.length == addend.binaryDigits.length) {
             firstValue = this.binaryDigits;
