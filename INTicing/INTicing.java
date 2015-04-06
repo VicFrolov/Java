@@ -55,13 +55,13 @@ public class INTicing {
                 }
                 decimalDigits = divideByTwo(decimalDigits);
             }
-            //Convert into a byte array of binary digits, in reverse order
+            //Convert into a byte array of binary digits
             String[] tempBinaryStringArray = tempBinaryString.split("(?!^)");
 
             this.binaryDigits = new byte[tempBinaryStringArray.length];
             for (int i =0 ; i < tempBinaryStringArray.length; i++) {
                 this.binaryDigits[i] = Byte.parseByte(tempBinaryStringArray[i]);   
-            }
+            }      
         }
     }
 
@@ -259,23 +259,26 @@ public class INTicing {
                 return false;
             }
 
-            for (int i = this.binaryDigits.length -1 ; i >= 0; i--) {
+            for (int i = 0 ; i < this.binaryDigits.length; i++) {
                 if (this.binaryDigits[i] > n.binaryDigits[i]) {
                     return true;
+                } else if(this.binaryDigits[i] < n.binaryDigits[i]) {
+                    return false;
                 }
             }
 
         } else if (this.isPositiveNumber == -1 && n.isPositiveNumber == -1) {
-
             if (this.binaryDigits.length < n.binaryDigits.length) {
                 return true;
             } else if (this.binaryDigits.length > n.binaryDigits.length) {
                 return false;
             }
 
-            for (int i = this.binaryDigits.length -1 ; i >= 0; i--) {
+            for (int i = 0 ; i < this.binaryDigits.length; i++) {
                 if (this.binaryDigits[i] < n.binaryDigits[i]) {
                     return true;
+                } else if (this.binaryDigits[i] > n.binaryDigits[i]) {
+                    return false;
                 }
             }
         }
@@ -284,8 +287,40 @@ public class INTicing {
 
 
     public boolean isLessThan(INTicing n) {
-        return false;
-    }
+        if (this.isPositiveNumber < n.isPositiveNumber) {
+            return true;
+        } else if (this.isPositiveNumber == 1 && n.isPositiveNumber == 1) {
+            if (this.binaryDigits.length < n.binaryDigits.length) {
+                return true;
+            } else if (this.binaryDigits.length > n.binaryDigits.length) {
+                return false;
+            }
+
+            for (int i = 0 ; i < this.binaryDigits.length; i++) {
+                if (this.binaryDigits[i] < n.binaryDigits[i]) {
+                    return true;
+                } else if (this.binaryDigits[i] > n.binaryDigits[i]) {
+                    return false;
+                }
+            }
+
+        } else if (this.isPositiveNumber == -1 && n.isPositiveNumber == -1) {
+            if (this.binaryDigits.length > n.binaryDigits.length) {
+                return true;
+            } else if (this.binaryDigits.length < n.binaryDigits.length) {
+                return false;
+            }
+
+            for (int i = 0 ; i < this.binaryDigits.length; i++) {
+
+                if (this.binaryDigits[i] > n.binaryDigits[i]) {
+                    return true;
+                } else if (this.binaryDigits[i] < n.binaryDigits[i]) {
+                    return false;
+                }
+            }
+        }
+        return false;    }
     public INTicing div(INTicing divisor) {
         return null;
     }
