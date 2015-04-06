@@ -214,39 +214,35 @@ public class INTicing {
         return plusOneString;
     }
 
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    @Override
+    public boolean equals(Object n) {
+        if (this == n) {
             return true;
         }
 
-        if (obj == null) {
+        if (n == null) {
             return false;
         }
 
-        if (getClass() != obj.getClass()) {
+        if (getClass() != n.getClass()) {
             return false;
         }
 
-        INTicing other = (INTicing)obj;
-
-        for (int i =0; i < binaryDigits.length; i++) {
-            if (binaryDigits[i] != other.binaryDigits[i])
-                return false;
-        }
-
+        INTicing other = (INTicing)n;
         if (isPositiveNumber != other.isPositiveNumber) {
             return false;
         }
 
-        // name can be null, so extra handling is needed.
-        // if (name == null) {
-        //     if (other.name != null) {
-        //         return false;
-        //     }
-        // } else if (!name.equals(other.name)) {
-        //     return false;
-        // }
+        if(binaryDigits.length != other.binaryDigits.length) {
+            return false;
+        }
+
+        for(int i = 0; i < binaryDigits.length; i++) {
+            if(binaryDigits[i] != other.binaryDigits[i]) {
+                return false;
+            }
+        }
+
 
         return true;
     }
@@ -336,6 +332,7 @@ public class INTicing {
 
 
         if(this.isPositiveNumber == 0 && addend.isPositiveNumber == 0) {
+
             return new INTicing();
         }
 
@@ -411,6 +408,15 @@ public class INTicing {
     }
 
     public INTicing minus(INTicing subtrahend) {
+        System.out.println(this.plus(subtrahend));
+
+        if( (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == -1) || 
+            (this.isPositiveNumber == -1 && subtrahend.isPositiveNumber == 1) ) {
+
+        } else{
+            return this.plus(subtrahend);
+        }
+
         // byte[] firstValue;
         // byte[] secondValue;
         // byte[] subtractedValue;
