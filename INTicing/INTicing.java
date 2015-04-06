@@ -413,6 +413,8 @@ public class INTicing {
         byte[] smallerNumber;
         byte[] outputNumber;
         int j = 0;
+        int leadingZeroIndexLength = 0;
+        byte[] finalizedArray;
 
         //Using addition method with proper allocation of signs
         if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == -1) {
@@ -463,19 +465,17 @@ public class INTicing {
             }
         }
 
-
-        for(int i = outputNumber.length -1; i >= 0; i--) {
-            if(biggerNumber[i] >= smallerNumber[i]) {
+        for (int i = outputNumber.length -1; i >= 0; i--) {
+            if (biggerNumber[i] >= smallerNumber[i]) {
                 outputNumber[i] = (byte) (biggerNumber[i] - smallerNumber[i]);
             } else {
-                //
+                //apply borrowing to the larger Number, altering it for the next iteration
                 boolean noBorrowYet = true;
-                for(int k = i; k >= 0; k--) {
-                    if(biggerNumber[k] == 1 && noBorrowYet) {
-                        for(int numberEraser = k; numberEraser < i; numberEraser++){
+                for (int k = i; k >= 0; k--) {
+                    if (biggerNumber[k] == 1 && noBorrowYet) {
+                        for (int numberEraser = k; numberEraser < i; numberEraser++){
                             biggerNumber[numberEraser] = 1;
                         }
-
                         biggerNumber[k] = 0;
                         outputNumber[i] = 1;
                         noBorrowYet = false;
@@ -485,26 +485,32 @@ public class INTicing {
 
             }
         }
+        //detect the placement of the first non-zero
+        for (int i = 0; i < outputNumber.length; i++) {
+            if (outputNumber[i] == 0) {
+                leadingZeroIndexLength++;
+            } else {
+                i = outputNumber.length;
+            }
+        }
+        // special case zero
+        if (leadingZeroIndexLength == outputNumber.length) {
+            finalizedArray = new byte[]{0};
+            return new INTicing(finalizedArray, 0);
+        }
+        
+        finalizedArray = new byte[outputNumber.length - leadingZeroIndexLength];
+        
+        for (int i= 0; i < finalizedArray.length; i++) {
+            finalizedArray[i] = outputNumber[i + leadingZeroIndexLength];
+        }
 
-                            System.out.print("firstValue:  ");
-                    for(int z=0; z < biggerNumber.length; z++) {
-                    System.out.print(biggerNumber[z]);
-                    }
-                    System.out.println("end");
-                    System.out.print("secodnValue: ");
-                    for(int z=0; z < smallerNumber.length; z++) {
-                    System.out.print(smallerNumber[z]);
-                    }
-                    System.out.println("end");
-                                        System.out.println("           __________");
-                    System.out.print("addedValue: ");
-                    for(int z=0; z < outputNumber.length; z++) {
-                    System.out.print(outputNumber[z]);
-                    }
-                    System.out.println("end");
+        if(this.isGreaterThan(subtrahend)) {
 
-        return null;
-
+            return new INTicing(finalizedArray, 1);
+        } else {
+            return new INTicing(finalizedArray, -1);
+        }
     }    
 
     public INTicing times(INTicing factor) {
