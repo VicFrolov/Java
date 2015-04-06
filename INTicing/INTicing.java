@@ -5,6 +5,10 @@ public class INTicing {
     public INTicing(){
         this("0");
     }
+    public INTicing(byte[] b, int s){
+        this.binaryDigits = b;
+        this.isPositiveNumber = s;
+    }
 
     public INTicing(String s) {
         int j = 0;
@@ -329,7 +333,6 @@ public class INTicing {
         boolean carry = false;
         int j = 0;
 
-
         //pads arrays accordingly, and creates proper length summed Value thing
         if (this.binaryDigits.length == addend.binaryDigits.length) {
             firstValue = this.binaryDigits;
@@ -354,13 +357,8 @@ public class INTicing {
                 firstValue[i] = this.binaryDigits[j];
                 j++;
             }
-
-
         }
 
-
-
-        
         for (int i = firstValue.length -1; i >= 0; i--) {
             if(firstValue[i] == 0 && secondValue[i] == 0) {
                 addedValue[i + 1] = 0;
@@ -380,13 +378,29 @@ public class INTicing {
                 } else {
                     addedValue[i +1] = 0;
                     carry = true;
-                }// carry = true;
+                }
             }
         }
+        
         if (carry) {
             addedValue[0] = 1;
         }
-                    //             System.out.print("firstValue:  ");
+
+        if(addedValue[0] == 0){
+            byte[] finalizedArray = new byte[addedValue.length - 1];
+            for(int i = 1; i < addedValue.length; i++) {
+                finalizedArray[i - 1] = addedValue[i];
+            }
+            return new INTicing(finalizedArray, 1);
+
+        } else {
+            byte[] finalizedArray = new byte[addedValue.length];
+            finalizedArray = addedValue;
+            return new INTicing(finalizedArray, 1);
+
+        }
+
+                    // System.out.print("firstValue:  ");
                     // for(int k=0; k < firstValue.length; k++) {
                     // System.out.print(firstValue[k]);
                     // }
@@ -403,7 +417,6 @@ public class INTicing {
                     // }
                     // System.out.println("end");
        
-        return null;
     }
 
     public INTicing minus(INTicing subtrahend) {
