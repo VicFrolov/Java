@@ -408,13 +408,22 @@ public class INTicing {
     }
 
     public INTicing minus(INTicing subtrahend) {
-        System.out.println(this.plus(subtrahend));
 
-        if( (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == -1) || 
-            (this.isPositiveNumber == -1 && subtrahend.isPositiveNumber == 1) ) {
-
-        } else{
+        if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == -1) {
             return this.plus(subtrahend);
+        } else if (this.isPositiveNumber == -1 && subtrahend.isPositiveNumber == 1){
+            subtrahend.isPositiveNumber = -1;
+            return this.plus(subtrahend);
+        } else if (this.isPositiveNumber == 0 || subtrahend.isPositiveNumber == 0){
+            return this.plus(subtrahend);
+        } else {
+            if(this.isGreaterThan)
+
+            // Remember the pattern for testing is greater, and then finding out what the final sign is!
+            subtrahend.isPositiveNumber = 1;
+            return this.plus(subtrahend);
+        } else {
+            return null;
         }
 
         // byte[] firstValue;
@@ -453,11 +462,7 @@ public class INTicing {
         //     }
         // }
 
-
-
-
-        return null;
-    }   
+    }    
     public INTicing times(INTicing factor) {
         return null;
     }
