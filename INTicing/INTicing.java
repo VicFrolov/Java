@@ -233,12 +233,12 @@ public class INTicing {
             return false;
         }
 
-        if(binaryDigits.length != other.binaryDigits.length) {
+        if (binaryDigits.length != other.binaryDigits.length) {
             return false;
         }
 
-        for(int i = 0; i < binaryDigits.length; i++) {
-            if(binaryDigits[i] != other.binaryDigits[i]) {
+        for (int i = 0; i < binaryDigits.length; i++) {
+            if (binaryDigits[i] != other.binaryDigits[i]) {
                 return false;
             }
         }
@@ -331,7 +331,7 @@ public class INTicing {
         int signedValue = 1;
 
 
-        if(this.isPositiveNumber == 0 && addend.isPositiveNumber == 0) {
+        if (this.isPositiveNumber == 0 && addend.isPositiveNumber == 0) {
 
             return new INTicing();
         }
@@ -361,15 +361,16 @@ public class INTicing {
                 j++;
             }
         }
+
         //addition with positive numbers
         for (int i = firstValue.length -1; i >= 0; i--) {
-            if(firstValue[i] == 0 && secondValue[i] == 0) {
+            if (firstValue[i] == 0 && secondValue[i] == 0) {
                 addedValue[i + 1] = 0;
                 if (carry) {
                     addedValue[i + 1] = 1;
                     carry = false;
                 }
-            } else if( (firstValue[i] == 1 && secondValue[i] == 0) || (firstValue[i] == 0 && secondValue[i] == 1) ) {
+            } else if ( (firstValue[i] == 1 && secondValue[i] == 0) || (firstValue[i] == 0 && secondValue[i] == 1) ) {
                 addedValue[i + 1] = 1;
                 if (carry) {
                     addedValue[i + 1] = 0;
@@ -388,7 +389,7 @@ public class INTicing {
         if (carry) {
             addedValue[0] = 1;
         }
-        if(this.isPositiveNumber == -1 && addend.isPositiveNumber == -1) {
+        if (this.isPositiveNumber == -1 && addend.isPositiveNumber == -1) {
             signedValue = -1;
         }
 
@@ -408,7 +409,12 @@ public class INTicing {
     }
 
     public INTicing minus(INTicing subtrahend) {
+        byte[] biggerNumber;
+        byte[] smallerNumber;
+        byte[] outputNumber;
+        int j = 0;
 
+        //Using addition method with proper allocation of signs
         if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == -1) {
             return this.plus(subtrahend);
         } else if (this.isPositiveNumber == -1 && subtrahend.isPositiveNumber == 1){
@@ -416,53 +422,91 @@ public class INTicing {
             return this.plus(subtrahend);
         } else if (this.isPositiveNumber == 0 || subtrahend.isPositiveNumber == 0){
             return this.plus(subtrahend);
-        } else {
-            if(this.isGreaterThan)
-
-            // Remember the pattern for testing is greater, and then finding out what the final sign is!
-            subtrahend.isPositiveNumber = 1;
-            return this.plus(subtrahend);
-        } else {
-            return null;
         }
 
-        // byte[] firstValue;
-        // byte[] secondValue;
-        // byte[] subtractedValue;
-        // boolean carry = false;
-        // int j = 0;
-        
-        // if(this.isPositiveNumber == 0 && subtrahend.isPositiveNumber == 0) {
-        //     return new INTicing();
-        // }
+        // detecting the larger number while ignoring it's sign, and padding the smaller one
+        if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == 1) {
+            if (this.isGreaterThan(subtrahend)) {
+                biggerNumber = this.binaryDigits;
+                smallerNumber = new byte[biggerNumber.length];
+                outputNumber = new byte[biggerNumber.length];
+                for (int i = (this.binaryDigits.length - subtrahend.binaryDigits.length); i < smallerNumber.length; i++) {
+                    smallerNumber[i] = subtrahend.binaryDigits[j];
+                    j++;
+                }
+            } else {
+                biggerNumber = subtrahend.binaryDigits;
+                smallerNumber = new byte[biggerNumber.length];
+                outputNumber = new byte[biggerNumber.length];
+                for (int i = (subtrahend.binaryDigits.length - this.binaryDigits.length); i < smallerNumber.length; i++) {
+                    smallerNumber[i] = this.binaryDigits[j];
+                    j++;
+                }
+            }
+        } else {
+            if (this.isLessThan(subtrahend)) {
+                biggerNumber = this.binaryDigits;
+                smallerNumber = new byte[biggerNumber.length];
+                outputNumber = new byte[biggerNumber.length];
+                for (int i = (this.binaryDigits.length - subtrahend.binaryDigits.length); i < smallerNumber.length; i++) {
+                    smallerNumber[i] = subtrahend.binaryDigits[j];
+                    j++;
+                }
+            } else {
+                biggerNumber = subtrahend.binaryDigits;
+                smallerNumber = new byte[biggerNumber.length];
+                outputNumber = new byte[biggerNumber.length];
+                for (int i = (subtrahend.binaryDigits.length - this.binaryDigits.length); i < smallerNumber.length; i++) {
+                    smallerNumber[i] = this.binaryDigits[j];
+                    j++;
+                }                
+            }
+        }
 
-        // //pads arrays accordingly, and creates proper length summed Value thing
-        // if (this.binaryDigits.length == subtrahend.binaryDigits.length) {
-        //     firstValue = this.binaryDigits;
-        //     secondValue = subtrahend.binaryDigits;
-        //     subtractedValue = new byte[firstValue.length + 1];
-        // } else if (this.binaryDigits.length > subtrahend.binaryDigits.length) {
-        //     firstValue = this.binaryDigits;
-        //     subtractedValue = new byte[firstValue.length + 1];
-        //     secondValue = new byte[firstValue.length];
-            
-        //     for (int i = (this.binaryDigits.length - subtrahend.binaryDigits.length); i < secondValue.length; i++) {
-        //         secondValue[i] = subtrahend.binaryDigits[j];
-        //         j++;
-        //     }
 
-        // } else {
-        //     secondValue = subtrahend.binaryDigits;
-        //     subtractedValue = new byte[secondValue.length + 1];
-        //     firstValue = new byte[secondValue.length];
+        for(int i = outputNumber.length -1; i >= 0; i--) {
+            if(biggerNumber[i] >= smallerNumber[i]) {
+                outputNumber[i] = (byte) (biggerNumber[i] - smallerNumber[i]);
+            } else {
+                //
+                boolean noBorrowYet = true;
+                for(int k = i; k >= 0; k--) {
+                    if(biggerNumber[k] == 1 && noBorrowYet) {
+                        for(int numberEraser = k; numberEraser < i; numberEraser++){
+                            biggerNumber[numberEraser] = 1;
+                        }
 
-        //     for (int i = (subtrahend.binaryDigits.length - this.binaryDigits.length); i < firstValue.length; i++) {
-        //         firstValue[i] = this.binaryDigits[j];
-        //         j++;
-        //     }
-        // }
+                        biggerNumber[k] = 0;
+                        outputNumber[i] = 1;
+                        noBorrowYet = false;
+                    }
+                    
+                }
+
+            }
+        }
+
+                            System.out.print("firstValue:  ");
+                    for(int z=0; z < biggerNumber.length; z++) {
+                    System.out.print(biggerNumber[z]);
+                    }
+                    System.out.println("end");
+                    System.out.print("secodnValue: ");
+                    for(int z=0; z < smallerNumber.length; z++) {
+                    System.out.print(smallerNumber[z]);
+                    }
+                    System.out.println("end");
+                                        System.out.println("           __________");
+                    System.out.print("addedValue: ");
+                    for(int z=0; z < outputNumber.length; z++) {
+                    System.out.print(outputNumber[z]);
+                    }
+                    System.out.println("end");
+
+        return null;
 
     }    
+
     public INTicing times(INTicing factor) {
         return null;
     }
