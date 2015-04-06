@@ -16,6 +16,8 @@ public class INTicingTestHarness {
         test_Equals();
         //test_Addition();
         test_isGreaterThan();
+        test_isLessThan();
+
         
         // You should implement: 
         //   test_isLessThan
@@ -386,11 +388,32 @@ public class INTicingTestHarness {
         }
 
         try {
+            displaySuccessIfTrue(!new INTicing("-4294967295")
+                    .isGreaterThan(new INTicing("-4294967294")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new INTicing("-102938109238109238019284019324098123098123")
+                    .isGreaterThan(new INTicing("-102938109238109238019284019324098123098122")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-1901824098123907")
+                    .isGreaterThan(new INTicing("-1901824098123908")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }        
+
+        try {
             displaySuccessIfTrue(!new INTicing("-1901824098123908")
                     .isGreaterThan(new INTicing("-1901824098123907")));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
-        }        
+        } 
 
         try {
             displaySuccessIfTrue(!new INTicing("0")
@@ -435,8 +458,29 @@ public class INTicingTestHarness {
         } 
 
         try {
+            displaySuccessIfTrue(new INTicing("10923829384092348000009183981293810230120398123123")
+                    .isGreaterThan(new INTicing("10923829384092348000009183981293810230120398123122")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
             displaySuccessIfTrue(new INTicing("-100")
                     .isGreaterThan(new INTicing("-1000")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(new INTicing("-2")
+                    .isGreaterThan(new INTicing("-3")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("11")
+                    .isGreaterThan(new INTicing("10")));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         } 
@@ -447,21 +491,104 @@ public class INTicingTestHarness {
             displaySuccessIfTrue(false);
         }
 
-        // try {
-        //     displaySuccessIfTrue(!(new INTicing("123456789123456789")
-        //             .equals(new INTicing("-123456789123456789"))));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue(!(new INTicing("123456789123456789")
+                    .equals(new INTicing("-123456789123456789"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
-        // try {
-        //     displaySuccessIfTrue(new INTicing("123456789123456789")
-        //             .equals(new INTicing("000123456789123456789")));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue(new INTicing("123456789123456789")
+                    .equals(new INTicing("000123456789123456789")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
 
     }
+
+   private static void test_isLessThan() {
+        System.out.println("Testing isLessThan...");
+        INTicing a = new INTicing("-2");
+        INTicing b = new INTicing("-1");
+
+        try {
+            displaySuccessIfTrue(!new INTicing("3")
+                    .isLessThan(new INTicing("-1")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new INTicing("12")
+                    .isLessThan(new INTicing("11")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new INTicing("3")
+                    .isLessThan(new INTicing("2")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new INTicing("1901824098123908")
+                    .isLessThan(new INTicing("1901824098123907")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new INTicing("+1901824098123908")
+                    .isLessThan(new INTicing("1901824098123907")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-4294967295")
+                    .isLessThan(new INTicing("-4294967294")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-102938109238109238019284019324098123098123")
+                    .isLessThan(new INTicing("-102938109238109238019284019324098123098122")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new INTicing("-1901824098123907")
+                    .isLessThan(new INTicing("-1901824098123908")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(!new INTicing("0")
+                    .isLessThan(new INTicing("00")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(new INTicing("123908120938102498230580123098987127630982340712378627324091823876")
+                    .isLessThan(new INTicing("123908120938102498230580123098987127630982340712378627324091823877")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(!new INTicing()
+                    .isLessThan(new INTicing()));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }         
+    }    
 
     private static void test_Addition() {
         System.out.println("Testing addition...");
