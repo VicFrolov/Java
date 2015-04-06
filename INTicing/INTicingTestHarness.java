@@ -12,12 +12,12 @@ public class INTicingTestHarness {
         test_doubleDecimalString();
         test_addOne();
         test_Constructor();
-        //test_toString();
-        // test_Equals();
-        // test_Addition();
+        test_toString();
+        test_Equals();
+        //test_Addition();
+        test_isGreaterThan();
         
-        // You should implement:
-        //   test_isGreaterThan
+        // You should implement: 
         //   test_isLessThan
         //   test_Subtraction
         //   test_Multiplication
@@ -349,6 +349,117 @@ public class INTicingTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
+
+    }
+
+    private static void test_isGreaterThan() {
+        System.out.println("Testing isGreaterThan...");
+        INTicing a = new INTicing("-2");
+        INTicing b = new INTicing("-1");
+
+        try {
+            displaySuccessIfTrue(new INTicing("3")
+                    .isGreaterThan(new INTicing("-1")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("12")
+                    .isGreaterThan(new INTicing("11")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("1901824098123908")
+                    .isGreaterThan(new INTicing("1901824098123907")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("+1901824098123908")
+                    .isGreaterThan(new INTicing("1901824098123907")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new INTicing("-1901824098123908")
+                    .isGreaterThan(new INTicing("-1901824098123907")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }        
+
+        try {
+            displaySuccessIfTrue(!new INTicing("0")
+                    .isGreaterThan(new INTicing("0000")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }  
+
+        try {
+            displaySuccessIfTrue(!new INTicing("0")
+                    .isGreaterThan(new INTicing("1")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(new INTicing("1505050")
+                    .isGreaterThan(new INTicing("1")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(!new INTicing("1")
+                    .isGreaterThan(new INTicing("114908123")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(new INTicing("2000000000")
+                    .isGreaterThan(new INTicing("1999999999")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(!new INTicing("12938109238109238901283091823091823")
+                    .isGreaterThan(new INTicing("12938109238109238901283091823091823")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(new INTicing("-100")
+                    .isGreaterThan(new INTicing("-1000")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+
+        try {
+            displaySuccessIfTrue(!a.isGreaterThan(b));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        // try {
+        //     displaySuccessIfTrue(!(new INTicing("123456789123456789")
+        //             .equals(new INTicing("-123456789123456789"))));
+        // } catch(Exception e) {
+        //     displaySuccessIfTrue(false);
+        // }
+
+        // try {
+        //     displaySuccessIfTrue(new INTicing("123456789123456789")
+        //             .equals(new INTicing("000123456789123456789")));
+        // } catch(Exception e) {
+        //     displaySuccessIfTrue(false);
+        // }
 
     }
 
