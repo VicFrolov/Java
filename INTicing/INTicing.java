@@ -105,29 +105,27 @@ public class INTicing {
     public String toString() {
         String stringDigits = "0";
         
-        if(binaryDigits[0] == 0 && binaryDigits.length == 1) {
+        if (binaryDigits[0] == 0 && binaryDigits.length == 1) {
             return stringDigits;
         }
         
         stringDigits = "1";
 
-        for(int i = 1; i < this.binaryDigits.length; i++) {
+        for (int i = 1; i < this.binaryDigits.length; i++) {
             stringDigits = doubleDecimalString(stringDigits);
-            if(binaryDigits[i] == 1) {
+            if (binaryDigits[i] == 1) {
                 stringDigits = addOne(stringDigits);
             }
         }
 
-        if(this.isPositiveNumber == 1){
+        if (this.isPositiveNumber == 1){
             stringDigits = "+" + stringDigits;
-        } else if(this.isPositiveNumber == -1){
+        } else if (this.isPositiveNumber == -1){
             stringDigits = "-" + stringDigits;
         }
 
         return stringDigits;
     }
-
-
 
     public static String doubleDecimalString(String s) {
         int[] revIntArrayOfString = new int[s.length()];
@@ -173,8 +171,6 @@ public class INTicing {
         return doubledString;
     }
 
-
-
     public static String addOne(String s) {
         int[] revIntArrayOfString = new int[s.length()];
         int[] arrayPlusOne = new int[revIntArrayOfString.length + 1];
@@ -215,9 +211,43 @@ public class INTicing {
     }
 
 
-    public boolean equals(Object n) {
-        return false;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        INTicing other = (INTicing)obj;
+
+        for(int i =0; i < binaryDigits.length; i++) {
+            if(binaryDigits[i] != other.binaryDigits[i])
+                return false;
+        }
+
+        if (isPositiveNumber != other.isPositiveNumber) {
+            return false;
+        }
+
+        // name can be null, so extra handling is needed.
+        // if (name == null) {
+        //     if (other.name != null) {
+        //         return false;
+        //     }
+        // } else if (!name.equals(other.name)) {
+        //     return false;
+        // }
+
+        return true;
     }
+
+
 
     public boolean isGreaterThan(INTicing n) {
         return false;
