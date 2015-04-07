@@ -376,7 +376,7 @@ public class INTicing {
                     addedValue[i + 1] = 1;
                     carry = false;
                 }
-            } else if ( (firstValue[i] == 1 && secondValue[i] == 0) || (firstValue[i] == 0 && secondValue[i] == 1) ) {
+            } else if ((firstValue[i] == 1 && secondValue[i] == 0) || (firstValue[i] == 0 && secondValue[i] == 1)) {
                 addedValue[i + 1] = 1;
                 if (carry) {
                     addedValue[i + 1] = 0;
@@ -535,7 +535,7 @@ public class INTicing {
         INTicing totalMultipliedSum = new INTicing("0");
 
         //special case for zero
-        if( (this.binaryDigits.length == 1 && this.binaryDigits[0] == 0) || (factor.binaryDigits.length == 1 && factor.binaryDigits[0] == 0) ) {
+        if ((this.binaryDigits.length == 1 && this.binaryDigits[0] == 0) || (factor.binaryDigits.length == 1 && factor.binaryDigits[0] == 0)) {
             return new INTicing("0");
         }
 
