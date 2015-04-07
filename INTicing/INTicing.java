@@ -358,7 +358,6 @@ public class INTicing {
                 secondValue[i] = addend.binaryDigits[j];
                 j++;
             }
-
         } else {
             secondValue = addend.binaryDigits;
             addedValue = new byte[secondValue.length + 1];
@@ -369,7 +368,6 @@ public class INTicing {
                 j++;
             }
         }
-
         //addition with positive numbers
         for (int i = firstValue.length -1; i >= 0; i--) {
             if (firstValue[i] == 0 && secondValue[i] == 0) {
@@ -400,7 +398,6 @@ public class INTicing {
         if (this.isPositiveNumber == -1 && addend.isPositiveNumber == -1) {
             signedValue = -1;
         }
-
         if (addedValue[0] == 0) {
             byte[] finalizedArray = new byte[addedValue.length - 1];
 
@@ -408,7 +405,6 @@ public class INTicing {
                 finalizedArray[i - 1] = addedValue[i];
             }
             return new INTicing(finalizedArray, signedValue);
-
         } else {
             byte[] finalizedArray = new byte[addedValue.length];
             finalizedArray = addedValue;
@@ -433,8 +429,6 @@ public class INTicing {
         } else if (this.isPositiveNumber == 0 || subtrahend.isPositiveNumber == 0){
             return this.plus(subtrahend);
         }
-
-    
         // detecting the larger number while ignoring it's sign, and padding the smaller one
         if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == 1) {
             if (this.isGreaterThan(subtrahend)) {
@@ -473,26 +467,23 @@ public class INTicing {
                 }                
             }
         }
-
-
-
-        // the below for statement was mutating subtrahend's instance variables, so I made this new safety net
+        // the third  for statement below was mutating subtrahend's instance variables, so I made this new safety net
         byte[] saveOriginalEntryArray = new byte[subtrahend.binaryDigits.length];
         for (int i = 0; i < saveOriginalEntryArray.length; i ++) {
             saveOriginalEntryArray[i] = subtrahend.binaryDigits[i];
         }
-
         INTicing saveOriginalEntry = new INTicing(saveOriginalEntryArray, subtrahend.isPositiveNumber);
 
         // the below for statement was mutating this object's instance variables, so I made this new safety net
-
         byte[] saveOriginalMain = new byte[this.binaryDigits.length];
         for (int i = 0; i < saveOriginalMain.length; i ++) {
             saveOriginalMain[i] = this.binaryDigits[i];
         }
-        
         INTicing saveOriginal = new INTicing(saveOriginalMain, this.isPositiveNumber);
 
+        /* this here is the for loop in question that has been mutating, rarely, 
+         * instance variables, for this, I created the above two instances
+         */
         for (int i = outputNumber.length -1; i >= 0; i--) {
             if (biggerNumber[i] >= smallerNumber[i]) {
                 outputNumber[i] = (byte) (biggerNumber[i] - smallerNumber[i]);
@@ -511,7 +502,6 @@ public class INTicing {
                 }
             }
         }
-
         //detect the placement of the first non-zero
         for (int i = 0; i < outputNumber.length; i++) {
             if (outputNumber[i] == 0) {
@@ -525,14 +515,14 @@ public class INTicing {
             finalizedArray = new byte[]{0};
             return new INTicing(finalizedArray, 0);
         }
-        
+
         finalizedArray = new byte[outputNumber.length - leadingZeroIndexLength];
         
         for (int i= 0; i < finalizedArray.length; i++) {
             finalizedArray[i] = outputNumber[i + leadingZeroIndexLength];
         }
 
-        if(saveOriginal.isGreaterThan(saveOriginalEntry)) {
+        if (saveOriginal.isGreaterThan(saveOriginalEntry)) {
             return new INTicing(finalizedArray, 1);
         } else {
             return new INTicing(finalizedArray, -1);
@@ -540,8 +530,29 @@ public class INTicing {
     }    
 
     public INTicing times(INTicing factor) {
+        byte[] multipleModifiedArray;
+        byte[] factorModifiedArray;
+
+        //this.binaryDigits is a byte[] array
+        while(this.binaryDigits.length != 1 || this.binaryDigits[0] != 1) {
+            multipleModifiedArray = new byte[this.binaryDigits.length-1];
+            factorModifiedArray = new byte[factor.binaryDigits.length + 1];
+
+            for (int i = 0 ; i < this.binaryDigits.length - 1; i++) {
+                multipleModifiedArray[i] = this.binaryDigits[i];
+            }
+
+            for (int i = 0; i < factor.binaryDigits.length; i++) {
+                factorModifiedArray[i] = factor.binaryDigits[i];
+            }
+
+            this.binaryDigits = multipleModifiedArray;
+            factor.binaryDigits = factorModifiedArray;
+    
+        }
         return null;
     }
+
     public INTicing div(INTicing divisor) {
         return null;
     }
@@ -552,6 +563,7 @@ public class INTicing {
     
 
     public static void main(String[] args) {
+
 
     }
 }
