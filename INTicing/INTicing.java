@@ -532,10 +532,20 @@ public class INTicing {
     public INTicing times(INTicing factor) {
         byte[] multipleModifiedArray;
         byte[] factorModifiedArray;
+        INTicing totalMultipliedSum = new INTicing("0");
 
-        //this.binaryDigits is a byte[] array
-        while(this.binaryDigits.length != 1 || this.binaryDigits[0] != 1) {
-            multipleModifiedArray = new byte[this.binaryDigits.length-1];
+        //special case for zero
+        if( (this.binaryDigits.length == 1 && this.binaryDigits[0] == 0) || (factor.binaryDigits.length == 1 && factor.binaryDigits[0] == 0) ) {
+            return new INTicing("0");
+        }
+
+        while (this.binaryDigits.length != 1 || this.binaryDigits[0] != 1) {
+
+            if (this.binaryDigits[this.binaryDigits.length-1] != 0) {
+                totalMultipliedSum = totalMultipliedSum.plus(new INTicing(factor.binaryDigits, factor.isPositiveNumber));
+            } 
+
+            multipleModifiedArray = new byte[this.binaryDigits.length - 1];
             factorModifiedArray = new byte[factor.binaryDigits.length + 1];
 
             for (int i = 0 ; i < this.binaryDigits.length - 1; i++) {
@@ -548,9 +558,19 @@ public class INTicing {
 
             this.binaryDigits = multipleModifiedArray;
             factor.binaryDigits = factorModifiedArray;
-    
         }
-        return null;
+
+        totalMultipliedSum = totalMultipliedSum.plus(new INTicing(factor.binaryDigits, 1));
+
+        //Setting the correct sign
+        if (factor.isPositiveNumber == -1 && this.isPositiveNumber == -1) {
+            totalMultipliedSum.isPositiveNumber = 1;
+        } else if (factor.isPositiveNumber == 1 && this.isPositiveNumber == 1) {
+            totalMultipliedSum.isPositiveNumber =1;
+        } else {
+            totalMultipliedSum.isPositiveNumber = -1;
+        }
+        return totalMultipliedSum;
     }
 
     public INTicing div(INTicing divisor) {
