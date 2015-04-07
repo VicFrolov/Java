@@ -898,22 +898,96 @@ public class INTicingTestHarness {
     private static void test_Multiplication() {
         System.out.println("Testing multiplication...");
         
-        // try {
-        //     displaySuccessIfTrue(new INTicing("0").equals(new INTicing("1").times(new INTicing("0"))));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
         try {
-            displaySuccessIfTrue(new INTicing("24").equals(new INTicing("15").times(new INTicing("7"))));
+            displaySuccessIfTrue(new INTicing("0").equals(new INTicing("1").times(new INTicing("0"))));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
-        // try {
-        //     displaySuccessIfTrue(new INTicing("-1").equals(new INTicing("1").plus(new INTicing("-1"))));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }
+        try {
+            displaySuccessIfTrue(new INTicing("0").equals(new INTicing("0").times(new INTicing("1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("0").equals(new INTicing("0").times(new INTicing("0"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("1").equals(new INTicing("1").times(new INTicing("1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-1").equals(new INTicing("1").times(new INTicing("-1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-1").equals(new INTicing("-1").times(new INTicing("1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("1200").equals(new INTicing("40").times(new INTicing("30"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("1209").equals(new INTicing("39").times(new INTicing("31"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-1200").equals(new INTicing("-40").times(new INTicing("30"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("1200").equals(new INTicing("-40").times(new INTicing("-30"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }   
+
+        try {
+            displaySuccessIfTrue(new INTicing("1411743158069580861185147302500867038549702925158000").equals(new INTicing("109182398123098098123098").times(new INTicing("12930135098130980985877471000"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-20").equals(new INTicing("4").times(new INTicing("-5"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-20").equals(new INTicing("-4").times(new INTicing("5"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("20").equals(new INTicing("-4").times(new INTicing("-5"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("20").equals(new INTicing("4").times(new INTicing("5"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
     }    
 
 }
