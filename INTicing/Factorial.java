@@ -1,15 +1,23 @@
 public class Factorial {
 
-   public static INTicing factorial(int n) {
-       INTicing fac = new INTicing("1");
+   public static String factorial(INTicing n) {
 
-       for(int i = 2; i <= n; i++) {
-           fac = fac.times(new INTicing(i + ""));
-       }
-       return fac;
+      INTicing p = new INTicing(n.toString());
+
+
+      while(!"+1".equals(n.toString())) {
+         n = n.minus(new INTicing("1"));
+         System.out.println(n.toString());
+
+         p = p.times(n);
+         System.out.println(p.toString());
+      }
+
+      return p.toString();
    }
 
       public static void main(String[] args) {
 
+         System.out.println(factorial(new INTicing(args[0])));
    }
 }
