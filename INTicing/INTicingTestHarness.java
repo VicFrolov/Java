@@ -7,22 +7,18 @@ public class INTicingTestHarness {
         attempts = 0;
         successes = 0;
 
-        // Feel free to add more cases to these.
         test_divideByTwo();
         test_doubleDecimalString();
         test_addOne();
         test_Constructor();
         test_toString();
         test_Equals();
-        //test_Addition();
         test_isGreaterThan();
         test_isLessThan();
-
-        
+        test_Addition();
+        test_Subtraction();
+        test_Multiplication();
         // You should implement: 
-        //   test_isLessThan
-        //   test_Subtraction
-        //   test_Multiplication
         //   test_IntegerDivision
         //   test_Modulo
 
@@ -352,6 +348,12 @@ public class INTicingTestHarness {
             displaySuccessIfTrue(false);
         }
 
+        try {
+            displaySuccessIfTrue(!new INTicing("13")
+                    .equals(new INTicing("3")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
     }
 
     private static void test_isGreaterThan() {
@@ -425,6 +427,12 @@ public class INTicingTestHarness {
         try {
             displaySuccessIfTrue(!new INTicing("0")
                     .isGreaterThan(new INTicing("1")));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(!new INTicing("3000")
+                    .isGreaterThan(new INTicing("4000")));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         } 
@@ -592,9 +600,32 @@ public class INTicingTestHarness {
 
     private static void test_Addition() {
         System.out.println("Testing addition...");
-
+        
         try {
             displaySuccessIfTrue(new INTicing("0").equals(new INTicing("0").plus(new INTicing("0"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(new INTicing("13").equals(new INTicing("8").plus(new INTicing("5"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("14").equals(new INTicing("7").plus(new INTicing("7"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("17").equals(new INTicing("9").plus(new INTicing("8"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("2").equals(new INTicing("1").plus(new INTicing("1"))));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
@@ -607,6 +638,12 @@ public class INTicingTestHarness {
 
         try {
             displaySuccessIfTrue(new INTicing("1").equals(new INTicing("1").plus(new INTicing("0"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("100").equals(new INTicing("0").plus(new INTicing("100"))));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
@@ -726,5 +763,157 @@ public class INTicingTestHarness {
         }
 
     }
+
+    private static void test_Subtraction() {
+        System.out.println("Testing subtraction...");
+        
+        try {
+            displaySuccessIfTrue(new INTicing("-20").equals(new INTicing("-10").minus(new INTicing("10"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("20").equals(new INTicing("10").minus(new INTicing("-10"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-10").equals(new INTicing("-9").minus(new INTicing("1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("501").equals(new INTicing("500").minus(new INTicing("-1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-2").equals(new INTicing("-1").minus(new INTicing("1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("1").equals(new INTicing("0").minus(new INTicing("-1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("1").equals(new INTicing("1").minus(new INTicing("0"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("0").equals(new INTicing("0").minus(new INTicing("0"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("1").equals(new INTicing("0").minus(new INTicing("-1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("0").equals(new INTicing("-1").minus(new INTicing("-1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("16").equals(new INTicing("-15").minus(new INTicing("-31"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("5023").equals(new INTicing("9854").minus(new INTicing("4831"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("-3").equals(new INTicing("5").minus(new INTicing("8"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("-2").equals(new INTicing("-1").minus(new INTicing("1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("82").equals(new INTicing("90").minus(new INTicing("8"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("-9").equals(new INTicing("81").minus(new INTicing("90"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("-18").equals(new INTicing("-19").minus(new INTicing("-1"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        
+        try {
+            displaySuccessIfTrue(new INTicing("18").equals(new INTicing("-1").minus(new INTicing("-19"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-102814210146725407820107883110043133111").equals(new INTicing("-102938019284817230918230981230981231234")
+                    .minus(new INTicing("-123809138091823098123098120938098123"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-1000").equals(new INTicing("+3000").minus(new INTicing("4000"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-1000").equals(new INTicing("-4000").minus(new INTicing("-3000"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+    }
+    
+    private static void test_Multiplication() {
+        System.out.println("Testing multiplication...");
+        
+        // try {
+        //     displaySuccessIfTrue(new INTicing("0").equals(new INTicing("1").times(new INTicing("0"))));
+        // } catch(Exception e) {
+        //     displaySuccessIfTrue(false);
+        // }
+        try {
+            displaySuccessIfTrue(new INTicing("24").equals(new INTicing("15").times(new INTicing("7"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        // try {
+        //     displaySuccessIfTrue(new INTicing("-1").equals(new INTicing("1").plus(new INTicing("-1"))));
+        // } catch(Exception e) {
+        //     displaySuccessIfTrue(false);
+        // }
+    }    
 
 }
