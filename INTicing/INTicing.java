@@ -332,9 +332,17 @@ public class INTicing {
 
 
         if (this.isPositiveNumber == 0 && addend.isPositiveNumber == 0) {
-
             return new INTicing();
         }
+
+        //Using subtraction method with proper allocation of signs
+        if (this.isPositiveNumber == 1 && addend.isPositiveNumber == -1) {
+            addend.isPositiveNumber = 1;
+            return this.minus(addend);
+        } else if (this.isPositiveNumber == -1 && addend.isPositiveNumber == 1){
+            this.isPositiveNumber = 1;
+            return addend.minus(this);
+        } 
 
         //pads arrays accordingly, and creates proper length summed Value thing
         if (this.binaryDigits.length == addend.binaryDigits.length) {
@@ -415,9 +423,9 @@ public class INTicing {
         int j = 0;
         int leadingZeroIndexLength = 0;
         byte[] finalizedArray;
-
         //Using addition method with proper allocation of signs
         if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == -1) {
+            subtrahend.isPositiveNumber = 1;
             return this.plus(subtrahend);
         } else if (this.isPositiveNumber == -1 && subtrahend.isPositiveNumber == 1){
             subtrahend.isPositiveNumber = -1;
@@ -426,6 +434,7 @@ public class INTicing {
             return this.plus(subtrahend);
         }
 
+    
         // detecting the larger number while ignoring it's sign, and padding the smaller one
         if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == 1) {
             if (this.isGreaterThan(subtrahend)) {
@@ -465,6 +474,25 @@ public class INTicing {
             }
         }
 
+
+
+        // the below for statement was mutating subtrahend's instance variables, so I made this new safety net
+        byte[] saveOriginalEntryArray = new byte[subtrahend.binaryDigits.length];
+        for (int i = 0; i < saveOriginalEntryArray.length; i ++) {
+            saveOriginalEntryArray[i] = subtrahend.binaryDigits[i];
+        }
+
+        INTicing saveOriginalEntry = new INTicing(saveOriginalEntryArray, subtrahend.isPositiveNumber);
+
+        // the below for statement was mutating this object's instance variables, so I made this new safety net
+
+        byte[] saveOriginalMain = new byte[this.binaryDigits.length];
+        for (int i = 0; i < saveOriginalMain.length; i ++) {
+            saveOriginalMain[i] = this.binaryDigits[i];
+        }
+        
+        INTicing saveOriginal = new INTicing(saveOriginalMain, this.isPositiveNumber);
+
         for (int i = outputNumber.length -1; i >= 0; i--) {
             if (biggerNumber[i] >= smallerNumber[i]) {
                 outputNumber[i] = (byte) (biggerNumber[i] - smallerNumber[i]);
@@ -479,12 +507,11 @@ public class INTicing {
                         biggerNumber[k] = 0;
                         outputNumber[i] = 1;
                         noBorrowYet = false;
-                    }
-                    
+                    }   
                 }
-
             }
         }
+
         //detect the placement of the first non-zero
         for (int i = 0; i < outputNumber.length; i++) {
             if (outputNumber[i] == 0) {
@@ -505,8 +532,7 @@ public class INTicing {
             finalizedArray[i] = outputNumber[i + leadingZeroIndexLength];
         }
 
-        if(this.isGreaterThan(subtrahend)) {
-
+        if(saveOriginal.isGreaterThan(saveOriginalEntry)) {
             return new INTicing(finalizedArray, 1);
         } else {
             return new INTicing(finalizedArray, -1);
