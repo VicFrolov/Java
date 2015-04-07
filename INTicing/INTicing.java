@@ -1,10 +1,11 @@
 public class INTicing {
-    private byte[] binaryDigits;
+    public byte[] binaryDigits;
     private int isPositiveNumber = 0;
 
     public INTicing(){
         this("0");
     }
+
     public INTicing(byte[] b, int s){
         this.binaryDigits = b;
         this.isPositiveNumber = s;
@@ -50,7 +51,7 @@ public class INTicing {
                 for (int i = 0; i < decimalDigits.length; i++) {
                     sum += decimalDigits[i];
                 }
-                if (sum == 0) {
+                if (sum == 0) { 
                     isNumberNotZero = false;
                 } else if (decimalDigits[0] % 2 == 0) {
                     tempBinaryString = "0" + tempBinaryString;  
@@ -243,7 +244,6 @@ public class INTicing {
             }
         }
 
-
         return true;
     }
 
@@ -282,6 +282,7 @@ public class INTicing {
                 }
             }
         }
+
         return false;
     }
 
@@ -319,6 +320,7 @@ public class INTicing {
                 }
             }
         }
+
         return false;
     }
 
@@ -482,7 +484,7 @@ public class INTicing {
         INTicing saveOriginal = new INTicing(saveOriginalMain, this.isPositiveNumber);
 
         /* this here is the for loop in question that has been mutating, rarely, 
-         * instance variables, for this, I created the above two instances
+         * instance variables, for this, I created the above two instances.
          */
         for (int i = outputNumber.length -1; i >= 0; i--) {
             if (biggerNumber[i] >= smallerNumber[i]) {
@@ -527,45 +529,60 @@ public class INTicing {
         } else {
             return new INTicing(finalizedArray, -1);
         }
-    }    
+    }
+
+   // private byte[] doubleMe(byte[] bytesToDouble) {
+   //      byte[] multipleModifiedArray = new byte[tempFactorOne.binaryDigits.length + 1];
+
+   //      for (int i = 0 ; i < bytesToDouble.length; i++) {
+   //          multipleModifiedArray[i] = bytesToDouble[i];
+   //      }
+
+   //      return multipleModifiedArray;
+   //  }        
+
 
     public INTicing times(INTicing factor) {
         byte[] multipleModifiedArray;
         byte[] factorModifiedArray;
         INTicing totalMultipliedSum = new INTicing("0");
 
+        INTicing tempFactorOne = new INTicing(this.binaryDigits, this.isPositiveNumber);
+        INTicing tempFactorTwo = new INTicing(factor.binaryDigits, factor.isPositiveNumber);
+
         //special case for zero
-        if ((this.binaryDigits.length == 1 && this.binaryDigits[0] == 0) || (factor.binaryDigits.length == 1 && factor.binaryDigits[0] == 0)) {
+        if ((tempFactorOne.binaryDigits.length == 1 && tempFactorOne.binaryDigits[0] == 0) || (tempFactorTwo.binaryDigits.length == 1 && tempFactorTwo.binaryDigits[0] == 0)) {
             return new INTicing("0");
         }
 
-        while (this.binaryDigits.length != 1 || this.binaryDigits[0] != 1) {
+        while (tempFactorOne.binaryDigits.length != 1 || tempFactorOne.binaryDigits[0] != 1) {
 
-            if (this.binaryDigits[this.binaryDigits.length-1] != 0) {
-                totalMultipliedSum = totalMultipliedSum.plus(new INTicing(factor.binaryDigits, factor.isPositiveNumber));
+            if (tempFactorOne.binaryDigits[tempFactorOne.binaryDigits.length-1] != 0) {
+                totalMultipliedSum = totalMultipliedSum.plus(new INTicing(tempFactorTwo.binaryDigits, tempFactorTwo.isPositiveNumber));
             } 
 
-            multipleModifiedArray = new byte[this.binaryDigits.length - 1];
-            factorModifiedArray = new byte[factor.binaryDigits.length + 1];
+            multipleModifiedArray = new byte[tempFactorOne.binaryDigits.length - 1];
 
-            for (int i = 0 ; i < this.binaryDigits.length - 1; i++) {
-                multipleModifiedArray[i] = this.binaryDigits[i];
+            factorModifiedArray = new byte[tempFactorTwo.binaryDigits.length + 1];
+
+            for (int i = 0 ; i < tempFactorOne.binaryDigits.length - 1; i++) {
+                multipleModifiedArray[i] = tempFactorOne.binaryDigits[i];
             }
 
-            for (int i = 0; i < factor.binaryDigits.length; i++) {
-                factorModifiedArray[i] = factor.binaryDigits[i];
+            for (int i = 0; i < tempFactorTwo.binaryDigits.length; i++) {
+                factorModifiedArray[i] = tempFactorTwo.binaryDigits[i];
             }
 
-            this.binaryDigits = multipleModifiedArray;
-            factor.binaryDigits = factorModifiedArray;
+            tempFactorOne.binaryDigits = multipleModifiedArray;
+            tempFactorTwo.binaryDigits = factorModifiedArray;
         }
 
-        totalMultipliedSum = totalMultipliedSum.plus(new INTicing(factor.binaryDigits, 1));
+        totalMultipliedSum = totalMultipliedSum.plus(new INTicing(tempFactorTwo.binaryDigits, 1));
 
         //Setting the correct sign
-        if (factor.isPositiveNumber == -1 && this.isPositiveNumber == -1) {
+        if (tempFactorTwo.isPositiveNumber == -1 && tempFactorOne.isPositiveNumber == -1) {
             totalMultipliedSum.isPositiveNumber = 1;
-        } else if (factor.isPositiveNumber == 1 && this.isPositiveNumber == 1) {
+        } else if (tempFactorTwo.isPositiveNumber == 1 && tempFactorOne.isPositiveNumber == 1) {
             totalMultipliedSum.isPositiveNumber =1;
         } else {
             totalMultipliedSum.isPositiveNumber = -1;
@@ -574,8 +591,24 @@ public class INTicing {
     }
 
     public INTicing div(INTicing divisor) {
+
+        INTicing tempDivisor = new INTicing(divisor.toString());
+        INTicing outputValue = new INTicing();
+
+        //quick and easy cases, like zeros and one
+        if ("0".equals(this.toString())) {
+            return new INTicing();
+        } else if ("0".equals(divisor.toString())) {
+            return null;
+        } else if ("+1".equals(divisor.toString())) {
+            return new INTicing(this.toString());
+        }
+
+        // while() {
+
         return null;
     }
+
     public INTicing mod(INTicing divisor) {
         return null;
     }
@@ -583,7 +616,6 @@ public class INTicing {
     
 
     public static void main(String[] args) {
-
 
     }
 }
