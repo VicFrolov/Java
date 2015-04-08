@@ -1030,16 +1030,40 @@ public class INTicingTestHarness {
         }
 
         try {
-            displaySuccessIfTrue(new INTicing("5").equals(new INTicing("5").div(new INTicing("1"))));
+            displaySuccessIfTrue(new INTicing("0").equals(new INTicing("999").div(new INTicing("1000"))));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
         try {
-            displaySuccessIfTrue(new INTicing("10").equals(new INTicing("20").div(new INTicing("10"))));
+            displaySuccessIfTrue(new INTicing("76").equals(new INTicing("3700").div(new INTicing("49"))));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
+
+        try {
+            displaySuccessIfTrue(new INTicing("25").equals(new INTicing("100").div(new INTicing("4"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }        
+
+        try {
+            displaySuccessIfTrue(new INTicing("900").equals(new INTicing("9000").div(new INTicing("10"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("3").equals(new INTicing("27").div(new INTicing("9"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }        
+
+        try {
+            displaySuccessIfTrue(new INTicing("4").equals(new INTicing("16").div(new INTicing("4"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }    
     }      
 
 }
