@@ -593,7 +593,17 @@ public class INTicing {
     public INTicing div(INTicing divisor) {
 
         INTicing tempDivisor = new INTicing(divisor.toString());
-        INTicing outputValue = new INTicing();
+        tempDivisor.isPositiveNumber = 1;
+
+        INTicing tempDividend = new INTicing(this.toString());
+        tempDividend.isPositiveNumber = 1;
+
+        INTicing tempTimesTenValue = new INTicing(divisor.toString());
+        tempTimesTenValue.isPositiveNumber = 1;
+
+        INTicing loopDivisorValue = new INTicing();
+
+        INTicing innerLoopMultipleAdder = new INTicing("1");
 
         //quick and easy cases, like zeros and one
         if ("0".equals(this.toString())) {
@@ -602,11 +612,47 @@ public class INTicing {
             return null;
         } else if ("+1".equals(divisor.toString())) {
             return new INTicing(this.toString());
+        } else if(tempDivisor.isGreaterThan(tempDividend)) {
+            return new INTicing("0");
         }
 
-        // while() {
+        loopDivisorValue.plus(new INTicing("1"));
 
-        return null;
+        while (tempDividend.isGreaterThan(tempDivisor)) {
+
+            while(tempTimesTenValue.isLessThan(tempDividend)) {
+                
+                tempTimesTenValue = tempTimesTenValue.times(new INTicing("10"));
+
+                if(tempTimesTenValue.isLessThan(tempDividend)) {
+                    innerLoopMultipleAdder = innerLoopMultipleAdder.times(new INTicing("10"));
+                }
+                            // System.out.print("test" + tempDividend.toString());
+                            // System.out.println(tempTimesTenValue.toString());
+                            // System.out.println(innerLoopMultipleAdder.toString());
+
+            }
+
+
+            tempDividend = tempDividend.minus((tempDivisor.times(innerLoopMultipleAdder)));
+                        System.out.println(tempDividend.toString());
+
+            tempTimesTenValue = new INTicing(divisor.toString());
+            loopDivisorValue = loopDivisorValue.plus(innerLoopMultipleAdder);
+            innerLoopMultipleAdder = new INTicing("1");
+
+
+            // if ((tempDivisor.times(new INTicing("10"))).isLessThan(loopDivisorValue) ) {
+            //         System.out.println(tempDivisor.times(new INTicing("10")).toString());
+
+            //     loopDivisorValue.plus(new INTicing("10"));
+            //     tempTimesTenValue = tempTimesTenValue.times(new INTicing("10"));
+            // } 
+            // tempDividend = tempDividend.minus(loopDivisorValue);
+
+        }
+        System.out.println(loopDivisorValue.toString());
+        return loopDivisorValue;
     }
 
     public INTicing mod(INTicing divisor) {
