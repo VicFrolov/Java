@@ -637,6 +637,13 @@ public class INTicing {
         }
 
         loopDivisorValue = loopDivisorValue.plus(new INTicing("1"));
+
+        if (this.isPositiveNumber == -1  && divisor.isPositiveNumber == 1 || divisor.isPositiveNumber == -1 && this.isPositiveNumber == 1) {
+            loopDivisorValue.isPositiveNumber = -1;
+        } else {
+            loopDivisorValue.isPositiveNumber = 1;
+        }
+
         return loopDivisorValue;
     }
 

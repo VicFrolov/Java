@@ -1036,7 +1036,7 @@ public class INTicingTestHarness {
         }
 
         try {
-            displaySuccessIfTrue(new INTicing("76").equals(new INTicing("3700").div(new INTicing("49"))));
+            displaySuccessIfTrue(new INTicing("75").equals(new INTicing("3700").div(new INTicing("49"))));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
@@ -1063,7 +1063,33 @@ public class INTicingTestHarness {
             displaySuccessIfTrue(new INTicing("4").equals(new INTicing("16").div(new INTicing("4"))));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
-        }    
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("947").equals(new INTicing("3790").div(new INTicing("4"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new INTicing("-4").equals(new INTicing("20").div(new INTicing("-5"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }        
+
+        try {
+            displaySuccessIfTrue(new INTicing("-4").equals(new INTicing("-20").div(new INTicing("5"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }   
+
+        try {
+            displaySuccessIfTrue(new INTicing("4").equals(new INTicing("-20").div(new INTicing("-5"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }   
+
+
     }      
 
 }
