@@ -627,31 +627,16 @@ public class INTicing {
                 if(tempTimesTenValue.isLessThan(tempDividend)) {
                     innerLoopMultipleAdder = innerLoopMultipleAdder.times(new INTicing("10"));
                 }
-                            // System.out.print("test" + tempDividend.toString());
-                            // System.out.println(tempTimesTenValue.toString());
-                            // System.out.println(innerLoopMultipleAdder.toString());
-
             }
-
-
-            tempDividend = tempDividend.minus((tempDivisor.times(innerLoopMultipleAdder)));
-                        System.out.println(tempDividend.toString());
-
+            
+            tempDividend = tempDividend.minus((tempDivisor.times(innerLoopMultipleAdder))); 
             tempTimesTenValue = new INTicing(divisor.toString());
             loopDivisorValue = loopDivisorValue.plus(innerLoopMultipleAdder);
             innerLoopMultipleAdder = new INTicing("1");
 
-
-            // if ((tempDivisor.times(new INTicing("10"))).isLessThan(loopDivisorValue) ) {
-            //         System.out.println(tempDivisor.times(new INTicing("10")).toString());
-
-            //     loopDivisorValue.plus(new INTicing("10"));
-            //     tempTimesTenValue = tempTimesTenValue.times(new INTicing("10"));
-            // } 
-            // tempDividend = tempDividend.minus(loopDivisorValue);
-
         }
-        System.out.println(loopDivisorValue.toString());
+
+        loopDivisorValue = loopDivisorValue.plus(new INTicing("1"));
         return loopDivisorValue;
     }
 
