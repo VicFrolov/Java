@@ -253,8 +253,6 @@ public class INTicing {
         return true;
     }
 
-
-
     public boolean isGreaterThan(INTicing n) {
         if (this.isPositiveNumber > n.isPositiveNumber) {
             return true;
@@ -291,7 +289,6 @@ public class INTicing {
 
         return false;
     }
-
 
     public boolean isLessThan(INTicing n) {
         if (this.isPositiveNumber < n.isPositiveNumber) {
@@ -521,7 +518,7 @@ public class INTicing {
                 i = outputNumber.length;
             }
         }
-        
+
         // special case zero
         if (leadingZeroIndexLength == outputNumber.length) {
             finalizedArray = new byte[]{0};
@@ -643,8 +640,6 @@ public class INTicing {
         return this.minus(divisor.times(this.div(divisor)));
 
     }
-
-    
 
     public static void main(String[] args) {
 
