@@ -19,8 +19,7 @@ public class INTicingTestHarness {
         test_Subtraction();
         test_Multiplication();
         test_IntegerDivision();
-        //   test_Modulo
-
+        test_Modulo();
 
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
@@ -767,7 +766,6 @@ public class INTicingTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
-
     }
 
     private static void test_Subtraction() {
@@ -999,7 +997,6 @@ public class INTicingTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
-
     }    
 
     private static void test_IntegerDivision() {
@@ -1088,8 +1085,28 @@ public class INTicingTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }   
+    }  
 
+    private static void test_Modulo() {
+        System.out.println("Testing Modulo Bro...");
+        
+        try {
+            displaySuccessIfTrue(new INTicing("2").equals(new INTicing("20").mod(new INTicing("3"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+       
+        try {
+            displaySuccessIfTrue(new INTicing("0").equals(new INTicing("-20").mod(new INTicing("4"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
 
-    }      
+        try {
+            displaySuccessIfTrue(new INTicing("47555").equals(new INTicing("190238019348091823").mod(new INTicing("129837"))));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }                 
+    }    
 
 }
