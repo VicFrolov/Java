@@ -19,6 +19,7 @@ public class INTicing {
         String tempBinaryString = "";
         boolean isNumberNotZero = true;
         boolean numberisNotZero = true;
+
         //find the index of the first digit of the number in the String array
         while (testforZerosAndSigns) {
             if (indexToCheck == tempStringArray.length -1 && tempStringArray[tempStringArray.length -1].equals("0")) {
@@ -32,12 +33,14 @@ public class INTicing {
             }
         }
         if (numberisNotZero){
+
             //check if the number is positive or negative
             if (tempStringArray[0].equals("-")) {
-            this.isPositiveNumber = -1;
+                this.isPositiveNumber = -1;
             } else {
-            this.isPositiveNumber = 1;
+                this.isPositiveNumber = 1;
             }
+
             //create an array of inversed decimal digits
             int[] decimalDigits = new int[tempStringArray.length - (indexToCheck)];
 
@@ -45,6 +48,7 @@ public class INTicing {
                 decimalDigits[j] = Integer.parseInt(tempStringArray[i]);
                 j++;
             }
+
             //divide by two, and make new binary String array
             while (isNumberNotZero) {
                 int sum = 0;
@@ -60,10 +64,12 @@ public class INTicing {
                 }
                 decimalDigits = divideByTwo(decimalDigits);
             }
+
             //Convert into a byte array of binary digits
             String[] tempBinaryStringArray = tempBinaryString.split("(?!^)");
 
             this.binaryDigits = new byte[tempBinaryStringArray.length];
+
             for (int i =0 ; i < tempBinaryStringArray.length; i++) {
                 this.binaryDigits[i] = Byte.parseByte(tempBinaryStringArray[i]);   
             }      
@@ -421,6 +427,7 @@ public class INTicing {
         int j = 0;
         int leadingZeroIndexLength = 0;
         byte[] finalizedArray;
+
         //Using addition method with proper allocation of signs
         if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == -1) {
             subtrahend.isPositiveNumber = 1;
@@ -431,6 +438,7 @@ public class INTicing {
         } else if (this.isPositiveNumber == 0 || subtrahend.isPositiveNumber == 0){
             return this.plus(subtrahend);
         }
+
         // detecting the larger number while ignoring it's sign, and padding the smaller one
         if (this.isPositiveNumber == 1 && subtrahend.isPositiveNumber == 1) {
             if (this.isGreaterThan(subtrahend)) {
@@ -504,6 +512,7 @@ public class INTicing {
                 }
             }
         }
+
         //detect the placement of the first non-zero
         for (int i = 0; i < outputNumber.length; i++) {
             if (outputNumber[i] == 0) {
@@ -512,6 +521,7 @@ public class INTicing {
                 i = outputNumber.length;
             }
         }
+        
         // special case zero
         if (leadingZeroIndexLength == outputNumber.length) {
             finalizedArray = new byte[]{0};
@@ -530,18 +540,7 @@ public class INTicing {
             return new INTicing(finalizedArray, -1);
         }
     }
-
-   // private byte[] doubleMe(byte[] bytesToDouble) {
-   //      byte[] multipleModifiedArray = new byte[tempFactorOne.binaryDigits.length + 1];
-
-   //      for (int i = 0 ; i < bytesToDouble.length; i++) {
-   //          multipleModifiedArray[i] = bytesToDouble[i];
-   //      }
-
-   //      return multipleModifiedArray;
-   //  }        
-
-
+     
     public INTicing times(INTicing factor) {
         byte[] multipleModifiedArray;
         byte[] factorModifiedArray;
@@ -635,7 +634,7 @@ public class INTicing {
         } else {
             loopDivisorValue.isPositiveNumber = 1;
         }
-        
+
         return loopDivisorValue;
     }
 
