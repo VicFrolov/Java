@@ -612,7 +612,7 @@ public class INTicing {
             return null;
         } else if ("+1".equals(divisor.toString())) {
             return new INTicing(this.toString());
-        } else if(tempDivisor.isGreaterThan(tempDividend)) {
+        } else if (tempDivisor.isGreaterThan(tempDividend)) {
             return new INTicing("0");
         }
 
@@ -620,15 +620,15 @@ public class INTicing {
 
         while (tempDividend.isGreaterThan(tempDivisor)) {
 
-            while(tempTimesTenValue.isLessThan(tempDividend)) {
+            while (tempTimesTenValue.isLessThan(tempDividend)) {
                 
                 tempTimesTenValue = tempTimesTenValue.times(new INTicing("10"));
 
-                if(tempTimesTenValue.isLessThan(tempDividend)) {
+                if (tempTimesTenValue.isLessThan(tempDividend)) {
                     innerLoopMultipleAdder = innerLoopMultipleAdder.times(new INTicing("10"));
                 }
             }
-            
+
             tempDividend = tempDividend.minus((tempDivisor.times(innerLoopMultipleAdder))); 
             tempTimesTenValue = new INTicing(divisor.toString());
             loopDivisorValue = loopDivisorValue.plus(innerLoopMultipleAdder);
