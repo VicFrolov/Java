@@ -594,15 +594,11 @@ public class INTicing {
 
         INTicing tempDivisor = new INTicing(divisor.toString());
         tempDivisor.isPositiveNumber = 1;
-
         INTicing tempDividend = new INTicing(this.toString());
         tempDividend.isPositiveNumber = 1;
-
         INTicing tempTimesTenValue = new INTicing(divisor.toString());
         tempTimesTenValue.isPositiveNumber = 1;
-
         INTicing loopDivisorValue = new INTicing();
-
         INTicing innerLoopMultipleAdder = new INTicing("1");
 
         //quick and easy cases, like zeros and one
@@ -618,10 +614,8 @@ public class INTicing {
 
         loopDivisorValue.plus(new INTicing("1"));
 
-        while (tempDividend.isGreaterThan(tempDivisor)) {
-
-            while (tempTimesTenValue.isLessThan(tempDividend)) {
-                
+        while (tempDividend.isGreaterThan(tempDivisor) || tempDividend.equals(tempDivisor)) {
+            while (tempTimesTenValue.isLessThan(tempDividend) || tempTimesTenValue.equals(tempDividend)) {
                 tempTimesTenValue = tempTimesTenValue.times(new INTicing("10"));
 
                 if (tempTimesTenValue.isLessThan(tempDividend)) {
@@ -631,24 +625,24 @@ public class INTicing {
 
             tempDividend = tempDividend.minus((tempDivisor.times(innerLoopMultipleAdder))); 
             tempTimesTenValue = new INTicing(divisor.toString());
+            tempTimesTenValue.isPositiveNumber = 1;
             loopDivisorValue = loopDivisorValue.plus(innerLoopMultipleAdder);
             innerLoopMultipleAdder = new INTicing("1");
-
         }
-
-        loopDivisorValue = loopDivisorValue.plus(new INTicing("1"));
 
         if (this.isPositiveNumber == -1  && divisor.isPositiveNumber == 1 || divisor.isPositiveNumber == -1 && this.isPositiveNumber == 1) {
             loopDivisorValue.isPositiveNumber = -1;
         } else {
             loopDivisorValue.isPositiveNumber = 1;
         }
-
+        
         return loopDivisorValue;
     }
 
     public INTicing mod(INTicing divisor) {
-        return null;
+  
+        return this.minus(divisor.times(this.div(divisor)));
+
     }
 
     
