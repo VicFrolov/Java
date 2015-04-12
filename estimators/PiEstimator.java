@@ -18,7 +18,7 @@ public class PiEstimator {
             
             boolean hit = ((x*x + y*y) <= 1);
 
-            if(hit) {
+            if (hit) {
                 timesHit++;
                 result = "in";
             } else {
@@ -41,7 +41,7 @@ public class PiEstimator {
             return;
         }
         
-        if(args.length == 1) {
+        if (args.length == 1) {
             try {
                 integerCheck = Integer.parseInt(args[0]);
 
