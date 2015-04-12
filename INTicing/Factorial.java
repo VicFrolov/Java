@@ -8,6 +8,7 @@ public class Factorial {
          n = n.minus(new INTicing("1"));
          p = p.times(n);         
       }
+
       return p.toString();
    }
 
