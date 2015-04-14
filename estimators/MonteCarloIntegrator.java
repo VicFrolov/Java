@@ -58,10 +58,10 @@ public class MonteCarloIntegrator {
             double y = lowerBound + Math.random() * (upperBound - lowerBound);            
             String result = "";
             
-            if(Polynomial.solver(x) <= y && y <= 0) {
+            if (Polynomial.solver(x) <= y && y <= 0) {
                 timesHit--;
                 result = "in";
-            } else if(Polynomial.solver(x) >= y && y >= 0) {
+            } else if (Polynomial.solver(x) >= y && y >= 0) {
                 timesHit++;
                 result = "in";
             } else {
@@ -77,11 +77,65 @@ public class MonteCarloIntegrator {
     }   
 
     public static void main(String[] args) {
+        int dartsToThrow = DEFAULT_NUMBER_OF_DARTS;
+        int customSettingUsed = 0;
+
+
+        if (!"poly".equals(args[0])) {
+            errorMessage();
+            return;
+        }
+
+        if("total=".equals(args[args.length -1].substring(0,6))) {
+            int checkNumber;
+
+            try {
+                checkNumber = Integer.parseInt(args[args.length-1].substring(6));
+            } catch (NumberFormatException nfe) {
+                errorMessageCustomDarts();
+                return;
+            }
+
+            int customDartNumber = Integer.parseInt(args[args.length-1].substring(6));
+
+            if (customDartNumber< 0) {
+                errorMessageCustomDarts();
+                return;
+            }
+
+            dartsToThrow = customDartNumber;
+            customSettingUsed++;
+        }
+
+        for(int i = 1; i < args.length - customSettingUsed; i++) {
+            
+            double checkDoubleNumber;
+            try{
+                checkDoubleNumber = Double.parseDouble(args[i]);
+            } catch(NumberFormatException nfe) {
+                errorMessage();
+            }
+        }
+
+
+
         MonteCarloIntegrator test = new MonteCarloIntegrator();
 
         test.boundCalculator(new Polynomial(new Double[]{1.0,1.0,1.0}), 5, -5);
-        test.dartThrow(10000, -5.0, 5.0);
+        test.dartThrow(dartsToThrow, -5.0, 5.0);
 
 
+    }
+
+    private static void errorMessage() {
+        System.out.println("This can only estimate the area of a polynomial. please enter 'poly' as the first argument, followed by as many coefficients, followed by two inputs\nfor bounds.");
+        System.out.println("\nEntries would look as the following: <poly> <coefficient> <coefficient> <coefficient> <bound> <bound>");
+        System.out.println("\nCoefficients increment the functions exponents from the furthest to the right, moving up to the left, starting at 0");
+        System.out.println("\nOptional: Last argument can start with a 'total:', and you can set the custom amount of darts to be thrown!");
+        return;
+    }
+
+    private static void errorMessageCustomDarts() {
+        System.out.println("Positive integer values only for darts");
     }
 }
