@@ -86,7 +86,7 @@ public class MonteCarloIntegrator {
             return;
         }
 
-        if("total=".equals(args[args.length -1].substring(0,6))) {
+        if(args[args.length-1].length() >= 6 && "total=".equals(args[args.length -1].substring(0,6))) {
             int checkNumber;
 
             try {
@@ -108,12 +108,13 @@ public class MonteCarloIntegrator {
         }
 
         for(int i = 1; i < args.length - customSettingUsed; i++) {
-            
+
             double checkDoubleNumber;
             try{
                 checkDoubleNumber = Double.parseDouble(args[i]);
             } catch(NumberFormatException nfe) {
                 errorMessage();
+                return;
             }
         }
 
