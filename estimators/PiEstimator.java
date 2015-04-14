@@ -1,7 +1,9 @@
 public class PiEstimator {
+    private static final int DEFAULT_NUMBER_OF_DARTS = 10000;
+
 
     private static void errorMessage() {
-        System.out.println("Enter no arguments for 10,000 darts to be thrown, and one positive numerical integer for a custom amount of darts");
+        System.out.println("Enter no arguments for 10,000 darts to be thrown, and one positive numerical integer, of size 2,147,483,647 or less, for a custom amount of darts");
     }
 
     private static void dartThrow(int dartAmount) {
@@ -35,6 +37,7 @@ public class PiEstimator {
 
     public static void main(String[] args) {
         int integerCheck;
+        int numberOfDarts = DEFAULT_NUMBER_OF_DARTS;
 
         if (args.length > 1 || args.length == 1 && Integer.parseInt(args[0]) < 0) {
             errorMessage();
@@ -48,14 +51,12 @@ public class PiEstimator {
             } catch (NumberFormatException nfe) {
                 errorMessage();
                 return;
-            }        
+            }
+            numberOfDarts = Integer.parseInt(args[0]);
         }
 
-        if (args.length == 0) {
-            dartThrow(10000);
-        } else {
-            dartThrow(Integer.parseInt(args[0]));
-        }
+        dartThrow(numberOfDarts);
+        
     }
 
 }
