@@ -31,25 +31,37 @@ public class MonteCarloIntegrator {
             lowerBound = currentValue < lowerBound ? currentValue : lowerBound;
         }
         //Add 10% buffer
-        fudgeFactorize();
+        // fudgeFactorize();
+        //
+        //
+        //
+        //
+
     }
 
 
     private void dartThrow(int dartAmount, Double xMin, Double xMax) {
         double timesHit = 0.0;
-        double area = xMax - xMin;
 
+        System.out.println("Minimum in range: " + lowerBound);
+        System.out.println("Maximum in range: " + upperBound);
+
+        //add 10% buffer
+        fudgeFactorize();
+        
+        System.out.println("Final lower bound: " + lowerBound);
+        System.out.println("Final upper bound: " + upperBound);
         System.out.println("start");
     
         for (int j = 0; j < dartAmount; j++) {
-            
-            double x = Math.random()*(upperBound - lowerBound) - lowerBound;
-            double y = Math.random() * 2.0 - 1.0;
+            double x = xMin + Math.random()*(xMax - xMin);
+            double y = lowerBound + Math.random() * (upperBound - lowerBound);            
             String result = "";
             
-            boolean hit = ((x*x + y*y) <= 1);
-
-            if (hit) {
+            if(Polynomial.solver(x) <= y && y <= 0) {
+                timesHit--;
+                result = "in";
+            } else if(Polynomial.solver(x) >= y && y >= 0) {
                 timesHit++;
                 result = "in";
             } else {
@@ -60,17 +72,15 @@ public class MonteCarloIntegrator {
         }
         
         System.out.println("end");
-        System.out.println("Darts: " + dartAmount + " Hits: " + timesHit + 
-            " Pi estimate: " +  timesHit / dartAmount * area);
+        System.out.println("Estimate: " + (timesHit / dartAmount) * (xMax - xMin) * (upperBound - lowerBound));
+        
     }   
 
     public static void main(String[] args) {
         MonteCarloIntegrator test = new MonteCarloIntegrator();
 
         test.boundCalculator(new Polynomial(new Double[]{1.0,1.0,1.0}), 5, -5);
-
-        System.out.println(test.lowerBound);
-                System.out.println(test.upperBound);
+        test.dartThrow(10000, -5.0, 5.0);
 
 
     }
