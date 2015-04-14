@@ -88,7 +88,7 @@ public class MonteCarloIntegrator {
         int customSettingUsed = 0;
         int j = 0;
 
-        if (!"poly".equals(args[0])) {
+        if (args.length == 0 || !"poly".equals(args[0])) {
             errorMessage();
             return;
         }
@@ -132,17 +132,23 @@ public class MonteCarloIntegrator {
         int totalCoefficients = args.length - 3 - customSettingUsed;
         Double[] coefficientArray = new Double[totalCoefficients];
 
-        // store reversedArray of coefficients
-        for(int i = (args.length - 3 - customSettingUsed); i > 0; i--) {
+        // // store reversedArray of coefficients
+
+        for(int i = 1; i < args.length - 2 - customSettingUsed; i++) {
             coefficientArray[j] = Double.parseDouble(args[i]);
             j++;
         }
 
         MonteCarloIntegrator test = new MonteCarloIntegrator();
-        System.out.println(bound1 + " " + bound2);
 
         test.boundCalculator(new Polynomial(coefficientArray), bound1, bound2);
-        test.dartThrow(dartsToThrow, bound1, bound2);
+
+        for (int v =0; v < coefficientArray.length; v++) {
+            System.out.println("lol" + coefficientArray[v]);
+        }
+
+
+        test.dartThrow(1000000, bound1, bound2);
 
 
     }
