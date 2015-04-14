@@ -41,6 +41,13 @@ public class MonteCarloIntegrator {
 
 
     private void dartThrow(int dartAmount, Double xMin, Double xMax) {
+        //REPEATING CODE FOR MINMAX, AND USE xMIN TWICE LOOK ABOVE !!! 
+        if (xMin > xMax) {
+            Double oldxMin = xMin;
+            xMin = xMax;
+            xMax = oldxMin;
+        }
+
         Double timesHit = 0.0;
 
         System.out.println("Minimum in range: " + lowerBound);
@@ -132,9 +139,10 @@ public class MonteCarloIntegrator {
         }
 
         MonteCarloIntegrator test = new MonteCarloIntegrator();
+        System.out.println(bound1 + " " + bound2);
 
-        // test.boundCalculator(new Polynomial(new Double[]{1.0,1.0,1.0}), 5, -5);
-        // test.dartThrow(dartsToThrow, -5.0, 5.0);
+        test.boundCalculator(new Polynomial(coefficientArray), bound1, bound2);
+        test.dartThrow(dartsToThrow, bound1, bound2);
 
 
     }
