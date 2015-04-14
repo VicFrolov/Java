@@ -1,5 +1,6 @@
  public class Polynomial {
-    private Double[] reversedCoefficients;
+    private static Double[] reversedCoefficients;
+
 
     public Polynomial(Double[] n) {
         int j = 0;
@@ -12,9 +13,19 @@
         }
     }
 
+
+    public static double Solver(Double x) {
+        Double solvedValue = 0.0; 
+
+        for(int i = 0; i < reversedCoefficients.length; i++) {
+            solvedValue += Math.pow(x, i) * reversedCoefficients[i];
+        }
+        return solvedValue;
+    }
+
     public static void main(String[] args) {
-        Polynomial test = new Polynomial(new Double[]{1.0,2.0,3.0,4.0,5.0});
-        System.out.println(test.reversedCoefficients[0]);
+        Polynomial test = new Polynomial(new Double[]{19.0, 4.0, 3.0});
+        System.out.println(Solver(3.0));
 
      }
 }
