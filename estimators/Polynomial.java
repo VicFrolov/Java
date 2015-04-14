@@ -1,6 +1,7 @@
  public class Polynomial {
     private Double[] reversedCoefficients;
     private Double solvedValue = 0.0;
+    
 
     public Polynomial(Double[] n) {
         int j = 0;
