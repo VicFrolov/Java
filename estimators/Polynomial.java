@@ -22,10 +22,5 @@
         }
         return solvedValue;
     }
-
-    public static void main(String[] args) {
-        Polynomial test = new Polynomial(new Double[]{19.0, 4.0, 3.0});
-        System.out.println(Solver(3.0));
-
-     }
+    
 }
