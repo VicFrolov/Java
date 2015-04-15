@@ -3,7 +3,6 @@ public class MonteCarloIntegrator {
     private Double lowerBound;
     private Double upperBound;
 
-
     private void fudgeFactorize() {
         Double fudgeFactor = 0.0;
         upperBound = upperBound < 0 ? 0 : upperBound;
@@ -11,7 +10,6 @@ public class MonteCarloIntegrator {
         fudgeFactor = (upperBound - lowerBound) * 0.10;
         lowerBound -= fudgeFactor;
         upperBound += fudgeFactor;
-
     }
 
     private void boundCalculator(Polynomial p, Double xMin, Double xMax) {
@@ -30,18 +28,9 @@ public class MonteCarloIntegrator {
             upperBound = currentValue > upperBound ? currentValue : upperBound;
             lowerBound = currentValue < lowerBound ? currentValue : lowerBound;
         }
-        //Add 10% buffer
-        // fudgeFactorize();
-        //
-        //
-        //
-        //
-
     }
 
-
     private void dartThrow(int dartAmount, Double xMin, Double xMax) {
-        //REPEATING CODE FOR MINMAX, AND USE xMIN TWICE LOOK ABOVE !!! 
         if (xMin > xMax) {
             Double oldxMin = xMin;
             xMin = xMax;
@@ -80,7 +69,6 @@ public class MonteCarloIntegrator {
         
         System.out.println("end");
         System.out.println("Estimate: " + (timesHit / dartAmount) * (xMax - xMin) * (upperBound - lowerBound));
-        
     }   
 
     public static void main(String[] args) {
@@ -132,29 +120,14 @@ public class MonteCarloIntegrator {
         int totalCoefficients = args.length - 3 - customSettingUsed;
         Double[] coefficientArray = new Double[totalCoefficients];
 
-        // // store reversedArray of coefficients
-
-        for(int i = 1; i < args.length - 2 - customSettingUsed; i++) {
+        for (int i = 1; i < args.length - 2 - customSettingUsed; i++) {
             coefficientArray[j] = Double.parseDouble(args[i]);
             j++;
         }
 
-        MonteCarloIntegrator test = new MonteCarloIntegrator();
-
-        test.boundCalculator(new Polynomial(coefficientArray), bound1, bound2);
-
-        for (int v =0; v < coefficientArray.length; v++) {
-            System.out.println("lol" + coefficientArray[v]);
-        }
-
-
-        test.dartThrow(1000000, bound1, bound2);
-
-
-    }
-
-    private static void inputSafetyChecker() {
-
+        MonteCarloIntegrator initialize = new MonteCarloIntegrator();
+        initialize.boundCalculator(new Polynomial(coefficientArray), bound1, bound2);
+        initialize.dartThrow(1000000, bound1, bound2);
     }
 
     private static void errorMessage() {
@@ -167,5 +140,6 @@ public class MonteCarloIntegrator {
 
     private static void errorMessageCustomDarts() {
         System.out.println("Positive integer values only for darts");
+        return;
     }
 }
