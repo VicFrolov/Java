@@ -1,7 +1,6 @@
  public class Polynomial {
-    private Double[] reversedCoefficients;
-    private Double solvedValue = 0.0;
-    
+    private static Double[] reversedCoefficients;
+    private static Double solvedValue = 0.0;
 
     public Polynomial(Double[] n) {
         int j = 0;
@@ -12,13 +11,11 @@
         }
     }
 
-
-    public double solver(Double x) {
+    public static double solver(Double x) {
         solvedValue = 0.0;
         for(int i = 0; i < reversedCoefficients.length; i++) {
             solvedValue += Math.pow(x, i) * reversedCoefficients[i];
         }
         return solvedValue;
     }
-
 }
