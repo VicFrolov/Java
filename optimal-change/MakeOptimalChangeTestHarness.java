@@ -26,9 +26,11 @@ public class MakeOptimalChangeTestHarness {
 
     public static void test_USA() {
         int[] usaDenominations = new int[] { 25, 10, 5, 1 };
-        
+        int[] cadDenominations = new int[] {5, 10, 25, 100, 200};
 
         Tally result = MakeOptimalChange.makeOptimalChange(usaDenominations, 99);
+        Tally resultCad = MakeOptimalChange.makeOptimalChange(cadDenominations, 217);
+
         try {
             displaySuccessIfTrue(3 == result.getElement(0));
         } catch (Exception e) {
@@ -56,6 +58,45 @@ public class MakeOptimalChangeTestHarness {
             e.printStackTrace();
             displayFailure();
         }
+
+
+
+
+        try {
+            displaySuccessIfTrue(1 == resultCad.getElement(4));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(1 == resultCad.getElement(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(1 == resultCad.getElement(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+        
+        try {
+            displaySuccessIfTrue(0 == resultCad.getElement(2));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(0 == resultCad.getElement(3));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }        
+
     }
 
 }
