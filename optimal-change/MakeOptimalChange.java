@@ -61,18 +61,30 @@ public class MakeOptimalChange {
     public static Tally makeOptimalChange(int[] denominations, int amount) {
         Tally[][] tallyTable = new Tally[denominations.length][amount + 1];
 
+        //makes the first row zero 
         for(int i = 0; i < denominations.length; i++) {
             tallyTable[i][0] = new Tally(denominations.length);
-                   System.out.println(tallyTable[i][0].toString());
         }
+        System.out.println(tallyTable[0][0].toString());
+
+        //begins #3 outer loop is for the column ->, inner is for the row |
+        //i = to column
+        //j = row
 
         for(int i = 0; i < denominations.length; i++) {
 
-            for(int j = 1; j < amount; j++) {
+            for(int j = 1; j <= amount; j++) {
+                //special case for the first column
+                if(i == 0) {
+                    tallyTable[0][j] = new Tally(denominations.length);
+                    tallyTable[0][j].setElement(0, j); 
+
+
                 if(j > denominations[i]) {
                     //if yes, the long stuff in a, b and blabla
                 } else {
-                    
+    
+                    } 
                 }
             }
         }
