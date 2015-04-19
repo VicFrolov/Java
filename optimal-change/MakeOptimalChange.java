@@ -72,11 +72,17 @@ public class MakeOptimalChange {
             for(int j = 1; j <= amount; j++) {
                 //special case for the first column
                 if(i == 0) {
-                    tallyTable[0][j] = new Tally(denominations.length);
-                    tallyTable[0][j].setElement(0, j); 
-                    System.out.println(tallyTable[i][j].toString());
+                    if( ((j) % denominations[0]) == 0) {
+                        tallyTable[0][j] = new Tally(denominations.length);
+                        tallyTable[0][j].setElement(0, j / denominations[i]);
+                                                // System.out.println(tallyTable[i][j].toString());
+ 
+                    } else {
+                        tallyTable[0][j] = Tally.IMPOSSIBLE;
+                    }
+                                            System.out.println("what the fuck is i" + i + " and j? " + j + " tally " + tallyTable[i][j].toString());
+
                 } else if(j >= denominations[i]) {
-                    System.out.println("CURRENT CYCLE: i value is " + i + " and j value is " + j + "and the denomination is " + denominations[i]);
 
                     Tally tempOldChange = tallyTable[i][j - denominations[i]]; // not sure about this shit right here bruh    
 
@@ -88,12 +94,9 @@ public class MakeOptimalChange {
                         tallyTable[i][j] = tallyTable[i-1][j];
                     }
 
-                    //******** right above is just adding "1" 
-                    System.out.println(tallyTable[i][j].toString());
                 } else {
                     //the "NO" condition
                     tallyTable[i][j] = tallyTable[i-1][j];
-                    System.out.println("DO YOU REACH ?? I VALUE" + i + "AND J VALUE" + j + "TALLY "  + tallyTable[i][j].toString());
 
                 }        
             }   
