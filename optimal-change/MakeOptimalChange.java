@@ -74,8 +74,12 @@ public class MakeOptimalChange {
                     tallyTable[0][j] = new Tally(denominations.length);
                     tallyTable[0][j].setElement(0, j); 
                 } else if(j >= denominations[i]) {
-                    //if yes, the long stuff in a, b and blabla
+                    tallyTable[i][j] = new Tally(denominations.length);
+                    tallyTable[i][j].setElement(i, 1); 
+                    //******** right above is just adding "1" 
+
                 } else {
+                    //the "NO" condition
                     tallyTable[i][j] = tallyTable[i-1][j];
                     System.out.println(tallyTable[i][j].toString());
 
@@ -84,6 +88,7 @@ public class MakeOptimalChange {
         }
         return Tally.IMPOSSIBLE;
     }
+
 
     private static void printUsage() {
         System.out.println("Usage: java MakeOptimalChange <denominations> <amount>");
