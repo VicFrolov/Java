@@ -64,6 +64,7 @@ public class MakeOptimalChange {
         //makes the first row zero 
         for(int i = 0; i < denominations.length; i++) {
             tallyTable[i][0] = new Tally(denominations.length);
+
         }
 
         for(int i = 0; i < denominations.length; i++) {
@@ -73,20 +74,32 @@ public class MakeOptimalChange {
                 if(i == 0) {
                     tallyTable[0][j] = new Tally(denominations.length);
                     tallyTable[0][j].setElement(0, j); 
+                    System.out.println(tallyTable[i][j].toString());
                 } else if(j >= denominations[i]) {
+                    System.out.println("CURRENT CYCLE: i value is " + i + " and j value is " + j + "and the denomination is " + denominations[i]);
+
+                    Tally tempOldChange = tallyTable[i][j - denominations[i]]; // not sure about this shit right here bruh    
+
                     tallyTable[i][j] = new Tally(denominations.length);
                     tallyTable[i][j].setElement(i, 1); 
-                    //******** right above is just adding "1" 
+                    tallyTable[i][j] = tallyTable[i][j].add(tempOldChange);
 
+                    if(tallyTable[i][j].total() > tallyTable[i-1][j].total()) {
+                        tallyTable[i][j] = tallyTable[i-1][j];
+                    }
+
+                    //******** right above is just adding "1" 
+                    System.out.println(tallyTable[i][j].toString());
                 } else {
                     //the "NO" condition
                     tallyTable[i][j] = tallyTable[i-1][j];
-                    System.out.println(tallyTable[i][j].toString());
+                    System.out.println("DO YOU REACH ?? I VALUE" + i + "AND J VALUE" + j + "TALLY "  + tallyTable[i][j].toString());
 
                 }        
             }   
         }
-        return Tally.IMPOSSIBLE;
+
+        return tallyTable[denominations.length - 1][amount];
     }
 
 
