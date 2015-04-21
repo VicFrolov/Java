@@ -64,44 +64,44 @@ public class MakeOptimalChange {
         //makes the first row zero 
         for(int i = 0; i < denominations.length; i++) {
             tallyTable[i][0] = new Tally(denominations.length);
-
         }
 
         for(int i = 0; i < denominations.length; i++) {
-
-            for(int j = 1; j <= amount; j++) {
+            for (int j = 1; j <= amount; j++) {
                 //special case for the first column
-                if(i == 0) {
+                if (i == 0) {
                     if( ((j) % denominations[0]) == 0) {
                         tallyTable[0][j] = new Tally(denominations.length);
                         tallyTable[0][j].setElement(0, j / denominations[i]);
-                                                // System.out.println(tallyTable[i][j].toString());
- 
                     } else {
                         tallyTable[0][j] = Tally.IMPOSSIBLE;
                     }
-                                            System.out.println("what the fuck is i" + i + " and j? " + j + " tally " + tallyTable[i][j].toString());
 
-                } else if(j >= denominations[i]) {
-
-                    Tally tempOldChange = tallyTable[i][j - denominations[i]]; // not sure about this shit right here bruh    
-
-                    tallyTable[i][j] = new Tally(denominations.length);
-                    tallyTable[i][j].setElement(i, 1); 
-                    tallyTable[i][j] = tallyTable[i][j].add(tempOldChange);
-
-                    if(tallyTable[i][j].total() > tallyTable[i-1][j].total()) {
-                        tallyTable[i][j] = tallyTable[i-1][j];
-                    }
-
-                } else {
+                } else if (j < denominations[i]) {
                     //the "NO" condition
                     tallyTable[i][j] = tallyTable[i-1][j];
+                    ////////////////////GOOD UP TO HERE
+                } else if (j >= denominations[i]) {
 
-                }        
+                    if(Tally.IMPOSSIBLE.equals(tallyTable[i][j - denominations[i]]) && Tally.IMPOSSIBLE.equals(tallyTable[i-1][j])) {
+                            tallyTable[i][j] = Tally.IMPOSSIBLE;
+                    } else if(Tally.IMPOSSIBLE.equals(tallyTable[i][j - denominations[i]])) {
+                            tallyTable[i][j] = tallyTable[i - 1][j];
+                    } else {
+                        tallyTable[i][j] = new Tally(denominations.length);
+                        tallyTable[i][j].setElement(i, 1);
+                        tallyTable[i][j] = tallyTable[i][j].add(tallyTable[i][j- denominations[i]]);
+                       
+                        // problem is in the else I think, with the i -1???
+                        if( (tallyTable[i][j].total() <= tallyTable[i-1][j].total()) || tallyTable[i-1][j].isImpossible()) {
+                            tallyTable[i][j] = tallyTable[i][j];
+                        } else {
+                            tallyTable[i][j] = tallyTable[i-1][j];
+                        }
+                    }
+                }  
             }   
         }
-
         return tallyTable[denominations.length - 1][amount];
     }
 
