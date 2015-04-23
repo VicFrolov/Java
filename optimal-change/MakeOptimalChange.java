@@ -71,7 +71,7 @@ public class MakeOptimalChange {
             for (int j = 1; j <= amount; j++) {
                 //special case for the first column
                 if (i == 0) {
-                    if ( (j % denominations[0]) == 0) {
+                    if (j % denominations[0] == 0) {
                         tallyTable[0][j] = new Tally(denominations.length);
                         tallyTable[0][j].setElement(0, j / denominations[i]);
                     } else {
@@ -83,23 +83,20 @@ public class MakeOptimalChange {
                     tallyTable[i][j] = tallyAbove;
                 } else if (j >= denominations[i]) {
                     Tally tallyAbove = tallyTable[i-1][j];
+                    tallyTable[i][j] = new Tally(denominations.length);
+                    tallyTable[i][j].setElement(i, 1);
 
-                    if (tallyTable[i][j - denominations[i]].isImpossible() && tallyAbove.isImpossible()) {
-                            tallyTable[i][j] = Tally.IMPOSSIBLE;
-                    } else if (tallyTable[i][j - denominations[i]].isImpossible()) {
-                            tallyTable[i][j] = tallyTable[i - 1][j];
+                    if (tallyTable[i][j - denominations[i]].isImpossible()) {
+                        tallyTable[i][j] = Tally.IMPOSSIBLE;
                     } else {
-                        tallyTable[i][j] = new Tally(denominations.length);
-                        tallyTable[i][j].setElement(i, 1);
                         tallyTable[i][j] = tallyTable[i][j].add(tallyTable[i][j- denominations[i]]);
-                       
-                        if ( !((tallyTable[i][j].total() <= tallyAbove.total()) || tallyAbove.isImpossible())) {
-                            tallyTable[i][j] = tallyAbove;
-                        }
+                    }
+
+                    if (tallyTable[i][j].isImpossible() || (tallyAbove.total() < tallyTable[i][j].total() && !tallyAbove.isImpossible())) 
+                        tallyTable[i][j] = tallyAbove; 
                     }
                 }  
-            }   
-        }
+            }  
         return tallyTable[denominations.length - 1][amount];
     }
 
