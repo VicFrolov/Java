@@ -11,6 +11,7 @@ public class MakeOptimalChangeTestHarness {
         test_CAD();
         test_IMPOSSIBLE();
         test_random();
+        test_CAD_REVERSED();
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
 
@@ -23,6 +24,50 @@ public class MakeOptimalChangeTestHarness {
 
     private static void displayFailure() {
         displaySuccessIfTrue(false);
+    }
+
+    public static void test_CAD_REVERSED() {
+        int[] cadDenominations = new int[] {200, 100, 25, 10, 5};
+
+        Tally resultCad = MakeOptimalChange.makeOptimalChange(cadDenominations, 215);
+
+
+        try {
+            displaySuccessIfTrue(1 == resultCad.getElement(4));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(1 == resultCad.getElement(3));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(0 == resultCad.getElement(2));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+        
+        try {
+            displaySuccessIfTrue(0 == resultCad.getElement(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }
+
+        try {
+            displaySuccessIfTrue(1 == resultCad.getElement(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayFailure();
+        }        
+
+
     }
 
     public static void test_CAD() {
