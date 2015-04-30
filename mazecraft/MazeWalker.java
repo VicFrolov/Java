@@ -71,23 +71,49 @@ public class MazeWalker {
      */
     public WalkerState areWeThereYet(int currentX, int currentY) {
         beenThere[currentY][currentX] = true;
+        WalkerState currentWalkerState = WalkerState.IMPOSSIBLE_TO_GET_THERE;
 
-        // Check to see if at cheese:
-        if(currentX == destinationX && currentY == destinationY ) {
+        if (currentX == destinationX && currentY == destinationY ) {
             return WalkerState.THERE_ALREADY;
-        } else if(maze.getLocation(currentX , currentY).getRight().isOpen() && !beenThere[currentY][currentX +1] ){
-            return WalkerState.MOVE_RIGHT;
-        } else if(maze.getLocation(currentX, currentY).getBelow().isOpen() && !beenThere[currentY +1][currentX] ) {
-            return WalkerState.MOVE_DOWN;
-        } else if(maze.getLocation(currentX, currentY).getLeft().isOpen() && !beenThere[currentY][currentX - 1] ) {
-            return WalkerState.MOVE_LEFT;
-        } else if(maze.getLocation(currentX, currentY).getAbove().isOpen() && !beenThere[currentY - 1][currentX] ) {
-            return WalkerState.MOVE_UP;                
+        } else if (maze.getLocation(currentX , currentY).getRight().isOpen() && !beenThere[currentY][currentX +1] ){
+            currentWalkerState = WalkerState.MOVE_RIGHT;
+            pathIndex++;
+            path[pathIndex] = WalkerState.MOVE_RIGHT;
+        } else if (maze.getLocation(currentX, currentY).getBelow().isOpen() && !beenThere[currentY +1][currentX] ) {
+            currentWalkerState =  WalkerState.MOVE_DOWN;
+            pathIndex++;
+            path[pathIndex] = WalkerState.MOVE_DOWN;            
+        } else if (maze.getLocation(currentX, currentY).getLeft().isOpen() && !beenThere[currentY][currentX - 1] ) {
+            currentWalkerState =  WalkerState.MOVE_LEFT;
+            pathIndex++;
+            path[pathIndex] = WalkerState.MOVE_LEFT;
+        } else if (maze.getLocation(currentX, currentY).getAbove().isOpen() && !beenThere[currentY - 1][currentX] ) {
+            currentWalkerState =  WalkerState.MOVE_UP;  
+            pathIndex++;
+            path[pathIndex] = WalkerState.MOVE_UP;              
         } else {
-            return WalkerState.IMPOSSIBLE_TO_GET_THERE;
-
+            currentWalkerState = backItUp();
         }
+        return currentWalkerState;
+    }
 
+    public WalkerState backItUp() {
+        WalkerState whereToBackUp = WalkerState.IMPOSSIBLE_TO_GET_THERE;
+
+        if (path[pathIndex].equals(WalkerState.MOVE_LEFT)) {
+            pathIndex--;
+            whereToBackUp = WalkerState.MOVE_RIGHT;
+        } else if (path[pathIndex].equals(WalkerState.MOVE_RIGHT)) {
+            pathIndex--;
+            whereToBackUp = WalkerState.MOVE_LEFT;
+        } else if (path[pathIndex].equals(WalkerState.MOVE_UP)) {
+            pathIndex--;
+            whereToBackUp = WalkerState.MOVE_DOWN;
+        } else if (path[pathIndex].equals(WalkerState.MOVE_DOWN)) {
+            pathIndex--;
+            whereToBackUp = WalkerState.MOVE_UP;
+        }
+        return whereToBackUp;
     }
 
 
