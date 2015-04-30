@@ -70,21 +70,18 @@ public class MazeWalker {
      * impossible to reach.
      */
     public WalkerState areWeThereYet(int currentX, int currentY) {
+        beenThere[currentY][currentX] = true;
 
         // Check to see if at cheese:
         if(currentX == destinationX && currentY == destinationY ) {
             return WalkerState.THERE_ALREADY;
-        }
-
-        beenThere[currentY][currentX] = true;
-        
-        if(maze.getLocation(currentX, currentY).getRight().isLegal() && !beenThere[currentY][currentX +1] ){
+        } else if(maze.getLocation(currentX , currentY).getRight().isOpen() && !beenThere[currentY][currentX +1] ){
             return WalkerState.MOVE_RIGHT;
-        } else if(maze.getLocation(currentX, currentY).getBelow().isLegal() && !beenThere[currentY +1][currentX] ) {
+        } else if(maze.getLocation(currentX, currentY).getBelow().isOpen() && !beenThere[currentY +1][currentX] ) {
             return WalkerState.MOVE_DOWN;
-        } else if(maze.getLocation(currentX, currentY).getLeft().isLegal() && !beenThere[currentY][currentX - 1] ) {
+        } else if(maze.getLocation(currentX, currentY).getLeft().isOpen() && !beenThere[currentY][currentX - 1] ) {
             return WalkerState.MOVE_LEFT;
-        } else if(maze.getLocation(currentX, currentY).getAbove().isLegal() && !beenThere[currentY - 1][currentX] ) {
+        } else if(maze.getLocation(currentX, currentY).getAbove().isOpen() && !beenThere[currentY - 1][currentX] ) {
             return WalkerState.MOVE_UP;                
         } else {
             return WalkerState.IMPOSSIBLE_TO_GET_THERE;
