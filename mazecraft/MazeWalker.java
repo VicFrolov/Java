@@ -99,8 +99,11 @@ public class MazeWalker {
 
     public WalkerState backItUp() {
         WalkerState whereToBackUp = WalkerState.IMPOSSIBLE_TO_GET_THERE;
+        pathIndex--;
 
-        if (path[pathIndex].equals(WalkerState.MOVE_LEFT)) {
+        if(pathIndex == -1) {
+            whereToBackUp = WalkerState.IMPOSSIBLE_TO_GET_THERE;
+        } else if (path[pathIndex].equals(WalkerState.MOVE_LEFT)) {
             pathIndex--;
             whereToBackUp = WalkerState.MOVE_RIGHT;
         } else if (path[pathIndex].equals(WalkerState.MOVE_RIGHT)) {
@@ -112,7 +115,7 @@ public class MazeWalker {
         } else if (path[pathIndex].equals(WalkerState.MOVE_DOWN)) {
             pathIndex--;
             whereToBackUp = WalkerState.MOVE_UP;
-        }
+        } 
         return whereToBackUp;
     }
 
