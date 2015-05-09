@@ -1,8 +1,8 @@
 # Java code
 
-* **Arithmetic First principles** -> INTicing (BigInt from scratch)
+* **Arithmetic First Principles** -> INTicing (BigInt from scratch)
 * **Dynamic Programming** -> Change Maker
-* **Non-Deterministic** estimation -> Estimators
+* **Non-Deterministic Estimation** -> Estimators
 * **MazeWalker** -> Backtracking Algorithm (with mario skin)
 * **Discrete Event Simulation** -> AngryBalls
-* **parlor/board game** -> Picomon
+* **Parlor/Board game** -> Picomon
