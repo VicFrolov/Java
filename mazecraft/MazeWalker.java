@@ -99,7 +99,7 @@ public class MazeWalker {
 
     public WalkerState backItUp() {
         WalkerState whereToBackUp = WalkerState.IMPOSSIBLE_TO_GET_THERE;
-        pathIndex--;
+
 
         if(pathIndex == -1) {
             whereToBackUp = WalkerState.IMPOSSIBLE_TO_GET_THERE;
