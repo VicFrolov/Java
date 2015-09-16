@@ -7,7 +7,8 @@ public class BaseConverterTestHarness {
         attempts = 0;
         successes = 0;
 
-        test_baseConverter();
+        test_conversionToDecimal();
+        test_conversionToNewBase();
      
 
         System.out.println(successes + "/" + attempts + " tests passed.");
@@ -20,8 +21,8 @@ public class BaseConverterTestHarness {
         System.out.println(value ? "success" : "failure");
     }
 
-    private static void test_baseConverter() {
-        System.out.println("Testing Arrays...");
+    private static void test_conversionToDecimal() {
+        System.out.println("Testing Conversion to Decimal...");
         BaseConverter test1 = new BaseConverter();
         
         try {
@@ -38,9 +39,71 @@ public class BaseConverterTestHarness {
             displaySuccessIfTrue(2984432549403l == test1.conversionToDecimal(new byte[]{3,2,1,3,2,1,3,2,1}, 36));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
-        }        
-    
+        }   
+        try {
+            displaySuccessIfTrue(276 == test1.conversionToDecimal(new byte[]{3,4,5}, 7));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+        try {
+            displaySuccessIfTrue(13 == test1.conversionToDecimal(new byte[]{0,1}, 13));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        } 
+        try {
+            displaySuccessIfTrue(1 == test1.conversionToDecimal(new byte[]{1,0}, 13));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }   
+        try {
+            displaySuccessIfTrue(306 == test1.conversionToDecimal(new byte[]{17,17}, 17));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }  
+        try {
+            displaySuccessIfTrue(917086735 == test1.conversionToDecimal(new byte[]{2,19,31,31,31,31}, 31));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }   
+
+        
 
         
     }
+
+    private static void test_conversionToNewBase() {
+        System.out.println("Testing conversionToNewBase...");
+        BaseConverter test2 = new BaseConverter();
+        String banana = "1 0 1 1 0";
+
+        try {
+            displaySuccessIfTrue(("2 2").equals(test2.conversionFromDecimal(10l, 4)));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+        try {
+            displaySuccessIfTrue(("1 0 1 1 0").equals(test2.conversionFromDecimal(276l, 4)));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+
+        }
+        try {
+            displaySuccessIfTrue(("1 0 1 1 0").equals(banana));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+
+        }        
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
