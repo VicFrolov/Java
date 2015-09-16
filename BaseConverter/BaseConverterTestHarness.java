@@ -25,42 +25,42 @@ public class BaseConverterTestHarness {
         BaseConverter test1 = new BaseConverter();
         
         try {
-            displaySuccessIfTrue(157 == test1.conversionToDecimal(new byte[]{5,3,2}, 8));
+            displaySuccessIfTrue(157 == test1.conversionToDecimal(new int[]{5,3,2}, 8));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
         try {
-            displaySuccessIfTrue(0 == test1.conversionToDecimal(new byte[]{0}, 10000));
+            displaySuccessIfTrue(0 == test1.conversionToDecimal(new int[]{0}, 10000));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }        
         try {
-            displaySuccessIfTrue(2984432549403l == test1.conversionToDecimal(new byte[]{3,2,1,3,2,1,3,2,1}, 36));
+            displaySuccessIfTrue(2984432549403l == test1.conversionToDecimal(new int[]{3,2,1,3,2,1,3,2,1}, 36));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }   
         try {
-            displaySuccessIfTrue(276 == test1.conversionToDecimal(new byte[]{3,4,5}, 7));
+            displaySuccessIfTrue(276 == test1.conversionToDecimal(new int[]{3,4,5}, 7));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         } 
         try {
-            displaySuccessIfTrue(13 == test1.conversionToDecimal(new byte[]{0,1}, 13));
+            displaySuccessIfTrue(13 == test1.conversionToDecimal(new int[]{0,1}, 13));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         } 
         try {
-            displaySuccessIfTrue(1 == test1.conversionToDecimal(new byte[]{1,0}, 13));
+            displaySuccessIfTrue(1 == test1.conversionToDecimal(new int[]{1,0}, 13));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }   
         try {
-            displaySuccessIfTrue(306 == test1.conversionToDecimal(new byte[]{17,17}, 17));
+            displaySuccessIfTrue(306 == test1.conversionToDecimal(new int[]{17,17}, 17));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }  
         try {
-            displaySuccessIfTrue(917086735 == test1.conversionToDecimal(new byte[]{2,19,31,31,31,31}, 31));
+            displaySuccessIfTrue(917086735 == test1.conversionToDecimal(new int[]{2,19,31,31,31,31}, 31));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }   
