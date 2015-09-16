@@ -76,7 +76,6 @@ public class BaseConverter {
                 char c = userInput.charAt(i);        
                 if (!(c == '0') && !(c == '1') && !(c == '2') && !(c == '3') && !(c == ' ') && !(c == '4') 
                     && !(c == '5') && !(c == '6') && !(c == '7') && !(c == '8') && !(c == '9')) {
-
                         System.out.println("You've entered an invalid input. You can only enter digits and spaces. \n Please try again:");
                         userInput = sc.nextLine();
                         goodEntry = true;
@@ -93,8 +92,13 @@ public class BaseConverter {
         int j = 0;
         
         for (int i = stringArrayOfDigits.length - 3; i >= 0 ; i--) {
-           userInputSeparatedDigits[j] = Integer.parseInt(stringArrayOfDigits[i]);
-           j++;
+
+            userInputSeparatedDigits[j] = Integer.parseInt(stringArrayOfDigits[i]);
+            if(userInputSeparatedDigits[j] > baseFrom) {
+                System.out.println("Sorry, you've entered a value larger than your base for conversion. Please try again.");
+                return;
+            } 
+            j++;
         }
 
         System.out.println("\nThe number above that you have converted from base " + baseFrom + " to base " + baseTo + " is...." );
