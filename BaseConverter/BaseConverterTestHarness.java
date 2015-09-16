@@ -9,7 +9,6 @@ public class BaseConverterTestHarness {
 
         test_conversionToDecimal();
         test_conversionToNewBase();
-     
 
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
@@ -65,17 +64,17 @@ public class BaseConverterTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }   
-
-        
-
-        
     }
 
     private static void test_conversionToNewBase() {
         System.out.println("Testing conversionToNewBase...");
         BaseConverter test2 = new BaseConverter();
-        String banana = "1 0 1 1 0";
 
+        try {
+            displaySuccessIfTrue(("0").equals(test2.conversionFromDecimal(0l, 12309123)));
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
         try {
             displaySuccessIfTrue(("2 2").equals(test2.conversionFromDecimal(10l, 4)));
         } catch(Exception e) {
@@ -88,22 +87,10 @@ public class BaseConverterTestHarness {
 
         }
         try {
-            displaySuccessIfTrue(("1 0 1 1 0").equals(banana));
+            displaySuccessIfTrue(("2 19 0 19 6 16 13 8 3 3 13 1 18").equals(test2.conversionFromDecimal(12093102938109238l, 20)));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
 
         }        
-
     }
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -17,29 +17,32 @@ public class BaseConverter {
 		int arrayLength = 0;
 		long numCalc = numberToConvert;
 
-		// this loop determines the length of array needed
-		while (numCalc > 0) {
-			numCalc = (numCalc / base);
-			arrayLength++;
+		if (numberToConvert == 0) {
+			return "0";
+		} else {
+
+			// this loop determines the length of array needed
+			while (numCalc > 0) {
+				numCalc = (numCalc / base);
+				arrayLength++;
+			}
+
+			arrayOfValues = new long[arrayLength];
+
+			// this loop creates an array of digits
+			int x = 0;
+			while (numberToConvert > 0) {
+				arrayOfValues[x] = (numberToConvert % base);
+				numberToConvert = (numberToConvert / base);
+				x++;
+			}
+
+			for (int i = arrayOfValues.length -1; i >=0; i--) {
+				newValue += Long.toString(arrayOfValues[i]) + " ";
+			}
+
+			return newValue.trim();
 		}
-
-		arrayOfValues = new long[arrayLength];
-
-
-		// this loop creates an array of digits
-		int x = 0;
-		while(numberToConvert > 0) {
-			arrayOfValues[x] = (numberToConvert % base);
-			numberToConvert = (numberToConvert / base);
-			System.out.println(numberToConvert);
-			x++;
-		}
-
-		for(int i = arrayOfValues.length -1; i >=0; i--) {
-			newValue += Long.toString(arrayOfValues[i]) + " ";
-		}
-		System.out.println(newValue);
-		return newValue.trim();
 	}
 
 
@@ -65,8 +68,6 @@ public class BaseConverter {
 	// 	return null;
 
 	// }
-
-
 
 
 	public static void main(String[] args) {
