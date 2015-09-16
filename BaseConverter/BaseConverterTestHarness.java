@@ -22,8 +22,6 @@ public class BaseConverterTestHarness {
 
     private static void test_baseConverter() {
         System.out.println("Testing Arrays...");
-        Long l = 2984432549403l;
-
         BaseConverter test1 = new BaseConverter();
         
         try {
@@ -37,15 +35,11 @@ public class BaseConverterTestHarness {
             displaySuccessIfTrue(false);
         }        
         try {
-            displaySuccessIfTrue(l == test1.conversionToDecimal(new byte[]{3,2,1,3,2,1,3,2,1}, 36));
+            displaySuccessIfTrue(2984432549403l == test1.conversionToDecimal(new byte[]{3,2,1,3,2,1,3,2,1}, 36));
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }        
-        // try {
-        //     displaySuccessIfTrue(157 == test1.conversionToDecimal(banana, 8));
-        // } catch(Exception e) {
-        //     displaySuccessIfTrue(false);
-        // }    
+    
 
         
     }
